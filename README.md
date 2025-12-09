@@ -156,31 +156,37 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 
 #### Feature Prioritization Matrix
 
-| # | Feature | User Impact (1-5) | Dev Effort (1-5) | Priority | Status |
-|---|---------|-------------------|------------------|----------|--------|
-| 1 | **Concept Input & Tree Generation** | 5 | 4 | **MUST HAVE** | MVP |
-| 2 | **Visual Dependency Tree Display** | 5 | 3 | **MUST HAVE** | MVP |
-| 3 | **AI-Powered Quiz Generation** | 5 | 4 | **MUST HAVE** | MVP |
-| 4 | **Quiz Taking & Answer Validation** | 5 | 3 | **MUST HAVE** | MVP |
-| 5 | **Resource Recommendation Engine** | 5 | 3 | **MUST HAVE** | MVP |
-| 6 | **Education Level Selection** | 4 | 2 | **MUST HAVE** | MVP |
-| 7 | **User Authentication (Sign up/Login)** | 4 | 3 | **MUST HAVE** | MVP |
-| 8 | **Basic Progress Persistence** | 4 | 3 | **MUST HAVE** | MVP |
-| 9 | **Mobile Responsive Design** | 4 | 3 | **MUST HAVE** | MVP |
-| 10 | **Error Handling & Loading States** | 4 | 2 | **MUST HAVE** | MVP |
-| 11 | **Multi-Topic Dashboard** | 4 | 3 | **SHOULD HAVE** | Post-MVP |
-| 12 | **Concept Status Indicators** | 4 | 2 | **SHOULD HAVE** | Post-MVP |
-| 13 | **Progress Analytics & Insights** | 3 | 3 | **SHOULD HAVE** | Post-MVP |
-| 14 | **Learning Path History** | 3 | 2 | **SHOULD HAVE** | Post-MVP |
-| 15 | **Resource Quality Ratings** | 3 | 3 | **SHOULD HAVE** | Post-MVP |
-| 16 | **Spaced Repetition System** | 4 | 4 | **COULD HAVE** | Post-MVP |
-| 17 | **Social Sharing Features** | 2 | 3 | **COULD HAVE** | Post-MVP |
-| 18 | **Custom Prerequisite Editing** | 2 | 3 | **COULD HAVE** | Post-MVP |
-| 19 | **PDF/Image Export** | 2 | 3 | **COULD HAVE** | Post-MVP |
-| 20 | **Multi-language Support** | 3 | 5 | **COULD HAVE** | Post-MVP |
-| 21 | **Video Resource Prioritization** | 2 | 2 | **COULD HAVE** | Post-MVP |
-| 22 | **Educator Dashboard** | 3 | 4 | **COULD HAVE** | Post-MVP |
-| 23 | **Dark Mode** | 2 | 2 | **COULD HAVE** | Post-MVP |
+| # | Feature | User Impact (1-5) | Dev Effort (1-5) | Priority | Sprint | Status |
+|---|---------|-------------------|------------------|----------|--------|--------|
+| 1 | **Concept Input & Tree Generation** | 5 | 4 | **MUST HAVE** | Sprint 1 | ✅ Prototype |
+| 2 | **Visual Dependency Tree Display** | 5 | 3 | **MUST HAVE** | Sprint 1 | ✅ Prototype |
+| 3 | **AI-Powered Quiz Generation** | 5 | 4 | **MUST HAVE** | Sprint 2 | ✅ Prototype |
+| 4 | **Quiz Taking & Answer Validation** | 5 | 3 | **MUST HAVE** | Sprint 2 | ✅ Prototype |
+| 5 | **Resource Recommendation Engine** | 5 | 3 | **MUST HAVE** | Sprint 2 | ✅ Prototype |
+| 6 | **Education Level Selection** | 4 | 2 | **MUST HAVE** | Sprint 1 | ✅ Prototype |
+| 7 | **User Authentication (Sign up/Login)** | 4 | 3 | **MUST HAVE** | Sprint 3 | Planned |
+| 8 | **Basic Progress Persistence** | 4 | 3 | **MUST HAVE** | Sprint 3 | Planned |
+| 9 | **Mobile Responsive Design** | 4 | 3 | **MUST HAVE** | Sprint 4 | Planned |
+| 10 | **Error Handling & Loading States** | 4 | 2 | **MUST HAVE** | Sprint 4 | Planned |
+| 11 | **Backend API Setup** | 5 | 3 | **MUST HAVE** | Sprint 3 | Planned |
+| 12 | **Database Schema & Models** | 5 | 3 | **MUST HAVE** | Sprint 3 | Planned |
+| 13 | **AI Service Integration (Gemini)** | 5 | 3 | **MUST HAVE** | Sprint 1 | Planned |
+| 14 | **Session Management** | 4 | 2 | **MUST HAVE** | Sprint 3 | Planned |
+| 15 | **Multi-Topic Dashboard** | 4 | 3 | **SHOULD HAVE** | Sprint 5 | Post-MVP |
+| 16 | **Concept Status Indicators** | 4 | 2 | **SHOULD HAVE** | Sprint 4 | Planned |
+| 17 | **Progress Analytics & Insights** | 3 | 3 | **SHOULD HAVE** | Sprint 5 | Post-MVP |
+| 18 | **Learning Path History** | 3 | 2 | **SHOULD HAVE** | Sprint 5 | Post-MVP |
+| 19 | **Resource Quality Ratings** | 3 | 3 | **SHOULD HAVE** | Post-MVP | Future |
+| 20 | **Spaced Repetition System** | 4 | 4 | **COULD HAVE** | Post-MVP | Future |
+| 21 | **Social Sharing Features** | 2 | 3 | **COULD HAVE** | Post-MVP | Future |
+| 22 | **Custom Prerequisite Editing** | 2 | 3 | **COULD HAVE** | Post-MVP | Future |
+| 23 | **PDF/Image Export** | 2 | 3 | **COULD HAVE** | Post-MVP | Future |
+| 24 | **Multi-language Support** | 3 | 5 | **COULD HAVE** | Post-MVP | Future |
+| 25 | **Video Resource Prioritization** | 2 | 2 | **COULD HAVE** | Post-MVP | Future |
+| 26 | **Educator Dashboard** | 3 | 4 | **COULD HAVE** | Post-MVP | Future |
+| 27 | **Dark Mode** | 2 | 2 | **COULD HAVE** | Post-MVP | Future |
+| 28 | **Deployment Configuration** | 4 | 3 | **MUST HAVE** | Sprint 5 | Planned |
+| 29 | **Testing & Bug Fixes** | 5 | 3 | **MUST HAVE** | Sprint 5 | Planned |
 
 **Scoring Guide:**
 - **User Impact**: 1=Nice to have, 3=Valuable, 5=Critical to core value
@@ -190,5 +196,169 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - **MUST HAVE**: Core features required for MVP; without these, the product doesn't solve the core problem
 - **SHOULD HAVE**: Important features that significantly enhance value but aren't critical for launch
 - **COULD HAVE**: Nice-to-have features that can wait for future iterations based on user feedback
+
+### Structure Plane
+
+#### Sprint Planning (5 Sprints × 1 Week Each)
+
+**Sprint 1: Core AI Foundation (Week 1)**
+*Goal: Establish AI-powered concept mapping with basic UI*
+
+**Features:**
+- [ ] Project setup (Vite + React + TailwindCSS)
+- [ ] Basic UI layout with concept input form
+- [ ] Education level selection dropdown
+- [ ] Google Gemini API integration
+- [ ] AI prompt engineering for tree generation
+- [ ] JSON parsing and error handling for AI responses
+- [ ] Visual tree display component (basic version)
+- [ ] Loading states for API calls
+
+**Deliverable:** Standalone React app that generates and displays prerequisite trees
+
+**Success Criteria:**
+- User can input a concept and see a dependency tree
+- Tree generation takes <5 seconds
+- UI is functional (doesn't need to be polished yet)
+
+---
+
+**Sprint 2: Assessment System (Week 2)**
+*Goal: Build quiz generation and validation logic*
+
+**Features:**
+- [ ] Quiz generation prompt engineering
+- [ ] Quiz UI component with multiple-choice questions
+- [ ] Answer validation logic
+- [ ] Quiz state management (current question, answers, scoring)
+- [ ] Pass/fail determination (2/3 correct)
+- [ ] Visual status indicators (passed/failed/untested)
+- [ ] Resource recommendation AI prompts
+- [ ] Study resource display component
+
+**Deliverable:** Complete assessment flow from tree → quiz → resources
+
+**Success Criteria:**
+- Users can take quizzes on any prerequisite concept
+- Quiz results correctly identify knowledge gaps
+- Personalized resources are generated for failed concepts
+
+---
+
+**Sprint 3: Backend & Authentication (Week 3)**
+*Goal: Build server infrastructure and user accounts*
+
+**Features:**
+- [ ] Node.js + Express server setup
+- [ ] MongoDB Atlas configuration
+- [ ] User schema (username, email, password hash)
+- [ ] Learning path schema (concept, tree data, quiz results, timestamps)
+- [ ] JWT authentication middleware
+- [ ] Sign up endpoint with password hashing (bcrypt)
+- [ ] Login endpoint with JWT generation
+- [ ] Protected routes for user data
+- [ ] HTTP-only cookie configuration
+- [ ] Logout functionality
+- [ ] Frontend auth context/state management
+- [ ] Login/signup UI components
+
+**Deliverable:** Full-stack app with user authentication
+
+**Success Criteria:**
+- Users can create accounts and log in
+- Authentication persists across page refreshes
+- User data is securely stored in MongoDB
+
+---
+
+**Sprint 4: Polish & UX Refinement (Week 4)**
+*Goal: Enhance usability, responsiveness, and user experience*
+
+**Features:**
+- [ ] Mobile-responsive design (Tailwind breakpoints)
+- [ ] Tablet optimization
+- [ ] Enhanced error handling (network failures, API errors)
+- [ ] User-friendly error messages
+- [ ] Loading skeleton components
+- [ ] Improved visual hierarchy and spacing
+- [ ] Accessibility improvements (ARIA labels, keyboard navigation)
+- [ ] Status indicators on tree nodes
+- [ ] Progress tracking UI
+- [ ] Smooth transitions and animations
+- [ ] Empty states and onboarding hints
+
+**Deliverable:** Production-ready UI/UX
+
+**Success Criteria:**
+- App works seamlessly on mobile, tablet, and desktop
+- All error cases are handled gracefully
+- User testing shows intuitive navigation
+
+---
+
+**Sprint 5: Deployment & Testing (Week 5)**
+*Goal: Launch MVP and establish CI/CD pipeline*
+
+**Features:**
+- [ ] Frontend deployment to Vercel
+- [ ] Backend deployment to Render
+- [ ] Environment variable configuration
+- [ ] MongoDB Atlas production setup
+- [ ] CORS configuration for cross-origin requests
+- [ ] API rate limiting and security headers
+- [ ] End-to-end testing of critical flows
+- [ ] Bug fixes from testing
+- [ ] Performance optimization (lazy loading, code splitting)
+- [ ] Analytics setup (optional: PostHog, Plausible)
+- [ ] Documentation updates
+- [ ] Demo video/screenshots for portfolio
+
+**Deliverable:** Live, production-ready MVP
+
+**Success Criteria:**
+- App is accessible at public URLs
+- All core features work in production
+- No critical bugs or security vulnerabilities
+- Portfolio-ready presentation materials
+
+---
+
+#### Post-MVP Roadmap
+
+**Phase 2: Enhanced Learning Experience (Sprints 6-8)**
+- Multi-topic dashboard with progress overview
+- Learning path history and timestamps
+- Progress analytics (time spent, concepts mastered)
+- Improved resource curation (user ratings, better filtering)
+
+**Phase 3: Advanced Features (Sprints 9-12)**
+- Spaced repetition reminders
+- Custom prerequisite editing
+- Social features (share learning paths)
+- Export functionality (PDF/image)
+- Educator tools (student progress tracking)
+
+**Phase 4: Scale & Optimize (Sprints 13+)**
+- Multi-language support
+- Video resource prioritization
+- Premium AI model options (GPT-4o-mini, Claude)
+- Performance optimization for large concept trees
+
+---
+
+#### Sprint Velocity & Timeline
+
+**Estimated Timeline:** 5 weeks for MVP (35 hours total at ~7 hours/week)
+
+**Velocity Assumptions:**
+- 1 Dev Effort Point ≈ 1.5-2 hours
+- Sprint capacity: ~12 Dev Effort Points/week
+- Buffer time included for unexpected challenges
+
+**Risk Mitigation:**
+- AI API reliability: Have backup prompts and fallback error messages
+- Authentication complexity: Use proven JWT + HTTP-only cookie pattern
+- Deployment issues: Test in staging environment before production
+- Scope creep: Strictly adhere to "MUST HAVE" features for MVP
 
 

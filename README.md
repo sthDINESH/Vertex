@@ -106,3 +106,83 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - Quizzes that test understanding, not trivia memorization
 - Resources that match user's current level (no overwhelming PhD papers for beginners)
 - Mobile-responsive design for studying on-the-go
+
+
+### Scope Plane
+
+#### User Stories
+
+**MVP (Minimum Viable Product)**
+
+*Core Learning Journey:*
+1. **As a** struggling student, **I want to** enter a topic I'm finding difficult, **so that I can** see what prerequisite knowledge I might be missing.
+2. **As a** learner, **I want to** view a visual tree of prerequisite concepts, **so that I can** understand the learning dependencies at a glance.
+3. **As a** student, **I want to** take quick quizzes on prerequisite concepts, **so that I can** identify exactly which foundational topics I need to review.
+4. **As a** self-learner, **I want to** receive personalized resource recommendations, **so that I can** efficiently fill my knowledge gaps without wasting time searching.
+5. **As a** user, **I want to** specify my current education level, **so that I can** receive appropriately challenging content.
+
+*Account & Progress:*
+6. **As a** returning user, **I want to** create an account and log in, **so that I can** save my learning progress across sessions.
+7. **As a** registered user, **I want to** see my quiz results (passed/failed/untested), **so that I can** track which prerequisites I've validated.
+
+*Usability:*
+8. **As a** mobile user, **I want to** access the platform on my phone, **so that I can** learn on-the-go during commutes or breaks.
+9. **As a** user, **I want to** receive fast responses (<5 seconds), **so that I can** maintain my learning flow without frustration.
+
+**Post-MVP (Future Enhancements)**
+
+*Enhanced Progress Tracking:*
+10. **As a** motivated learner, **I want to** see a dashboard of all my learning paths, **so that I can** visualize my overall progress across multiple topics.
+11. **As a** goal-oriented student, **I want to** mark concepts as "mastered" and unlock dependent topics, **so that I can** experience gamification and stay motivated.
+12. **As a** user, **I want to** see timestamps of when I completed assessments, **so that I can** know when I might need to refresh my knowledge.
+
+*Advanced Features:*
+13. **As a** learner, **I want to** receive spaced repetition reminders, **so that I can** retain prerequisite knowledge long-term.
+14. **As a** educator, **I want to** generate learning paths for my students, **so that I can** provide personalized remediation plans.
+15. **As a** collaborative learner, **I want to** share my learning tree with peers, **so that I can** study together and compare understanding.
+16. **As a** user, **I want to** rate resource quality and quiz fairness, **so that I can** help improve content for future learners.
+17. **As a** advanced user, **I want to** manually add custom prerequisites or resources, **so that I can** personalize my learning path based on my unique needs.
+
+*Platform Expansion:*
+18. **As a** non-English speaker, **I want to** use the platform in my native language, **so that I can** access prerequisite mapping without language barriers.
+19. **As a** visual learner, **I want to** see video resources prioritized, **so that I can** learn in my preferred format.
+20. **As a** power user, **I want to** export my learning tree as PDF/image, **so that I can** reference it offline or share it in assignments.
+
+#### Feature Prioritization Matrix
+
+| # | Feature | User Impact (1-5) | Dev Effort (1-5) | Priority | Status |
+|---|---------|-------------------|------------------|----------|--------|
+| 1 | **Concept Input & Tree Generation** | 5 | 4 | **MUST HAVE** | MVP |
+| 2 | **Visual Dependency Tree Display** | 5 | 3 | **MUST HAVE** | MVP |
+| 3 | **AI-Powered Quiz Generation** | 5 | 4 | **MUST HAVE** | MVP |
+| 4 | **Quiz Taking & Answer Validation** | 5 | 3 | **MUST HAVE** | MVP |
+| 5 | **Resource Recommendation Engine** | 5 | 3 | **MUST HAVE** | MVP |
+| 6 | **Education Level Selection** | 4 | 2 | **MUST HAVE** | MVP |
+| 7 | **User Authentication (Sign up/Login)** | 4 | 3 | **MUST HAVE** | MVP |
+| 8 | **Basic Progress Persistence** | 4 | 3 | **MUST HAVE** | MVP |
+| 9 | **Mobile Responsive Design** | 4 | 3 | **MUST HAVE** | MVP |
+| 10 | **Error Handling & Loading States** | 4 | 2 | **MUST HAVE** | MVP |
+| 11 | **Multi-Topic Dashboard** | 4 | 3 | **SHOULD HAVE** | Post-MVP |
+| 12 | **Concept Status Indicators** | 4 | 2 | **SHOULD HAVE** | Post-MVP |
+| 13 | **Progress Analytics & Insights** | 3 | 3 | **SHOULD HAVE** | Post-MVP |
+| 14 | **Learning Path History** | 3 | 2 | **SHOULD HAVE** | Post-MVP |
+| 15 | **Resource Quality Ratings** | 3 | 3 | **SHOULD HAVE** | Post-MVP |
+| 16 | **Spaced Repetition System** | 4 | 4 | **COULD HAVE** | Post-MVP |
+| 17 | **Social Sharing Features** | 2 | 3 | **COULD HAVE** | Post-MVP |
+| 18 | **Custom Prerequisite Editing** | 2 | 3 | **COULD HAVE** | Post-MVP |
+| 19 | **PDF/Image Export** | 2 | 3 | **COULD HAVE** | Post-MVP |
+| 20 | **Multi-language Support** | 3 | 5 | **COULD HAVE** | Post-MVP |
+| 21 | **Video Resource Prioritization** | 2 | 2 | **COULD HAVE** | Post-MVP |
+| 22 | **Educator Dashboard** | 3 | 4 | **COULD HAVE** | Post-MVP |
+| 23 | **Dark Mode** | 2 | 2 | **COULD HAVE** | Post-MVP |
+
+**Scoring Guide:**
+- **User Impact**: 1=Nice to have, 3=Valuable, 5=Critical to core value
+- **Dev Effort**: 1=Few hours, 3=1-2 days, 5=1+ week
+
+**Priority Definitions:**
+- **MUST HAVE**: Core features required for MVP; without these, the product doesn't solve the core problem
+- **SHOULD HAVE**: Important features that significantly enhance value but aren't critical for launch
+- **COULD HAVE**: Nice-to-have features that can wait for future iterations based on user feedback
+
+

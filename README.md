@@ -28,6 +28,20 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - JWT + bcrypt (authentication)
 - HTTP-only cookies (session management)
 
+**Testing:**
+- **Frontend Testing**:
+  - Vitest (unit tests, faster than Jest for Vite projects)
+  - React Testing Library (component tests)
+  - Playwright or Cypress (E2E tests - Sprint 5)
+- **Backend Testing**:
+  - Jest or Vitest (unit tests)
+  - Supertest (API endpoint testing)
+  - MongoDB Memory Server (database mocking)
+- **Quality Assurance**:
+  - Lighthouse (performance & accessibility audits)
+  - WAVE (accessibility testing)
+  - k6 or Artillery (load testing - Sprint 5)
+
 **AI:**
 - **Development**: Google Gemini 1.5 Flash
   - Free tier: 1,500 requests/day (no expiration, no credit card)
@@ -42,6 +56,13 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - Frontend: Vercel (free)
 - Backend: Render (free tier: 750 hrs/month)
 - Database: MongoDB Atlas (free tier: 512MB)
+
+**DevOps & Monitoring:**
+- Git + GitHub (version control)
+- Vercel Analytics (frontend monitoring)
+- UptimeRobot (backend health checks)
+- Sentry (optional - error tracking)
+- PostHog or Plausible (optional - privacy-focused analytics)
 
 *Split deployment approach: Vercel's global CDN optimizes frontend performance while Render handles API logic. This separation allows independent scaling, faster load times, and follows industry best practices for modern web applications.*
 
@@ -199,6 +220,9 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 
 ### Structure Plane
 
+
+## Agile methodology
+
 #### Sprint Planning (5 Sprints × 1 Week Each)
 
 **Sprint 1: Core AI Foundation (Week 1)**
@@ -213,13 +237,29 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - [ ] JSON parsing and error handling for AI responses
 - [ ] Visual tree display component (basic version)
 - [ ] Loading states for API calls
+- [ ] Environment variable setup (.env with API keys)
+- [ ] Basic error boundaries
 
-**Deliverable:** Standalone React app that generates and displays prerequisite trees
+**Testing:**
+- [ ] Manual testing of tree generation with various concepts
+- [ ] Test edge cases (empty input, special characters, very long concept names)
+- [ ] Verify JSON parsing handles malformed AI responses
+- [ ] Test loading states and error messages display correctly
+- [ ] Cross-browser testing (Chrome, Firefox, Safari)
+
+**Deployment:**
+- [ ] Deploy frontend to Vercel (connect GitHub repo)
+- [ ] Configure environment variables on Vercel
+- [ ] Test production build locally before deployment
+- [ ] Verify deployed app generates trees successfully
+
+**Deliverable:** Live standalone React app at `yourapp.vercel.app` that generates and displays prerequisite trees
 
 **Success Criteria:**
 - User can input a concept and see a dependency tree
 - Tree generation takes <5 seconds
-- UI is functional (doesn't need to be polished yet)
+- App is accessible via public URL
+- No console errors in production
 
 ---
 
@@ -235,13 +275,31 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - [ ] Visual status indicators (passed/failed/untested)
 - [ ] Resource recommendation AI prompts
 - [ ] Study resource display component
+- [ ] Quiz progress indicator
+- [ ] Retake quiz functionality
 
-**Deliverable:** Complete assessment flow from tree → quiz → resources
+**Testing:**
+- [ ] Test quiz generation for all prerequisite levels (foundational/intermediate/advanced)
+- [ ] Verify answer validation logic (correct/incorrect scoring)
+- [ ] Test pass/fail threshold (2/3 correct)
+- [ ] Test quiz state persistence during session
+- [ ] Verify resource generation matches failed concepts
+- [ ] Test "Retake Quiz" functionality resets state correctly
+- [ ] Mobile responsiveness testing for quiz UI
+
+**Deployment:**
+- [ ] Deploy updated frontend to Vercel (automatic via Git push)
+- [ ] Smoke test: Complete full assessment flow in production
+- [ ] Monitor Gemini API usage/rate limits
+- [ ] Test resource rendering on different screen sizes
+
+**Deliverable:** Complete assessment flow from tree → quiz → resources deployed and accessible
 
 **Success Criteria:**
 - Users can take quizzes on any prerequisite concept
-- Quiz results correctly identify knowledge gaps
+- Quiz results correctly identify knowledge gaps (validated with test cases)
 - Personalized resources are generated for failed concepts
+- No regression in tree generation from Sprint 1
 
 ---
 
@@ -250,7 +308,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 
 **Features:**
 - [ ] Node.js + Express server setup
-- [ ] MongoDB Atlas configuration
+- [ ] MongoDB Atlas configuration (free tier)
 - [ ] User schema (username, email, password hash)
 - [ ] Learning path schema (concept, tree data, quiz results, timestamps)
 - [ ] JWT authentication middleware
@@ -261,13 +319,38 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - [ ] Logout functionality
 - [ ] Frontend auth context/state management
 - [ ] Login/signup UI components
+- [ ] Save learning path to database
+- [ ] Retrieve user's learning paths
 
-**Deliverable:** Full-stack app with user authentication
+**Testing:**
+- [ ] Unit tests for authentication endpoints (signup, login, logout)
+- [ ] Test password hashing (verify bcrypt integration)
+- [ ] Test JWT generation and validation
+- [ ] Test protected routes reject unauthenticated requests
+- [ ] Test database CRUD operations (create user, save learning path, retrieve data)
+- [ ] Test HTTP-only cookie security (inspect in DevTools)
+- [ ] Integration test: Full signup → login → save data → logout → login → retrieve data flow
+- [ ] Test error handling (duplicate email, wrong password, invalid tokens)
+- [ ] Test session persistence across page refreshes
+
+**Deployment:**
+- [ ] Deploy backend to Render (free tier)
+- [ ] Configure MongoDB Atlas production cluster
+- [ ] Set environment variables on Render (JWT_SECRET, MONGO_URI, etc.)
+- [ ] Configure CORS for Vercel frontend domain
+- [ ] Update frontend API calls to use Render backend URL
+- [ ] Deploy updated frontend to Vercel
+- [ ] Test authentication flow in production (signup, login, logout)
+- [ ] Verify data persistence in MongoDB Atlas
+
+**Deliverable:** Full-stack app with user authentication, both frontend and backend deployed
 
 **Success Criteria:**
-- Users can create accounts and log in
+- Users can create accounts and log in via public URLs
 - Authentication persists across page refreshes
 - User data is securely stored in MongoDB
+- Learning paths are saved and retrievable after login
+- No authentication bypass vulnerabilities
 
 ---
 
@@ -283,43 +366,82 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - [ ] Improved visual hierarchy and spacing
 - [ ] Accessibility improvements (ARIA labels, keyboard navigation)
 - [ ] Status indicators on tree nodes
-- [ ] Progress tracking UI
+- [ ] Progress tracking UI (dashboard showing all learning paths)
 - [ ] Smooth transitions and animations
 - [ ] Empty states and onboarding hints
+- [ ] Toast notifications for success/error states
 
-**Deliverable:** Production-ready UI/UX
+**Testing:**
+- [ ] Responsive design testing (mobile: 375px, tablet: 768px, desktop: 1920px)
+- [ ] Test on real devices (iOS Safari, Android Chrome)
+- [ ] Accessibility audit (Lighthouse, WAVE, keyboard-only navigation)
+- [ ] Test error states (network offline, API timeout, 500 errors)
+- [ ] Test loading skeletons during slow API calls
+- [ ] User testing with 3-5 target users (record feedback)
+- [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- [ ] Performance testing (Lighthouse score >90)
+
+**Deployment:**
+- [ ] Deploy UI improvements to Vercel
+- [ ] Test on multiple devices in production
+- [ ] Monitor error logs (Vercel logs, Sentry optional)
+- [ ] Performance optimization (lazy loading, code splitting)
+- [ ] Run Lighthouse audit on production URL
+- [ ] Fix any critical accessibility issues found
+
+**Deliverable:** Production-ready UI/UX with polished design and accessibility compliance
 
 **Success Criteria:**
 - App works seamlessly on mobile, tablet, and desktop
-- All error cases are handled gracefully
-- User testing shows intuitive navigation
+- All error cases are handled gracefully with helpful messages
+- Lighthouse accessibility score >90
+- User testing shows intuitive navigation (average 4/5 rating)
+- No console errors or warnings
 
 ---
 
-**Sprint 5: Deployment & Testing (Week 5)**
-*Goal: Launch MVP and establish CI/CD pipeline*
+**Sprint 5: Final Polish & Portfolio Prep (Week 5)**
+*Goal: Production hardening and portfolio presentation*
 
 **Features:**
-- [ ] Frontend deployment to Vercel
-- [ ] Backend deployment to Render
-- [ ] Environment variable configuration
-- [ ] MongoDB Atlas production setup
-- [ ] CORS configuration for cross-origin requests
-- [ ] API rate limiting and security headers
-- [ ] End-to-end testing of critical flows
-- [ ] Bug fixes from testing
-- [ ] Performance optimization (lazy loading, code splitting)
+- [ ] API rate limiting (prevent abuse)
+- [ ] Security headers (helmet.js)
+- [ ] Input sanitization (prevent XSS, SQL injection)
+- [ ] Comprehensive error logging
 - [ ] Analytics setup (optional: PostHog, Plausible)
-- [ ] Documentation updates
+- [ ] Performance optimization (bundle size reduction)
+- [ ] SEO meta tags and Open Graph images
+- [ ] Custom domain setup (optional)
 - [ ] Demo video/screenshots for portfolio
+- [ ] README with setup instructions
+- [ ] Code comments and documentation
 
-**Deliverable:** Live, production-ready MVP
+**Testing:**
+- [ ] End-to-end testing of all critical user flows (Playwright/Cypress optional)
+- [ ] Security testing (check for common vulnerabilities)
+- [ ] Load testing (simulate 50+ concurrent users with k6 or Artillery)
+- [ ] Final cross-browser and cross-device testing
+- [ ] Regression testing (verify all Sprint 1-4 features still work)
+- [ ] User acceptance testing with fresh users (record walkthrough videos)
+- [ ] Test error monitoring system (trigger errors, verify logs)
+
+**Deployment:**
+- [ ] Production optimization build
+- [ ] Enable Vercel Analytics
+- [ ] Set up monitoring/alerting (UptimeRobot for backend health checks)
+- [ ] Final security audit (check CORS, cookies, headers)
+- [ ] Create staging environment for future changes
+- [ ] Document deployment process
+- [ ] Test rollback procedure
+
+**Deliverable:** Live, production-ready MVP with portfolio presentation materials
 
 **Success Criteria:**
-- App is accessible at public URLs
+- App is accessible at public URLs with 99.9% uptime
 - All core features work in production
 - No critical bugs or security vulnerabilities
-- Portfolio-ready presentation materials
+- Portfolio-ready demo video and documentation
+- Passed security checklist (OWASP top 10)
 
 ---
 
@@ -348,17 +470,30 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 
 #### Sprint Velocity & Timeline
 
-**Estimated Timeline:** 5 weeks for MVP (35 hours total at ~7 hours/week)
+**Estimated Timeline:** 5 weeks for MVP (35-40 hours total at ~7-8 hours/week)
 
 **Velocity Assumptions:**
 - 1 Dev Effort Point ≈ 1.5-2 hours
-- Sprint capacity: ~12 Dev Effort Points/week
+- Sprint capacity: ~12-14 Dev Effort Points/week (including testing & deployment)
+- Testing = ~20% of sprint time
+- Deployment = ~10% of sprint time
 - Buffer time included for unexpected challenges
 
+**Testing Strategy:**
+- **Sprint 1-2**: Manual testing (frontend only, no backend yet)
+- **Sprint 3**: Integration tests for auth + database
+- **Sprint 4**: User testing + accessibility audits
+- **Sprint 5**: End-to-end tests + security audit
+
+**Deployment Strategy:**
+- **Continuous Deployment**: Every sprint ends with a production deployment
+- **Staging Environment**: Sprint 5 introduces staging for safer releases
+- **Rollback Plan**: Git tags for each sprint release, quick revert capability
+
 **Risk Mitigation:**
-- AI API reliability: Have backup prompts and fallback error messages
-- Authentication complexity: Use proven JWT + HTTP-only cookie pattern
-- Deployment issues: Test in staging environment before production
-- Scope creep: Strictly adhere to "MUST HAVE" features for MVP
+- AI API reliability: Test fallback error messages, monitor rate limits each sprint
+- Authentication complexity: Deploy incrementally (Sprint 3), test heavily before Sprint 4
+- Deployment issues: Deploy early and often to catch issues sooner
+- Scope creep: Strictly adhere to "MUST HAVE" features, defer "SHOULD HAVE" to Post-MVP
 
 

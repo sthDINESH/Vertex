@@ -115,6 +115,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 **MVP (Minimum Viable Product)**
 
 *Core Learning Journey:*
+
 1. **As a** struggling student, **I want to** enter a topic I'm finding difficult, **so that I can** see what prerequisite knowledge I might be missing.
 2. **As a** learner, **I want to** view a visual tree of prerequisite concepts, **so that I can** understand the learning dependencies at a glance.
 3. **As a** student, **I want to** take quick quizzes on prerequisite concepts, **so that I can** identify exactly which foundational topics I need to review.
@@ -122,21 +123,25 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 5. **As a** user, **I want to** specify my current education level, **so that I can** receive appropriately challenging content.
 
 *Account & Progress:*
+
 6. **As a** returning user, **I want to** create an account and log in, **so that I can** save my learning progress across sessions.
 7. **As a** registered user, **I want to** see my quiz results (passed/failed/untested), **so that I can** track which prerequisites I've validated.
 
 *Usability:*
+
 8. **As a** mobile user, **I want to** access the platform on my phone, **so that I can** learn on-the-go during commutes or breaks.
 9. **As a** user, **I want to** receive fast responses (<5 seconds), **so that I can** maintain my learning flow without frustration.
 
 **Post-MVP (Future Enhancements)**
 
 *Enhanced Progress Tracking:*
+
 10. **As a** motivated learner, **I want to** see a dashboard of all my learning paths, **so that I can** visualize my overall progress across multiple topics.
 11. **As a** goal-oriented student, **I want to** mark concepts as "mastered" and unlock dependent topics, **so that I can** experience gamification and stay motivated.
 12. **As a** user, **I want to** see timestamps of when I completed assessments, **so that I can** know when I might need to refresh my knowledge.
 
 *Advanced Features:*
+
 13. **As a** learner, **I want to** receive spaced repetition reminders, **so that I can** retain prerequisite knowledge long-term.
 14. **As a** educator, **I want to** generate learning paths for my students, **so that I can** provide personalized remediation plans.
 15. **As a** collaborative learner, **I want to** share my learning tree with peers, **so that I can** study together and compare understanding.
@@ -144,6 +149,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 17. **As a** advanced user, **I want to** manually add custom prerequisites or resources, **so that I can** personalize my learning path based on my unique needs.
 
 *Platform Expansion:*
+
 18. **As a** non-English speaker, **I want to** use the platform in my native language, **so that I can** access prerequisite mapping without language barriers.
 19. **As a** visual learner, **I want to** see video resources prioritized, **so that I can** learn in my preferred format.
 20. **As a** power user, **I want to** export my learning tree as PDF/image, **so that I can** reference it offline or share it in assignments.

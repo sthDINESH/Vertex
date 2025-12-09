@@ -51,14 +51,58 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 
 #### Target Audience
 
-#### Business goals
+**Primary Users:**
+- **Undergraduate students** (18-24 years) struggling with complex STEM subjects who need to identify foundational gaps
+- **Self-learners & bootcamp students** (20-35 years) transitioning careers and encountering prerequisite knowledge barriers
+- **High school AP/IB students** (15-18 years) preparing for advanced coursework and wanting to ensure readiness
 
-#### User goals
+**Secondary Users:**
+- **Graduate students** conducting interdisciplinary research requiring breadth across unfamiliar domains
+- **Educators & tutors** seeking diagnostic tools to personalize instruction and identify student misconceptions
+- **Lifelong learners** (35+ years) upskilling in new technical domains (AI, quantum computing, advanced mathematics)
 
-### Scope Plane
+**User Characteristics:**
+- Motivated to learn but frustrated by unclear starting points
+- Experience the "I don't understand why I don't understand" problem
+- Prefer structured, step-by-step learning approaches
+- Value time efficiency and targeted resource recommendations
+- Comfortable with digital learning tools and self-assessment
 
-### Structure Plane
+#### Business Goals
 
-### Skeleton Plane
+**Core Objectives:**
+1. **Solve a validated pain point**: Address the widespread "missing prerequisites" problem that causes 40%+ of MOOC dropouts
+2. **Build a defensible AI product**: Demonstrate practical AI application beyond chatbots—creates value through intelligent structuring and personalization
+3. **Portfolio differentiation**: Showcase full-stack skills with modern architecture (React, Node.js, MongoDB) and AI integration
 
-### Surface Plane
+**Success Metrics:**
+- Demonstrate functional AI integration with accurate prerequisite mapping
+- Achieve smooth user experience with <5 second tree generation
+- Positive feedback from test users on clarity and usefulness of learning paths
+- Successfully showcase full-stack architecture and modern development practices in portfolio
+
+#### User Goals
+
+**Immediate Needs:**
+1. **Identify knowledge gaps**: "I'm stuck on Neural Networks—what am I missing?"
+2. **Validate understanding**: "Do I actually understand linear algebra, or just think I do?"
+3. **Get actionable next steps**: "What should I learn first to make this click?"
+4. **Save time**: "Stop me from wasting hours on the wrong tutorials"
+
+**Longer-term Goals:**
+1. **Build confidence**: Transform "I'm not smart enough" into "I just need to learn X first"
+2. **Learn efficiently**: Follow a structured path instead of random tutorial hopping
+3. **Track progress**: See visual confirmation of growing knowledge (gamification element)
+4. **Avoid imposter syndrome**: Normalize prerequisite gaps—everyone has them
+
+**Emotional Outcomes:**
+- Replace frustration with clarity and direction
+- Experience "aha moments" when prerequisites unlock understanding
+- Feel empowered rather than overwhelmed by complex topics
+- Trust in having a reliable diagnostic tool for future learning challenges
+
+**Functional Requirements:**
+- Generate dependency trees in <5 seconds (maintain flow state)
+- Quizzes that test understanding, not trivia memorization
+- Resources that match user's current level (no overwhelming PhD papers for beginners)
+- Mobile-responsive design for studying on-the-go

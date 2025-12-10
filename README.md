@@ -220,6 +220,471 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 
 ### Structure Plane
 
+#### Information Architecture
+
+**Site Map:**
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                         Landing Page                          │
+│                    (Unauthenticated View)                     │
+│  - Hero section with value proposition                        │
+│  - How it works (3-step visual guide)                        │
+│  - Sample concept tree preview                               │
+│  - CTA: "Start Mapping" (redirects to signup/concept input) │
+└───────────────────────┬─────────────────────────────────────┘
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+┌───────▼────────┐           ┌─────────▼─────────┐
+│  Sign Up/Login │           │  Concept Mapper   │
+│                │           │  (Guest Mode)     │
+│  - Email/Pass  │           │  - Single session │
+│  - Form valid. │           │  - No persistence │
+│  - Error msgs  │           │  - Full features  │
+└───────┬────────┘           └───────────────────┘
+        │
+        │
+┌───────▼──────────────────────────────────────────────────────┐
+│                      Main Dashboard                           │
+│                   (Authenticated View)                        │
+│  - Header: Logo, User menu (Profile, Logout)                │
+│  - "New Concept Map" button (prominent)                      │
+│  - Learning Paths grid (cards with status indicators)        │
+│  - Quick stats: Concepts mapped, Quizzes passed              │
+└───────┬──────────────────────────────────────────────────────┘
+        │
+        │
+┌───────▼──────────────────────────────────────────────────────┐
+│                  Concept Mapping Flow                         │
+│                                                               │
+│  Step 1: Input Form                                          │
+│    - Concept name (required)                                 │
+│    - Subject (optional)                                      │
+│    - Education level (dropdown)                              │
+│    - "Generate Tree" button                                  │
+│                                                               │
+│  Step 2: Visual Tree Display                                 │
+│    - Interactive node graph                                  │
+│    - Color-coded status (untested/passed/failed)             │
+│    - "Test Knowledge" buttons on each node                   │
+│    - Progress indicator (X/Y concepts tested)                │
+│                                                               │
+│  Step 3: Quiz Interface (Modal/Overlay)                      │
+│    - Question counter (1/3, 2/3, 3/3)                       │
+│    - Multiple choice options                                 │
+│    - Progress bar                                            │
+│    - "Submit Answer" button                                  │
+│                                                               │
+│  Step 4: Results & Learning Path                             │
+│    - Assessment summary (concepts passed/failed)             │
+│    - Prioritized learning path (failed concepts first)       │
+│    - Study resources for each failed concept                 │
+│    - "Save Learning Path" button                             │
+│    - "Start Over" / "Map Another Concept" buttons            │
+└───────┬──────────────────────────────────────────────────────┘
+        │
+        │
+┌───────▼──────────────────────────────────────────────────────┐
+│                     User Profile                              │
+│                                                               │
+│  - Account settings (email, password)                        │
+│  - Learning statistics                                       │
+│  - Preferences (future: notifications, AI model choice)      │
+└───────────────────────────────────────────────────────────────┘
+```
+
+**Navigation Structure:**
+- **Primary Navigation** (Authenticated):
+  - Dashboard (home icon)
+  - New Concept Map (+ icon, prominent)
+  - Profile (user avatar)
+  
+- **Secondary Navigation**:
+  - Learning path cards → Individual tree view
+  - Tree nodes → Quiz modal
+  - Results → Resource details (expandable sections)
+
+**Content Organization Principles:**
+- **Progressive Disclosure**: Show complexity gradually (input → tree → quiz → resources)
+- **Task-Oriented Flow**: Linear path for first-time users, dashboard for returning users
+- **Status Visibility**: Color coding and icons make progress immediately visible
+- **Contextual Actions**: Buttons appear where/when needed (e.g., "Test Knowledge" on each node)
+
+---
+
+#### Interaction Design
+
+**User Flow Diagrams:**
+
+**Core Flow: First-Time User**
+```
+1. Land on homepage
+   ↓
+2. Click "Start Mapping" (Guest mode) or "Sign Up"
+   ↓
+3. Enter concept details (name, level)
+   ↓
+4. View generated prerequisite tree
+   ↓
+5. Click "Test Knowledge" on first prerequisite node
+   ↓
+6. Answer 3 quiz questions
+   ↓
+7. See result (passed/failed) reflected on tree
+   ↓
+8. Repeat steps 5-7 for remaining nodes
+   ↓
+9. Click "View Learning Path"
+   ↓
+10. See personalized study resources
+    ↓
+11. Prompted to sign up to save progress
+```
+
+**Core Flow: Returning User**
+```
+1. Login
+   ↓
+2. View dashboard with saved learning paths
+   ↓
+3. Click existing path → Resume where left off
+   OR
+   Click "New Concept Map" → Start fresh assessment
+```
+
+**Interaction Patterns:**
+
+1. **Concept Input**
+   - **Pattern**: Form with instant validation
+   - **Feedback**: Disabled "Generate" button until concept name entered
+   - **Loading State**: Animated spinner + "Analyzing dependencies..." text
+   - **Error Handling**: Inline error messages (e.g., "Failed to generate. Try again.")
+
+2. **Tree Navigation**
+   - **Pattern**: Hierarchical tree with expandable branches
+   - **Visual Hierarchy**: Indentation shows dependency depth, lines connect nodes
+   - **Affordance**: "Test Knowledge" buttons use action color (blue)
+   - **State Changes**: Node color changes immediately after quiz completion
+
+3. **Quiz Taking**
+   - **Pattern**: Modal overlay (maintains context without page change)
+   - **Progress**: Question counter (1/3, 2/3, 3/3) + progress bar
+   - **Interaction**: Single-select radio buttons → "Next" button
+   - **Feedback**: No immediate answer feedback (prevents retake gaming)
+   - **Completion**: Modal closes automatically, tree updates
+
+4. **Results Display**
+   - **Pattern**: Accordion-style resource cards (collapsed by default)
+   - **Prioritization**: Failed concepts listed first
+   - **Visual Hierarchy**: Numbered steps (1, 2, 3...) show recommended order
+   - **Resource Cards**: Expandable with icon-coded resource types (video/article/interactive)
+
+**Micro-Interactions:**
+
+| Element | Trigger | Animation | Purpose |
+|---------|---------|-----------|---------|
+| Quiz button hover | Mouse over | Scale 1.05 + shadow | Affordance |
+| Node status change | Quiz completion | Color fade transition (0.3s) | Smooth feedback |
+| Loading spinner | API call start | Rotate 360° infinite | Processing indicator |
+| Success message | Save action | Slide in from top + fade out after 3s | Confirmation |
+| Resource card expand | Click | Height transition (0.2s ease) | Progressive disclosure |
+| Form validation | Input blur | Red border + error text fade in | Error prevention |
+
+**Accessibility Considerations:**
+- **Keyboard Navigation**: Tab order follows visual hierarchy (input → generate → tree nodes → quiz)
+- **Screen Readers**: ARIA labels on all interactive elements (e.g., "Test your knowledge of Linear Algebra")
+- **Focus Indicators**: Blue outline on focused elements (2px solid)
+- **Color Blindness**: Status uses icons + text labels, not color alone (✓ passed, ✗ failed, ? untested)
+- **Touch Targets**: Minimum 44×44px for mobile buttons
+
+---
+
+#### Technical Architecture
+
+**System Architecture Diagram:**
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        CLIENT (Browser)                          │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │              React Application (Vite)                     │  │
+│  │  ┌────────────┐  ┌──────────────┐  ┌─────────────────┐  │  │
+│  │  │   Pages    │  │  Components  │  │   State Mgmt    │  │  │
+│  │  │            │  │              │  │                 │  │  │
+│  │  │ - Landing  │  │ - TreeView   │  │ - React Context │  │  │
+│  │  │ - Dashboard│  │ - QuizModal  │  │   (Auth)        │  │  │
+│  │  │ - Mapper   │  │ - NodeCard   │  │ - Local State   │  │  │
+│  │  │ - Profile  │  │ - ResourceCard│  │   (Quiz data)   │  │  │
+│  │  └────────────┘  └──────────────┘  └─────────────────┘  │  │
+│  │                                                           │  │
+│  │  ┌──────────────────────────────────────────────────┐   │  │
+│  │  │           API Client (Fetch/Axios)                │   │  │
+│  │  │  - Authentication requests                        │   │  │
+│  │  │  - AI API calls (concept mapping, quizzes, etc.)  │   │  │
+│  │  │  - User data CRUD operations                      │   │  │
+│  │  └──────────────────────────────────────────────────┘   │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                             │                                   │
+│                             │ HTTPS (JWT in HTTP-only cookie)   │
+└─────────────────────────────┼───────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                  SERVER (Node.js + Express)                      │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │                    API Routes                             │  │
+│  │  ┌──────────┐  ┌───────────┐  ┌──────────────────────┐  │  │
+│  │  │  /auth   │  │  /trees   │  │  /ai (proxy routes)  │  │  │
+│  │  │          │  │           │  │                      │  │  │
+│  │  │ - POST   │  │ - GET     │  │ - POST /generate-tree│  │  │
+│  │  │   /signup│  │   /:id    │  │ - POST /generate-quiz│  │  │
+│  │  │ - POST   │  │ - POST    │  │ - POST /resources    │  │  │
+│  │  │   /login │  │   /create │  │                      │  │  │
+│  │  │ - POST   │  │ - PATCH   │  │                      │  │  │
+│  │  │   /logout│  │   /:id    │  │                      │  │  │
+│  │  └──────────┘  └───────────┘  └──────────────────────┘  │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                                                                  │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │                    Middleware                             │  │
+│  │  - CORS configuration                                     │  │
+│  │  - JWT authentication (verify token from cookie)         │  │
+│  │  - Request logging (Morgan)                              │  │
+│  │  - Error handling (centralized error middleware)         │  │
+│  │  - Rate limiting (express-rate-limit)                    │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                                                                  │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │               AI Service Integration Layer                │  │
+│  │  - API key management (environment variables)            │  │
+│  │  - Request formatting (prompt templates)                 │  │
+│  │  - Response parsing (JSON extraction & validation)       │  │
+│  │  - Error handling (fallback messages, retry logic)       │  │
+│  │  - Rate limit monitoring                                 │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                             │                                   │
+│                             │ Mongoose ODM                      │
+└─────────────────────────────┼───────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                  DATABASE (MongoDB Atlas)                        │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │                     Collections                           │  │
+│  │                                                           │  │
+│  │  users {                                                  │  │
+│  │    _id: ObjectId,                                         │  │
+│  │    email: String (unique, indexed),                       │  │
+│  │    passwordHash: String,                                  │  │
+│  │    createdAt: Date,                                       │  │
+│  │    lastLogin: Date                                        │  │
+│  │  }                                                        │  │
+│  │                                                           │  │
+│  │  learningPaths {                                          │  │
+│  │    _id: ObjectId,                                         │  │
+│  │    userId: ObjectId (indexed, ref: 'User'),              │  │
+│  │    concept: String,                                       │  │
+│  │    subject: String,                                       │  │
+│  │    level: String (enum),                                  │  │
+│  │    treeData: Object (full prerequisite tree JSON),       │  │
+│  │    quizResults: Map<nodeId, Boolean>,                    │  │
+│  │    studyResources: Map<nodeId, Object>,                  │  │
+│  │    createdAt: Date (indexed),                            │  │
+│  │    updatedAt: Date                                        │  │
+│  │  }                                                        │  │
+│  └──────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              EXTERNAL SERVICES (Third-Party APIs)                │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  AI Model APIs                                            │  │
+│  │  - Google Gemini 1.5 Flash (development)                 │  │
+│  │  - OpenAI GPT-4o-mini (production)                       │  │
+│  │  - Anthropic Claude Sonnet (premium, optional)           │  │
+│  └──────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Data Flow Examples:**
+
+**1. User Creates Concept Map (Authenticated)**
+```
+1. User submits concept form → React component
+   ↓
+2. API client sends POST /trees/create { concept, level, subject }
+   ↓
+3. Express route handler validates JWT from cookie
+   ↓
+4. Server calls AI service layer → POST to Gemini API
+   ↓
+5. AI returns prerequisite tree JSON
+   ↓
+6. Server saves tree to MongoDB (learningPaths collection)
+   ↓
+7. Server responds with tree data + _id
+   ↓
+8. React updates state, renders TreeView component
+```
+
+**2. User Takes Quiz (Session State)**
+```
+1. User clicks "Test Knowledge" → QuizModal opens
+   ↓
+2. API client sends POST /ai/generate-quiz { concept, description, level }
+   ↓
+3. Server calls Gemini API with quiz prompt
+   ↓
+4. AI returns 3 quiz questions (JSON)
+   ↓
+5. Server sends quiz to client (does NOT save yet)
+   ↓
+6. React stores quiz in local state (not persisted)
+   ↓
+7. User answers all 3 questions
+   ↓
+8. React calculates pass/fail (2/3 threshold)
+   ↓
+9. API client sends PATCH /trees/:id { quizResults: { nodeId: true/false } }
+   ↓
+10. Server updates learningPath document in MongoDB
+    ↓
+11. React updates TreeView with new node status
+```
+
+**Component Communication Patterns:**
+
+| Pattern | Use Case | Implementation |
+|---------|----------|----------------|
+| **Props Down** | Parent → Child data flow | `<TreeView tree={treeData} />` |
+| **Callbacks Up** | Child → Parent events | `<QuizModal onComplete={(result) => ...} />` |
+| **Context** | Global auth state | `AuthContext.Provider` wraps app |
+| **Local State** | Component-specific data | `useState()` for form inputs, quiz state |
+| **API State** | Server data caching | Custom hooks like `useLearningPaths()` |
+
+**State Management Strategy:**
+
+```javascript
+// Global State (React Context)
+AuthContext {
+  user: { id, email } | null,
+  login: (credentials) => Promise,
+  logout: () => Promise,
+  isAuthenticated: boolean
+}
+
+// Local State (useState)
+ConceptMapperPage {
+  concept: string,
+  subject: string,
+  level: string,
+  tree: TreeData | null,
+  loading: boolean,
+  error: string | null
+}
+
+QuizModal {
+  currentQuestionIndex: number,
+  answers: boolean[],
+  showResults: boolean
+}
+
+// Server State (Fetched via API)
+Dashboard {
+  learningPaths: LearningPath[], // Fetched from GET /trees
+  loading: boolean,
+  error: string | null
+}
+```
+
+**API Contract Examples:**
+
+```typescript
+// POST /auth/signup
+Request: { email: string, password: string }
+Response: { user: { id, email }, token: string }
+
+// POST /trees/create
+Request: { concept: string, subject?: string, level: string }
+Response: { 
+  _id: string,
+  treeData: { target: string, prerequisites: Node[] },
+  createdAt: Date
+}
+
+// GET /trees
+Response: LearningPath[] (user's saved trees)
+
+// PATCH /trees/:id
+Request: { quizResults?: Map, studyResources?: Map }
+Response: { success: boolean, updatedPath: LearningPath }
+```
+
+**Security Considerations:**
+
+- **Authentication**: JWT stored in HTTP-only cookie (prevents XSS attacks)
+- **Authorization**: Middleware verifies userId from token matches resource owner
+- **Input Validation**: Joi schemas validate request bodies before processing
+- **Rate Limiting**: 100 requests/15 min per IP (prevents API abuse)
+- **CORS**: Whitelist only frontend domain (Vercel URL)
+- **Environment Variables**: API keys never exposed to client
+- **Password Security**: bcrypt with 10 salt rounds
+
+**Performance Optimizations:**
+
+- **Frontend**:
+  - Code splitting by route (React.lazy)
+  - Tree virtualization for large graphs (react-window)
+  - Debounce concept input (reduce API calls)
+  - Optimistic UI updates (quiz results show immediately)
+
+- **Backend**:
+  - MongoDB indexes on userId, createdAt (fast queries)
+  - Response compression (gzip)
+  - AI response caching (same concept → cached tree for 24h)
+
+- **Deployment**:
+  - Vercel Edge Network (CDN for static assets)
+  - Render auto-scaling (handles traffic spikes)
+
+**Error Handling Strategy:**
+
+```javascript
+// Client-side
+try {
+  const tree = await generateTree(concept);
+  setTree(tree);
+} catch (error) {
+  if (error.status === 401) {
+    // Redirect to login
+  } else if (error.status === 429) {
+    showError("Too many requests. Try again in 1 minute.");
+  } else {
+    showError("Failed to generate tree. Please try again.");
+  }
+}
+
+// Server-side
+app.use((error, req, res, next) => {
+  logger.error(error);
+  
+  if (error.name === 'ValidationError') {
+    return res.status(400).json({ error: error.message });
+  }
+  
+  if (error.name === 'UnauthorizedError') {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+  
+  // Generic fallback
+  res.status(500).json({ error: 'Internal server error' });
+});
+```
+
+---
 
 ## Agile methodology
 

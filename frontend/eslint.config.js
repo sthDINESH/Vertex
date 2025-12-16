@@ -8,11 +8,6 @@ export default defineConfig([
   globalIgnores(['dist']),
   {
     files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -22,8 +17,36 @@ export default defineConfig([
         sourceType: 'module',
       },
     },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
     rules: {
+      // Base ESLint rules
+      ...js.configs.recommended.rules,
+
+      // React Hooks rules
+      ...reactHooks.configs.recommended.rules,
+
+      // React Refresh rules
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+
+      // Code style rules
+      'indent': ['error', 2],
+      'linebreak-style': ['error', 'unix'],
+      'quotes': ['error', 'single'],
+      'semi': ['error', 'never'],
+      'eqeqeq': 'error',
+      'no-trailing-spaces': 'error',
+      'object-curly-spacing': ['error', 'always'],
+      'arrow-spacing': ['error', { before: true, after: true }],
+
+      // Custom rules
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'no-console': 'off',
     },
   },
 ])

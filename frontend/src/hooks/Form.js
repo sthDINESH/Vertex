@@ -1,10 +1,13 @@
 import { useState } from 'react'
 
-export const useControlledInput = (type) => {
+
+export const useControlledInput = (type, maxLength) => {
   const [value, setValue] = useState('')
 
   const onChange = (event) => {
-    setValue(event.target.value)
+    if(maxLength && event.target.value.length <= maxLength){
+      setValue(event.target.value)
+    }
   }
 
   const clear = () => {

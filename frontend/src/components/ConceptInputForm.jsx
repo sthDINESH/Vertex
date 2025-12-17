@@ -3,7 +3,9 @@ import FormField from './FormField'
 import FormGroup from './FormGroup'
 
 const ConceptInputForm = () => {
-  const concept = useControlledInput('text')
+  const INPUT_MAX_LENGTH = 100
+
+  const concept = useControlledInput('text', INPUT_MAX_LENGTH)
   const subject = useControlledInput('text')
   const level = useControlledInput('text')
 
@@ -28,6 +30,7 @@ const ConceptInputForm = () => {
             placeholder='eg. Calculus, State Management in React'
             required
           />
+          <span className='self-end italic'>{`${concept.props.value.length}/${INPUT_MAX_LENGTH}`}</span>
         </FormField>
       </FormGroup>
       <FormGroup className='grid md:grid-cols-2'>

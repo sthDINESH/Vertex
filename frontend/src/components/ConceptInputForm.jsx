@@ -2,7 +2,7 @@ import { useControlledInput } from '../hooks/Form'
 import FormField from './FormField'
 import FormGroup from './FormGroup'
 
-const ConceptInputForm = () => {
+const ConceptInputForm = ({ onGenerate }) => {
   const INPUT_MAX_LENGTH = 100
 
   const concept = useControlledInput('text', INPUT_MAX_LENGTH)
@@ -11,7 +11,11 @@ const ConceptInputForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('Generating map for:', concept.value, subject, level)
+    onGenerate({
+      concept: concept.props.value,
+      subject: subject.props.value,
+      level: level.props.value,
+    })
   }
 
   const clearAll = () => {

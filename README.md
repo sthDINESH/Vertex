@@ -1429,41 +1429,78 @@ When opened:
 
 #### Sprint Planning (5 Sprints × 1 Week Each)
 
-**Sprint 1: Core AI Foundation (Week 1)**
-*Goal: Establish AI-powered concept mapping with basic UI*
+**Sprint 1: Core AI Foundation with Backend (Week 1)**
+*Goal: Build full-stack AI-powered concept mapping with secure API integration*
 
-**Features:**
+**Frontend Features:**
 - [ ] Project setup (Vite + React + TailwindCSS)
 - [ ] Basic UI layout with concept input form
 - [ ] Education level selection dropdown
-- [ ] Google Gemini API integration
-- [ ] AI prompt engineering for tree generation
-- [ ] JSON parsing and error handling for AI responses
+- [ ] API client for backend communication
 - [ ] Visual tree display component (basic version)
 - [ ] Loading states for API calls
-- [ ] Environment variable setup (.env with API keys)
-- [ ] Basic error boundaries
+- [ ] Error handling and user-friendly error messages
+- [ ] Environment variable setup (.env for backend URL)
+
+**Backend Features:**
+- [ ] Node.js + Express server setup
+- [ ] `/api/trees/generate` POST endpoint for tree generation
+- [ ] Google Gemini API integration (secure, server-side)
+- [ ] Prompt engineering for prerequisite tree generation
+- [ ] JSON parsing and validation from AI responses
+- [ ] Error handling middleware (malformed responses, API failures)
+- [ ] Rate limiting to prevent abuse
+- [ ] Environment variable setup (.env with GEMINI_API_KEY)
+- [ ] CORS configuration for frontend domain
+- [ ] Basic logging/debugging
+
+**Architecture:**
+```
+Frontend (React)
+  ├─ ConceptInputForm → POST /api/trees/generate
+  └─ TreeDisplay ← receives treeData JSON
+
+Backend (Express)
+  ├─ POST /api/trees/generate
+  │  ├─ Validate input (concept, subject, level)
+  │  ├─ Call Gemini API with prompt template
+  │  ├─ Parse JSON response
+  │  └─ Return treeData to frontend
+  └─ Middleware (CORS, error handling, logging)
+
+Gemini API (Secure, Server-Side)
+  └─ API key never exposed to frontend
+```
 
 **Testing:**
 - [ ] Manual testing of tree generation with various concepts
 - [ ] Test edge cases (empty input, special characters, very long concept names)
 - [ ] Verify JSON parsing handles malformed AI responses
 - [ ] Test loading states and error messages display correctly
+- [ ] Test backend error handling (API failures, timeouts)
+- [ ] Test CORS configuration (prevent unauthorized requests)
+- [ ] Test rate limiting (verify limits work)
 - [ ] Cross-browser testing (Chrome, Firefox, Safari)
 
 **Deployment:**
+- [ ] Deploy backend to Render (connect GitHub repo, free tier)
+- [ ] Configure environment variables on Render (GEMINI_API_KEY)
 - [ ] Deploy frontend to Vercel (connect GitHub repo)
-- [ ] Configure environment variables on Vercel
-- [ ] Test production build locally before deployment
-- [ ] Verify deployed app generates trees successfully
+- [ ] Configure frontend environment variables on Vercel (BACKEND_URL)
+- [ ] Test full flow: Vercel frontend → Render backend → Gemini API
+- [ ] Verify no API keys are exposed in browser network requests
+- [ ] Monitor API usage on Render logs
 
-**Deliverable:** Live standalone React app at `yourapp.vercel.app` that generates and displays prerequisite trees
+**Deliverable:** Full-stack application with frontend deployed on Vercel and backend on Render, both accessible via public URLs
 
 **Success Criteria:**
-- User can input a concept and see a dependency tree
-- Tree generation takes <5 seconds
-- App is accessible via public URL
-- No console errors in production
+- User can input a concept and see a dependency tree generated via backend
+- Tree generation takes <5 seconds (backend processes AI response)
+- Gemini API key is never visible in browser/network requests
+- App is accessible via public URLs (Vercel frontend + Render backend)
+- No console errors or unhandled API failures
+- Rate limiting prevents abuse from same IP
+- All data flows securely between frontend ↔ backend ↔ Gemini
 
 ---
 

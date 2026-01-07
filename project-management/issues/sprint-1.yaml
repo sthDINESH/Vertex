@@ -1,17 +1,18 @@
 ---
 sprint: 1
-milestone: 1
+milestone: "Sprint 1"
 issues:
-  - title: "User Story: Basic Concept Input and Tree Generation"
+  - title: "User Story: Concept Input and Tree Generation"
     labels:
+      - sprint-1
       - user-story
       - must-have
       - frontend
       - ai-integration
     body: |
       ## User Story
-      **As a** student struggling with a complex topic  
-      **I want to** enter the concept name and see its prerequisite tree  
+      **As a** student struggling with a complex topic
+      **I want to** enter a concept name and see its prerequisite tree
       **So that I can** understand what foundational knowledge I'm missing
 
       ## Acceptance Criteria
@@ -19,9 +20,9 @@ issues:
       - [ ] User can optionally add subject context (e.g., "Computer Science")
       - [ ] User can select education level from dropdown (High School, Undergraduate, Graduate)
       - [ ] "Generate Tree" button is disabled until concept name is entered
-      - [ ] Clicking "Generate Tree" triggers API call to Gemini
+      - [ ] Clicking "Generate Tree" sends POST request to backend API
       - [ ] Loading state displays with spinner and "Analyzing dependencies..." message
-      - [ ] On success, prerequisite tree renders as hierarchical visual
+      - [ ] On success, prerequisite tree renders in hierarchical format
       - [ ] Tree shows target concept at top with branching prerequisites below
       - [ ] On error, user-friendly message displays (e.g., "Failed to generate. Try again.")
       - [ ] Tree generation completes in <5 seconds for typical concepts
@@ -29,280 +30,333 @@ issues:
       - [ ] Tree generates successfully for 5+ different concepts
 
       ## Tasks
-
-      ### Project Setup
-      - [ ] Initialize Vite + React project with template
-      - [ ] Install and configure TailwindCSS
-      - [ ] Install Lucide React icons
-      - [ ] Set up folder structure (`/src/components`, `/src/pages`, `/src/services`, `/src/types`, `/src/utils`)
-      - [ ] Configure environment variables (`.env` file with `VITE_GEMINI_API_KEY`)
-
-      ### Concept Input Form Component
-      - [ ] Create `ConceptInputForm.tsx` component file
-      - [ ] Add text input for concept name with character counter
-      - [ ] Add optional subject field
-      - [ ] Add education level dropdown
-      - [ ] Implement form validation
-      - [ ] Style form with TailwindCSS
-
-      ### Google Gemini API Integration
-      - [ ] Set up API configuration
-      - [ ] Create API service module (`services/geminiApi.ts`)
-      - [ ] Implement `generateTree()` function
-      - [ ] Design prompt template for tree generation
-      - [ ] Parse JSON response
-      - [ ] Add error handling
-      - [ ] Add retry logic
-      - [ ] Test API integration
-
-      ### Tree Visualization Component
-      - [ ] Create `TreeView.tsx` component file
-      - [ ] Parse tree data structure
-      - [ ] Implement hierarchical layout
-      - [ ] Create `NodeCard` component
-      - [ ] Add parent-child relationship lines
-      - [ ] Make tree scrollable
-      - [ ] Optional: Add expand/collapse functionality
-
-      ### Loading States
-      - [ ] Create `LoadingSpinner` component
-      - [ ] Show spinner during API call
-      - [ ] Display progress text
-      - [ ] Disable form inputs while loading
-      - [ ] Optional: Add skeleton loader for tree
-
-      ### Error Handling UI
-      - [ ] Create `ErrorMessage` component
-      - [ ] Display errors below form
-      - [ ] Add "Try Again" button
-      - [ ] Log errors to console
-      - [ ] Handle different error types
-
-      ### Manual Testing
-      - [ ] Test with various concepts
-      - [ ] Test edge cases
-      - [ ] Test error scenarios
-      - [ ] Cross-browser testing
-      - [ ] Test on different screen sizes
+      - [ ] Set up Vite + React project with TailwindCSS and Lucide icons
+      - [ ] Create folder structure (components, services, hooks, utils)
+      - [ ] Build ConceptInputForm component with validation
+      - [ ] Implement useControlledInput hook for form fields
+      - [ ] Create API client service (conceptMap.js)
+      - [ ] Configure environment variables (.env with VITE_BACKEND_URL)
+      - [ ] Build TreeView component for hierarchical display
+      - [ ] Create LoadingSpinner component
+      - [ ] Implement error handling UI
+      - [ ] Test with 5+ different concepts
+      - [ ] Cross-browser and responsive design testing
 
       ## Definition of Done
-      - [ ] Code reviewed and merged to main branch
-      - [ ] All acceptance criteria met and verified
-      - [ ] Manual testing completed with no critical bugs
-      - [ ] Component is responsive on mobile, tablet, and desktop
-      - [ ] No console errors or warnings in production build
-      - [ ] Tree generates successfully for 5+ different concepts
+      - [ ] Code reviewed and merged to main
+      - [ ] All acceptance criteria verified
+      - [ ] Component is responsive (mobile, tablet, desktop)
+      - [ ] No console errors in production build
+      - [ ] Tested with 5+ concepts successfully
       - [ ] Error handling works for all failure scenarios
-      - [ ] Loading states provide clear feedback to users
-      - [ ] Code follows project coding standards and best practices
+      - [ ] Loading states provide clear user feedback
 
   - title: "User Story: Education Level Selection"
     labels:
+      - sprint-1
       - user-story
       - must-have
       - frontend
       - ux
     body: |
       ## User Story
-      **As a** user  
-      **I want to** specify my education level  
-      **So that I can** receive prerequisite trees and resources that match my current knowledge
+      **As a** user
+      **I want to** specify my education level
+      **So that I can** receive prerequisite trees that match my current knowledge level
 
       ## Acceptance Criteria
       - [ ] Dropdown displays three options: High School, Undergraduate, Graduate
       - [ ] Default selection is "Undergraduate"
-      - [ ] Selected level is passed to AI API for context-appropriate tree generation
-      - [ ] Level affects tree depth and complexity (more prerequisites for lower levels)
-      - [ ] Level badge displays on generated tree (e.g., "Target: Neural Networks [Undergraduate]")
-      - [ ] Level selection is persisted in component state
-      - [ ] Dropdown is accessible via keyboard navigation (arrow keys, enter)
+      - [ ] Selected level is sent to backend API
+      - [ ] Tree depth and complexity vary by education level
+      - [ ] Level badge displays on generated tree
+      - [ ] Dropdown is accessible via keyboard navigation
+      - [ ] Level selection persists during user session
 
       ## Tasks
-
-      ### Create LevelSelector Component
-      - [ ] Create `LevelSelector.tsx` component file
-      - [ ] Build dropdown/select element
-      - [ ] Implement controlled component pattern
-      - [ ] Style with TailwindCSS
-      - [ ] Add label for accessibility
-      - [ ] Optional: Add tooltip
-
-      ### Update Gemini API Prompts
-      - [ ] Modify `generateTree()` function signature
-      - [ ] Include education level in prompt context
-      - [ ] Adjust prerequisite depth based on level
-      - [ ] Test prompt variations for each level
-      - [ ] Document prompt templates in code
-
-      ### Update Tree Display Component
-      - [ ] Add level badge to tree header
-      - [ ] Style badge with color coding
-      - [ ] Ensure badge is visible and clear
-
-      ### Testing
-      - [ ] Test level selector component
+      - [ ] Add education level dropdown to ConceptInputForm
+      - [ ] Style dropdown with TailwindCSS
+      - [ ] Update API client to pass level parameter
+      - [ ] Add level badge to TreeView header
+      - [ ] Test different education level variations
       - [ ] Test keyboard navigation
-      - [ ] Generate trees at different levels
-      - [ ] Test API integration
-      - [ ] Cross-concept testing
 
       ## Definition of Done
-      - [ ] Level selector integrated into concept input form
-      - [ ] AI generates noticeably different trees for different levels
-      - [ ] Visual indicator (badge) shows selected level on tree
-      - [ ] Tested across all three education levels with multiple concepts
-      - [ ] Dropdown is accessible via keyboard navigation
-      - [ ] Default level is "Undergraduate" and functions correctly
-      - [ ] Level selection state persists throughout user session
-      - [ ] Code follows project standards and is well-documented
+      - [ ] Level selector integrated into form
+      - [ ] Backend receives level parameter correctly
+      - [ ] AI generates different trees for different levels
+      - [ ] Level badge visible and styled properly
+      - [ ] Tested across all three levels with multiple concepts
 
-  - title: "Task: Deploy Frontend to Vercel"
+  - title: "Backend Task: Express Server Setup"
     labels:
-      - deployment
+      - sprint-1
+      - task
       - must-have
+      - backend
+    body: |
+      ## Description
+      Initialize Node.js + Express server with proper project structure, middleware configuration, and CORS setup
+
+      ## Requirements
+      - [ ] Express server runs on port 3001 locally
+      - [ ] Basic GET /health endpoint returns 200 OK
+      - [ ] CORS enabled for frontend domain
+      - [ ] Error handling middleware configured
+      - [ ] Request logging configured
+      - [ ] Rate limiting implemented (max 10 requests/min per IP)
+      - [ ] Environment variables configured (.env)
+      - [ ] Proper folder structure (routes, services, middleware, config)
+
+      ## Tasks
+      - [ ] Initialize Node.js project with npm
+      - [ ] Install Express and dependencies
+      - [ ] Create project folder structure
+      - [ ] Set up .env file with PORT and other config
+      - [ ] Configure CORS middleware
+      - [ ] Implement error handling middleware
+      - [ ] Add request logging (Morgan)
+      - [ ] Add rate limiting middleware
+      - [ ] Create health check endpoint
+      - [ ] Test server locally
+
+      ## Definition of Done
+      - [ ] Server starts without errors
+      - [ ] Health endpoint responds correctly
+      - [ ] Middleware functions properly configured
+      - [ ] Rate limiting prevents abuse
+      - [ ] CORS allows frontend requests
+
+  - title: "Backend Task: Gemini API Integration"
+    labels:
+      - sprint-1
+      - task
+      - must-have
+      - backend
+      - ai-integration
+    body: |
+      ## Description
+      Integrate Google Gemini API securely on backend with prompt engineering for prerequisite tree generation
+
+      ## Requirements
+      - [ ] POST /api/trees/generate endpoint created
+      - [ ] API key stored in .env (never exposed to frontend)
+      - [ ] Accepts: { concept, subject?, level } as JSON body
+      - [ ] Calls Gemini 1.5 Flash with prerequisite mapping prompt
+      - [ ] Returns valid prerequisite tree JSON
+      - [ ] Handles API timeouts and errors gracefully
+      - [ ] Input validation before API call
+      - [ ] Response validation before returning to frontend
+
+      ## Tasks
+      - [ ] Create Gemini service module (services/geminiService.js)
+      - [ ] Design prompt template for tree generation
+      - [ ] Implement generateTree() function
+      - [ ] Add input validation
+      - [ ] Implement JSON parsing and validation
+      - [ ] Handle API timeouts with retry logic (max 2 retries)
+      - [ ] Add error handling for API failures
+      - [ ] Test with 5+ different concepts
+      - [ ] Verify API key is not exposed
+
+      ## Definition of Done
+      - [ ] Endpoint accepts correct request format
+      - [ ] Gemini API called successfully
+      - [ ] Valid JSON tree returned for all test concepts
+      - [ ] Error responses are user-friendly
+      - [ ] API key secure in environment variables
+      - [ ] Rate limiting prevents abuse
+
+  - title: "Backend Task: JSON Response Validation"
+    labels:
+      - sprint-1
+      - task
+      - must-have
+      - backend
+    body: |
+      ## Description
+      Parse and validate Gemini API JSON responses before sending to frontend
+
+      ## Requirements
+      - [ ] Strips markdown code blocks from response
+      - [ ] Validates JSON structure matches expected tree schema
+      - [ ] Handles malformed JSON responses gracefully
+      - [ ] Returns 422 status for invalid responses
+      - [ ] Logs parsing errors for debugging
+      - [ ] Provides helpful error messages to frontend
+
+      ## Tasks
+      - [ ] Create JSON parser utility
+      - [ ] Implement schema validation
+      - [ ] Add error handling for malformed JSON
+      - [ ] Create validation tests
+      - [ ] Test with various response formats
+      - [ ] Document expected tree schema
+
+      ## Definition of Done
+      - [ ] Parses all valid Gemini responses
+      - [ ] Rejects invalid responses with proper errors
+      - [ ] Error messages helpful for debugging
+      - [ ] Schema validation working correctly
+
+  - title: "Frontend Task: Deploy to Vercel"
+    labels:
+      - sprint-1
+      - task
+      - must-have
+      - deployment
       - devops
     body: |
-      ## Deployment Task
-      Set up continuous deployment for frontend to Vercel with environment variable configuration
+      ## Description
+      Deploy React frontend to Vercel with continuous integration from GitHub
 
-      ## Acceptance Criteria
+      ## Requirements
       - [ ] Vercel project connected to GitHub repository
-      - [ ] Environment variables configured on Vercel (VITE_GEMINI_API_KEY)
-      - [ ] Production build succeeds without errors or warnings
-      - [ ] App is accessible at public URL (e.g., vertex-app.vercel.app)
-      - [ ] Tree generation works correctly in production environment
-      - [ ] Automatic deployments trigger on push to main branch
-      - [ ] Preview deployments work for pull requests
+      - [ ] Environment variables configured (VITE_BACKEND_URL)
+      - [ ] Production build succeeds without errors
+      - [ ] App accessible at public URL
+      - [ ] Tree generation works in production
+      - [ ] Automatic deployments on push to main
+      - [ ] Preview deployments for pull requests
 
       ## Tasks
-
-      ### Create Vercel Account and Project
-      - [ ] Sign up at vercel.com
+      - [ ] Sign up/log in to Vercel
       - [ ] Connect GitHub account to Vercel
       - [ ] Import repository from GitHub
-      - [ ] Configure project settings
-      - [ ] Review configuration before deploying
-
-      ### Configure Environment Variables
-      - [ ] Navigate to Project Settings
-      - [ ] Add VITE_GEMINI_API_KEY variable
-      - [ ] Verify variable naming
-      - [ ] Test variable is accessible
-
-      ### Test Production Build Locally
-      - [ ] Run production build command
-      - [ ] Fix any build errors
-      - [ ] Preview production build locally
-      - [ ] Verify features work
-
-      ### Deploy to Production
-      - [ ] Trigger initial deployment
-      - [ ] Monitor build logs
-      - [ ] Wait for deployment to complete
-      - [ ] Test deployed application
-
-      ### Set Up Deployment Workflow
-      - [ ] Verify auto-deploy on push to main
-      - [ ] Configure preview deployments for pull requests
-      - [ ] Add deployment status badge to README
+      - [ ] Configure project build settings
+      - [ ] Set environment variables on Vercel
+      - [ ] Deploy initial version
+      - [ ] Verify production deployment works
+      - [ ] Test all features in production
       - [ ] Document deployment process in README
-      - [ ] Add production URL to README
-
-      ### Smoke Testing in Production
-      - [ ] Test all Sprint 1 features
-      - [ ] Verify API calls succeed
-      - [ ] Test error handling
-      - [ ] Check Lighthouse score
-      - [ ] Cross-browser testing
+      - [ ] Add public URL to README
 
       ## Definition of Done
-      - [ ] App successfully deployed to Vercel with public URL
-      - [ ] Production URL is accessible and fully functional
-      - [ ] Environment variables working correctly (tree generation succeeds)
-      - [ ] Auto-deployment configured for future pushes to main
-      - [ ] Preview deployments work for pull requests
-      - [ ] README updated with deployment URL and process
-      - [ ] No critical errors in production build
-      - [ ] Lighthouse scores meet targets (>90 for performance)
-      - [ ] All Sprint 1 features work in production environment
+      - [ ] Frontend deployed and publicly accessible
+      - [ ] All Sprint 1 features work in production
+      - [ ] Environment variables configured correctly
+      - [ ] Auto-deployment on Git push enabled
+      - [ ] README updated with deployment URL
+
+  - title: "Backend Task: Deploy to Render"
+    labels:
+      - sprint-1
+      - task
+      - must-have
+      - deployment
+      - devops
+    body: |
+      ## Description
+      Deploy Express backend to Render with environment variables and automatic deployment
+
+      ## Requirements
+      - [ ] Render project connected to GitHub repository
+      - [ ] Environment variables configured (GEMINI_API_KEY, PORT)
+      - [ ] Production build/start succeeds
+      - [ ] API accessible at public URL
+      - [ ] Automatic deployments on push to main
+      - [ ] Health endpoint responds correctly
+      - [ ] Logs visible in Render dashboard
+      - [ ] CORS configured for Vercel frontend domain
+
+      ## Tasks
+      - [ ] Create Render account
+      - [ ] Connect GitHub account to Render
+      - [ ] Create new Web Service from repository
+      - [ ] Configure build command and start script
+      - [ ] Set environment variables on Render
+      - [ ] Deploy initial version
+      - [ ] Verify production API accessible
+      - [ ] Test API from Vercel frontend
+      - [ ] Configure CORS for Vercel domain
+      - [ ] Document deployment process in README
+      - [ ] Add public API URL to README
+
+      ## Definition of Done
+      - [ ] Backend deployed and publicly accessible
+      - [ ] API responds correctly to requests
+      - [ ] Environment variables configured securely
+      - [ ] Frontend can communicate with backend
+      - [ ] Logs accessible in Render dashboard
+      - [ ] README updated with deployment URL
 
   - title: "Testing: Manual Testing Checklist"
     labels:
+      - sprint-1
       - testing
       - must-have
       - qa
     body: |
       ## Testing Task
-      Comprehensive manual testing of Sprint 1 features before deployment
-
-      ## Acceptance Criteria
-      - [ ] All test scenarios completed and documented
-      - [ ] Critical bugs fixed before deployment
-      - [ ] Test results documented (checklist completion or separate doc)
-      - [ ] No blocking issues for Sprint 1 deployment
-      - [ ] Performance metrics meet targets (<5s tree generation)
-      - [ ] Lighthouse scores documented (aim for >90)
+      Comprehensive manual testing of all Sprint 1 features across browsers and devices
 
       ## Test Scenarios
 
-      ### 1. Concept Input Form
-      - [ ] Test happy path with 5 different concepts
-      - [ ] Test validation (empty form, 101 characters, special characters)
-      - [ ] Test edge cases (very short, single word, hyphenated, with numbers)
+      ### Concept Input Form
+      - [ ] Happy path: input concept, generate tree successfully
+      - [ ] Test validation: empty concept (button disabled)
+      - [ ] Test 101+ characters (truncated or error)
+      - [ ] Test special characters
+      - [ ] Test subject field (optional)
+      - [ ] Test education level dropdown
+      - [ ] Test "Clear" button resets form
+      - [ ] Test keyboard navigation
 
-      ### 2. Education Level Selection
-      - [ ] Test level variations (High School, Undergraduate, Graduate)
-      - [ ] Test UI interaction (dropdown, keyboard navigation, default selection)
+      ### Tree Visualization
+      - [ ] Tree displays correct structure
+      - [ ] Target concept at top
+      - [ ] Prerequisites hierarchical below
+      - [ ] All node data visible (name, description, level)
+      - [ ] Tree scrollable on small screens
+      - [ ] Responsive layout on mobile (375px)
+      - [ ] Responsive layout on tablet (768px)
+      - [ ] Responsive layout on desktop (1920px)
 
-      ### 3. Tree Visualization
-      - [ ] Test display structure (target at top, hierarchical layout, node details)
-      - [ ] Test responsiveness (mobile 375px, tablet 768px, desktop 1920px)
+      ### API Integration
+      - [ ] Form submission sends correct data
+      - [ ] Backend returns valid tree JSON
+      - [ ] Frontend correctly parses response
+      - [ ] Data flows: Frontend → Backend → Gemini → Backend → Frontend
 
-      ### 4. Loading States
-      - [ ] Test spinner appears during API call
-      - [ ] Test performance (average generation time for 5 concepts)
+      ### Loading States
+      - [ ] Spinner shows during API call
+      - [ ] Progress text displays
+      - [ ] Form disabled while loading
+      - [ ] Loading <5 seconds for typical concepts
 
-      ### 5. Error Handling
-      - [ ] Test network errors (disconnected internet)
-      - [ ] Test API errors (invalid key, rate limit)
-      - [ ] Test parsing errors (malformed JSON)
+      ### Error Handling
+      - [ ] Network errors handled gracefully
+      - [ ] API errors show friendly message
+      - [ ] "Try Again" button retries request
+      - [ ] Console shows no errors in DevTools
 
-      ### 6. Cross-Browser Testing
-      - [ ] Test in Chrome (latest version)
-      - [ ] Test in Firefox (latest version)
-      - [ ] Test in Safari (latest version, macOS/iOS)
+      ### Cross-Browser Testing
+      - [ ] Chrome (latest)
+      - [ ] Firefox (latest)
+      - [ ] Safari (latest)
+      - [ ] Edge (latest)
 
-      ### 7. Performance Audit
-      - [ ] Run Lighthouse audit (Desktop and Mobile modes)
-      - [ ] Check console for errors
-      - [ ] Verify network requests complete successfully
+      ### Performance
+      - [ ] Lighthouse score >90 (Desktop)
+      - [ ] Lighthouse score >80 (Mobile)
+      - [ ] No console warnings
+      - [ ] No memory leaks
+
+      ### Security
+      - [ ] No API keys visible in frontend
+      - [ ] No API keys in network requests
+      - [ ] CORS properly configured
+      - [ ] Rate limiting prevents spam
 
       ## Bug Reporting
-      - [ ] Document bugs in GitHub issues with `bug` label
-      - [ ] Include steps to reproduce, expected vs actual behavior, screenshots
-
-      ## Test Results Summary
-      **Total Test Scenarios:** ___  
-      **Passed:** ___  
-      **Failed:** ___  
-      **Blocked:** ___  
-
-      **Critical Issues Found:** ___  
-      **Non-Critical Issues Found:** ___  
-
-      **Performance Metrics:**
-      - Average tree generation time: ___ seconds
-      - Lighthouse Performance (Desktop): ___
-      - Lighthouse Performance (Mobile): ___
-
-      **Recommendation:**
-      - [ ] Ready for deployment (all critical tests pass)
-      - [ ] Not ready for deployment (critical issues found)
+      - [ ] Document any bugs found with steps to reproduce
+      - [ ] Create GitHub issues with `bug` label
+      - [ ] Include screenshots or console errors
 
       ## Definition of Done
-      - [ ] All test scenarios attempted and results documented
-      - [ ] Critical bugs identified and fixed before deployment
-      - [ ] Test results summary completed above
-      - [ ] Performance metrics recorded and meet targets
-      - [ ] No blocking issues remain for Sprint 1 deployment
-      - [ ] Cross-browser compatibility verified
+      - [ ] All test scenarios completed
+      - [ ] Critical bugs fixed
+      - [ ] Test results documented
+      - [ ] No blocking issues for release
+      - [ ] Performance metrics meet targets
+      - [ ] Ready for production deployment

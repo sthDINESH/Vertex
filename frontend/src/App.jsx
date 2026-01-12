@@ -6,6 +6,9 @@ import LoadingSpinner from './components/LoadingSpinner'
 import conceptMapService from './services/conceptMap'
 import { useToast } from './hooks/Toast'
 import logger from './utils/logger'
+import Section from './components/Section'
+
+import Hero from './sections/Hero'
 
 const App = () => {
   const [map, setMap] = useState('')
@@ -34,9 +37,13 @@ const App = () => {
 
   return (
     <>
-      <Workflow color='green'/>
-      {!(map || loading.state) && <ConceptInputForm onGenerate={generateMap}/>}
-      <LoadingSpinner loading={loading} />
+      <Hero/>
+      <Section>
+        <div className="container">
+          {!(map || loading.state) && <ConceptInputForm onGenerate={generateMap}/>}
+          <LoadingSpinner loading={loading} />
+        </div>
+      </Section>
       { !loading.state && map && <MapView map={map} onRestart={handleNewConcept} />}
     </>
   )

@@ -1,5 +1,5 @@
 const FormGroup = ({ children, className }) => {
-  return <div className={`p-3 ${className || ''}`}>
+  return <div className={`${className || ''}`}>
     {children}
   </div>
 }

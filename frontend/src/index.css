@@ -1,16 +1,48 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: 'Zatura';
+    src: url('./assets/fonts/zatura/Zatura-Demo.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --accent-font: 'Zatura', cursive;
+}
+
 @theme {
     --color-primary: #0891b2;
     --color-secondary: #ea580c;
+    --accent-font: 'Zatura', cursive;
 }
 
 @layer components {
     .btn {
-        @apply rounded p-2;
+        @apply min-w-32 rounded-xl px-3 py-1.5;
+
     }
 
     .btn-primary {
         @apply bg-primary hover:bg-primary/80;
+    }
+
+    .btn-secondary {
+        @apply bg-secondary hover:bg-secondary/80;
+    }
+}
+
+@layer utilities {
+    .accent-text {
+        font-family: 'Zatura', cursive;
+    }
+
+    .accent-heading {
+        font-family: 'Zatura', cursive;
+    }
+
+    .container {
+        @apply w-full px-4 md:px-8 lg:px-16 border-amber-500 border-2;
     }
 }

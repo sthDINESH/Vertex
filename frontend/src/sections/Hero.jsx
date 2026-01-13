@@ -5,24 +5,25 @@ import './hero.css'
 const Hero = () => {
   return (
     <Section>
-      <div className="container flex flex-col lg:flex-row justify-center items-center">
+      <div className="container flex flex-col lg:flex-row justify-center items-center mt-20">
         <div className='hero-image'>
           <img src={heroSvg} alt="Hero" className=''/>
         </div>
         <div className="hero-content flex flex-col items-center lg:items-start">
-          <div className='accent-heading text-7xl lg:text-8xl'>Vertex</div>
-          <div className='hero-title flex flex-col md:flex-row text-center'>
-            <span className='text-primary text-bold text-base md:text-xl lg:text-2xl'>
+          {/* <div className='accent-heading text-white text-7xl lg:text-8xl'>Vertex</div> */}
+          <div className='accent-text hero-title flex flex-col md:flex-row text-center text-bold text-2xl md:text-3xl'>
+            <span className='text-primary'>
                 Find what you're missing
             </span>
-            <span className='text-secondary text-bold text-base md:text-xl lg:text-2xl'>
+            <span className='text-secondary'>
                 Master what matters
             </span>
           </div>
-          <div className="hero-body-text text-center lg:text-left text-xs md:text-base">
+          <div className="hero-body-text text-white text-center lg:text-left text-xs md:text-base">
             <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, ea velit
-            commodi mollitia cumque ipsam culpa e!
+            Identify what you need to learn first.
+            Stop struggling with knowledge gaps, unlock your potential with AI-powered learning pathways
+            tailored to you.
             </p>
           </div>
           <div className="hero-cta w-full gap-2 flex justify-center">

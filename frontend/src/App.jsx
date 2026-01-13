@@ -9,6 +9,7 @@ import logger from './utils/logger'
 import Section from './components/Section'
 
 import Hero from './sections/Hero'
+import Navbar from './components/Navbar'
 
 const App = () => {
   const [map, setMap] = useState('')
@@ -37,6 +38,7 @@ const App = () => {
 
   return (
     <>
+      <Navbar/>
       <Hero/>
       <Section>
         <div className="container">

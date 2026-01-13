@@ -43,6 +43,15 @@
     }
 
     .container {
-        @apply w-full px-4 md:px-8 lg:px-16 border-amber-500 border-2;
+        @apply w-full px-4 md:px-8 lg:px-16;
     }
+}
+
+#root {
+    @apply min-h-screen;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(48, 132, 127, 0.3) 0%, transparent 30%, transparent 100%),
+        radial-gradient(circle at 60% 100%, rgba(234, 88, 12, 0.0) 0%, transparent 50%, transparent 100%),
+        linear-gradient(to left bottom, #0886b1, #1b6d94, #1e5576, #1c3f5a, #162a3e, #122131, #0e1825, #060e19, #040c17, #030a15, #010813, #000610);
+    /* linear-gradient(60deg, #00162A, #003B66, #111235); */
 }

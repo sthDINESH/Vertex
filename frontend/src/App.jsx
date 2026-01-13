@@ -10,6 +10,7 @@ import Section from './components/Section'
 
 import Hero from './sections/Hero'
 import Navbar from './components/Navbar'
+import Canvas from './components/Canvas'
 
 const App = () => {
   const [map, setMap] = useState('')
@@ -38,6 +39,7 @@ const App = () => {
 
   return (
     <>
+      <Canvas />
       <Navbar/>
       <Hero/>
       <Section>

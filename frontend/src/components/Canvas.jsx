@@ -14,9 +14,6 @@ const Canvas = (props) => {
       }
     }
     context.clearRect(0, 0, context.canvas.width, context.canvas.height)
-    // context.fillStyle = 'green'
-    // context.fillRect(20, 10, 150, 100)
-    // console.log('Particles', particlesRef.current)
     particlesRef.current.forEach(particle => {
       particle.update()
       particle.draw()
@@ -31,10 +28,6 @@ const Canvas = (props) => {
     position: 'fixed',
     top: 0,
     left: 0,
-    width:'100%',
-    height:'100%',
-    margin: 0,
-    padding: 0,
     zIndex: -1,
   }
 

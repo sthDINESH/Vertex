@@ -13,7 +13,7 @@ class Particle {
     this.x = Math.random() * this.context.canvas.width
     this.y = Math.random() * this.context.canvas.height
     // this.y = this.context.canvas.height
-    this.size = Math.random() * 5 + 1
+    this.size = Math.random() * 5 + 2
     this.speedX = (Math.random() - 0.5) * 1.0
     // this.speedY = (Math.random() - 0.5) * 2.0
     this.speedY = (Math.random() - 1) * 1.0

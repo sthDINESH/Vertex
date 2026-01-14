@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+.ui-container {
+    @apply relative px-6 py-15 backdrop-blur-[2px] rounded-2xl;
+    /* @apply px-6 py-20 backdrop-blur-[2px]; */
+    background:
+        linear-gradient(to left bottom,
+            rgba(244, 186, 75, 0.25),
+            rgba(248, 141, 90, 0.25),
+            rgba(88, 69, 125, 0.25),
+            rgba(54, 60, 108, 0.3),
+            rgba(21, 50, 88, 0.4),
+            rgba(17, 40, 69, 0.5),
+            rgba(14, 30, 51, 0.5),
+            rgba(11, 20, 33, 0.5),
+            rgba(0, 6, 16, 0.5));
+    /* clip-path: url(#lg_ui_mask); */
+    /* aspect-ratio: 3 / 1; */
+    /* width: 100%; */
+}
+
+.ui-container .btn-primary {
+    @apply absolute bottom-0 right-0 w-80;
+}
+
+.ui-container .btn-secondary {
+    @apply absolute bottom-0 left-0 w-8;
+}

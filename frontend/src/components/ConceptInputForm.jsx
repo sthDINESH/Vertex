@@ -37,7 +37,7 @@ const ConceptInputForm = ({ onGenerate }) => {
           <span className='self-end italic'>{`${concept.props.value.length}/${INPUT_MAX_LENGTH}`}</span>
         </FormField>
       </FormGroup>
-      <FormGroup className='grid md:grid-cols-2'>
+      <FormGroup className='grid md:grid-cols-2 gap-2'>
         <FormField>
             Subject(optional)
           <input
@@ -58,7 +58,7 @@ const ConceptInputForm = ({ onGenerate }) => {
         </FormField>
       </FormGroup>
       <button type='submit' className='btn btn-primary'>Generate Dependency Map</button>
-      <button type='button' onClick={() => clearAll()}>Clear</button>
+      <button type='button' className='btn btn-secondary' onClick={() => clearAll()}>Clear</button>
     </form>
   )
 }

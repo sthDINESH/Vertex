@@ -10,7 +10,6 @@ const Hero = () => {
           <img src={heroSvg} alt="Hero" className=''/>
         </div>
         <div className="hero-content flex flex-col items-center lg:items-start">
-          {/* <div className='accent-heading text-white text-7xl lg:text-8xl'>Vertex</div> */}
           <div className='accent-text hero-title flex flex-col md:flex-row text-center text-bold text-2xl md:text-3xl'>
             <span className='text-primary'>
                 Find what you're missing
@@ -19,7 +18,7 @@ const Hero = () => {
                 Master what matters
             </span>
           </div>
-          <div className="hero-body-text text-white text-center lg:text-left text-xs md:text-base">
+          <div className="hero-body-text text-white text-center lg:text-left">
             <p>
             Identify what you need to learn first.
             Stop struggling with knowledge gaps, unlock your potential with AI-powered learning pathways
@@ -31,7 +30,6 @@ const Hero = () => {
             <button className='btn btn-secondary'>Explore</button>
           </div>
         </div>
-
       </div>
     </Section>
   )

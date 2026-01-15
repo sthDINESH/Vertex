@@ -19,8 +19,7 @@ const TreeView = ({ map, onRestart }) => {
   const rootNode = map.prerequisites.find(node => isRootNode(node))
 
   return (
-    <div className='tree-view'>
-      {/* {renderNode(rootNode, 0)} */}
+    <div className='tree-view px-6 pt-14 pb-18'>
       <Node key={rootNode.id} map={map} node={rootNode} />
       <div>
         <button onClick={() => {onRestart()}}>Start Over</button>

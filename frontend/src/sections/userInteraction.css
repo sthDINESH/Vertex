@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-.ui-container .form-content {
+.ui-container .form-content,
+.ui-container .tree-view {
     @apply backdrop-blur-[2px] rounded-2xl;
     background:
         linear-gradient(to left bottom,
@@ -13,6 +14,9 @@
             rgba(14, 30, 51, 0.5),
             rgba(11, 20, 33, 0.5),
             rgba(0, 6, 16, 0.5));
+}
+
+.ui-container .form-content {
     mask-image:
         url('../assets/bottom_mask_320px_40px.svg'),
         url('../assets/bottom_mask_40px_40px.svg'),

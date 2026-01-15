@@ -30,7 +30,7 @@ import { ChevronDown, ChevronRight, Zap, Lightbulb, Layers } from 'lucide-react'
  * />
  */
 const Card = ({ node, subNodeVisible, handleQuiz, handleToggle }) => {
-  const iconSize = 32
+  const iconSize = 24
   const getLevelIcon = (level) => {
     switch(level) {
       case 'foundational':
@@ -45,7 +45,7 @@ const Card = ({ node, subNodeVisible, handleQuiz, handleToggle }) => {
   }
 
   return (
-    <div className='card rounded-2xl px-6 py-8 my-1.5 flex items-center gap-3'>
+    <div className='card rounded-2xl px-3 py-4 my-1.5 flex items-center gap-3'>
       <div>
         { node.prerequisites.length > 0 &&
             <button onClick={handleToggle}>
@@ -53,17 +53,17 @@ const Card = ({ node, subNodeVisible, handleQuiz, handleToggle }) => {
             </button>
         }
       </div>
-      <div className='flex flex-col items-center justify-center'>
-        {getLevelIcon(node.level)}
-        {node.level}
-      </div>
       <div className='flex flex-col grow'>
-        <div className='text-xl font-bold'>
+        <div className='text-base font-bold'>
           {node.name}
         </div>
         <div>
           {node.description}
         </div>
+      </div>
+      <div className='flex flex-col items-center justify-center'>
+        {getLevelIcon(node.level)}
+        {node.level}
       </div>
       <button className='btn btn-primary' onClick={handleQuiz}>Test knowledge</button>
     </div>

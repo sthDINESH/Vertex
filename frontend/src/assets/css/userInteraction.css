@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .ui-container .form-content,
-.ui-container .tree-view {
+.ui-container .tree-view-content {
     @apply backdrop-blur-[2px] rounded-2xl;
     background:
         linear-gradient(to left bottom,
@@ -18,9 +18,9 @@
 
 .ui-container .form-content {
     mask-image:
-        url('../assets/bottom_mask_320px_40px.svg'),
-        url('../assets/bottom_mask_40px_40px.svg'),
-        url('../assets/top_mask_500px_23px.svg'),
+        url('../masks/concept_form_bottom_mask_320px_40px.svg'),
+        url('../masks/concept_form_bottom_mask_40px_40px.svg'),
+        url('../masks/concept_form_top_mask_500px_23px.svg'),
         linear-gradient(#000000 0 0);
     mask-position: bottom right, bottom left, top right;
     mask-size: auto;

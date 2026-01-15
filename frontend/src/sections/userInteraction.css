@@ -22,12 +22,14 @@
     mask-size: auto;
     mask-repeat: no-repeat;
     mask-composite: exclude;
+    mask-origin: border-box;
+    mask-clip: border-box;
 }
 
-.ui-container .btn-primary {
+.ui-container form .btn-primary {
     @apply w-80;
 }
 
-.ui-container .btn-secondary {
+.ui-container form .btn-secondary {
     @apply w-10 h-10;
 }

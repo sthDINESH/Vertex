@@ -3,7 +3,7 @@ import { useToast } from '../hooks/Toast'
 import ConceptInputForm from '../components/ConceptInputForm'
 import LoadingSpinner from '../components/LoadingSpinner'
 import conceptMapService from '../services/conceptMap'
-import MapView from '../components/TreeView'
+import TreeView from '../components/TreeView'
 import logger from '../utils/logger'
 
 const UserInterface = () => {
@@ -34,7 +34,7 @@ const UserInterface = () => {
     <>
       {!(map || loading.state) && <ConceptInputForm onGenerate={generateMap}/>}
       <LoadingSpinner loading={loading} />
-      { !loading.state && map && <MapView map={map} onRestart={handleNewConcept} />}
+      { !loading.state && map && <TreeView map={map} onRestart={handleNewConcept} />}
     </>
   )
 }

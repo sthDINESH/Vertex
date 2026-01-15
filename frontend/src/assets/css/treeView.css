@@ -1,0 +1,65 @@
+:root {
+    --sub-node-margin-left: 50px;
+    --tree-line-width: 2px;
+    --tree-line-color: white;
+
+    --tree-line-abs-pos: calc(var(--sub-node-margin-left) / 2);
+    --tree-line-pos: calc(-1 * var(--tree-line-abs-pos));
+    --card-border-width: 1px;
+}
+
+.map-node>.card {
+    border-width: var(--card-border-width);
+}
+
+/*
+Tree trunk lines
+*/
+.map-sub-nodes>.map-node {
+    position: relative;
+    margin-left: var(--sub-node-margin-left);
+}
+
+.map-sub-nodes>.map-node>.card::after {
+    content: '';
+    background-color: var(--tree-line-color);
+    position: absolute;
+    top: -4px;
+    left: var(--tree-line-pos);
+    width: var(--tree-line-width);
+}
+
+.map-sub-nodes>.map-node:not(:last-child)>.card::after {
+    height: calc(100% + (4px * 2));
+}
+
+.map-sub-nodes>.map-node:last-child>.card::after {
+    height: calc(50% + 4px);
+}
+
+.map-sub-nodes>.map-node:not(:last-child)>.map-sub-nodes>.map-node::after {
+    content: '';
+    background-color: var(--tree-line-color);
+    position: absolute;
+    top: -4px;
+    left: calc((var(--tree-line-pos) * 3) + var(--card-border-width));
+    width: var(--tree-line-width);
+    height: calc(100% + (4px * 2));
+}
+
+/*
+Tree branch lines
+*/
+.map-node>.card {
+    position: relative;
+}
+
+.map-sub-nodes>.map-node>.card::before {
+    content: '';
+    background-color: var(--tree-line-color);
+    position: absolute;
+    top: 50%;
+    left: var(--tree-line-pos);
+    height: var(--tree-line-width);
+    width: var(--tree-line-abs-pos);
+}

@@ -1,5 +1,7 @@
 import Node from './Node'
 
+import '../assets/css/treeView.css'
+
 const TreeView = ({ map, onRestart }) => {
 
   /**

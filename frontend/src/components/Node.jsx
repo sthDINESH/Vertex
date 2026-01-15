@@ -45,7 +45,7 @@ const Node = ({ map, node }) => {
         handleQuiz={() => logger.info('Quiz: Not yet implemented!')}
       />
       { subNodeVisible && (
-        <div className='map-sub-nodes ml-8'>
+        <div className='map-sub-nodes'>
           {node.prerequisites.map(nodeId => {
             const subNode = map.prerequisites.find(node => node.id === nodeId)
             return <Node key={subNode.id} map={map} node={subNode} />

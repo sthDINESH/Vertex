@@ -61,10 +61,10 @@ const ConceptInputForm = ({ onGenerate }) => {
         </FormGroup>
       </div>
       <div className="form-controls absolute left-0 right-0 bottom-0 flex items-end justify-between">
-        <button type='button' className='btn btn-secondary flex justify-center items-center' onClick={() => clearAll()}>
+        <button type='button' className='btn btn-secondary flex justify-center items-center w-10' onClick={() => clearAll()}>
           <RotateCcwSquare/>
         </button>
-        <button type='submit' className='btn btn-primary'>Generate Dependency Map</button>
+        <button type='submit' className='btn btn-primary w-80'>Generate Dependency Map</button>
       </div>
     </form>
   )

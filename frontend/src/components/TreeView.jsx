@@ -40,7 +40,7 @@ const TreeView = ({ map, onRestart }) => {
         <Node key={rootNode.id} map={map} node={rootNode} />
       </div>
       <div className='tree-view-controls absolute top-0 right-0'>
-        <button className='btn btn-secondary' onClick={() => {onRestart()}}>Start Over</button>
+        <button className='btn btn-secondary w-80' onClick={() => {onRestart()}}>Start Over</button>
       </div>
     </div>
   )

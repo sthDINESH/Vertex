@@ -20,9 +20,10 @@
     mask-image:
         url('../masks/concept_form_bottom_mask_320px_40px.svg'),
         url('../masks/concept_form_bottom_mask_40px_40px.svg'),
-        url('../masks/concept_form_top_mask_500px_23px.svg'),
+        /* url('../masks/concept_form_top_mask_500px_23px.svg'), */
         linear-gradient(#000000 0 0);
-    mask-position: bottom right, bottom left, top right;
+    /* mask-position: bottom right, bottom left, top right; */
+    mask-position: bottom right, bottom left;
     mask-size: auto;
     mask-repeat: no-repeat;
     mask-composite: exclude;
@@ -30,10 +31,14 @@
     mask-clip: border-box;
 }
 
-.ui-container form .btn-primary {
-    @apply w-80;
-}
-
-.ui-container form .btn-secondary {
-    @apply w-10 h-10;
+.ui-container .tree-view-content {
+    mask-image:
+        url('../masks/treeview_top_mask_320px_40px.svg'),
+        linear-gradient(#000000 0 0);
+    mask-position: top right;
+    mask-size: auto;
+    mask-repeat: no-repeat;
+    mask-composite: exclude;
+    mask-origin: border-box;
+    mask-clip: border-box;
 }

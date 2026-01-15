@@ -26,8 +26,8 @@ const Hero = () => {
             </p>
           </div>
           <div className="hero-cta w-full gap-2 flex justify-center">
-            <button className='btn btn-primary'>Get Started</button>
-            <button className='btn btn-secondary'>Explore</button>
+            <button className='btn btn-primary w-32'>Get Started</button>
+            <button className='btn btn-secondary w-32'>Explore</button>
           </div>
         </div>
       </div>

@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
-.ui-container {
-    @apply relative px-6 py-15 backdrop-blur-[2px] rounded-2xl;
-    /* @apply px-6 py-20 backdrop-blur-[2px]; */
+.ui-container .form-content {
+    @apply backdrop-blur-[2px] rounded-2xl;
     background:
         linear-gradient(to left bottom,
             rgba(244, 186, 75, 0.25),
@@ -14,15 +13,21 @@
             rgba(14, 30, 51, 0.5),
             rgba(11, 20, 33, 0.5),
             rgba(0, 6, 16, 0.5));
-    /* clip-path: url(#lg_ui_mask); */
-    /* aspect-ratio: 3 / 1; */
-    /* width: 100%; */
+    mask-image:
+        url('../assets/bottom_mask_320px_40px.svg'),
+        url('../assets/bottom_mask_40px_40px.svg'),
+        url('../assets/top_mask_500px_23px.svg'),
+        linear-gradient(#000000 0 0);
+    mask-position: bottom right, bottom left, top right;
+    mask-size: auto;
+    mask-repeat: no-repeat;
+    mask-composite: exclude;
 }
 
 .ui-container .btn-primary {
-    @apply absolute bottom-0 right-0 w-80;
+    @apply w-80;
 }
 
 .ui-container .btn-secondary {
-    @apply absolute bottom-0 left-0 w-8;
+    @apply w-10 h-10;
 }

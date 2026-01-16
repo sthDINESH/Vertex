@@ -1,7 +1,7 @@
 :root {
     --sub-node-margin-left: 50px;
-    --tree-line-width: 2px;
-    --tree-line-color: white;
+    --tree-line-width: 1px;
+    --tree-line-color: rgb(156, 163, 175);
 
     --tree-line-abs-pos: calc(var(--sub-node-margin-left) / 2);
     --tree-line-pos: calc(-1 * var(--tree-line-abs-pos));
@@ -10,6 +10,7 @@
 
 .map-node>.card {
     border-width: var(--card-border-width);
+    background: linear-gradient(to left bottom, rgba(5, 25, 55, 0.3), rgba(0, 55, 87, 0.3), rgba(0, 87, 116, 0.3));
 }
 
 /*
@@ -24,17 +25,17 @@ Tree trunk lines
     content: '';
     background-color: var(--tree-line-color);
     position: absolute;
-    top: -4px;
+    top: -6px;
     left: var(--tree-line-pos);
     width: var(--tree-line-width);
 }
 
 .map-sub-nodes>.map-node:not(:last-child)>.card::after {
-    height: calc(100% + (4px * 2));
+    height: calc(100% + (6px * 2));
 }
 
 .map-sub-nodes>.map-node:last-child>.card::after {
-    height: calc(50% + 4px);
+    height: calc(50% + 6px);
 }
 
 .map-sub-nodes>.map-node:not(:last-child)>.map-sub-nodes>.map-node::after {

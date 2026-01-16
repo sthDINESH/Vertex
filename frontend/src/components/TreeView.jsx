@@ -21,7 +21,7 @@ const TreeView = ({ map, onRestart }) => {
 
   return (
     <div className='tree-view relative'>
-      <div className="tree-view-content px-6 pt-14 pb-16">
+      <div className="tree-view-content px-3 sm:px-4 md:px-6 pt-14 pb-16">
         <div className='header-content flex flex-col gap-4'>
           <div className='py-4 flex items-center gap-3'>
             <Goal size={60} className='text-secondary'/>
@@ -37,10 +37,12 @@ const TreeView = ({ map, onRestart }) => {
           This will help us understand where you're starting from! <BookOpenCheck className='inline'/>
           </p>
         </div>
-        <Node key={rootNode.id} map={map} node={rootNode} />
+        <div className='overflow-x-scroll md:overflow-x-auto'>
+          <Node key={rootNode.id} map={map} node={rootNode} />
+        </div>
       </div>
       <div className='tree-view-controls absolute top-0 right-0'>
-        <button className='btn btn-secondary w-80' onClick={() => {onRestart()}}>Start Over</button>
+        <button className='btn btn-secondary w-30 md:w-80' onClick={() => {onRestart()}}>Start Over</button>
       </div>
     </div>
   )

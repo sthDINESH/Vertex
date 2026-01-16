@@ -27,7 +27,7 @@ const ConceptInputForm = ({ onGenerate }) => {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col w-full h-full relative'>
-      <div className="form-content px-6 pt-14 pb-18 relative">
+      <div className="form-content px-3 sm:px-4 md:px-6 pt-8 md:pt-14 pb-18 relative">
         <FormGroup>
           <FormField>
           What concept do you want to explore?

@@ -30,42 +30,50 @@ import { ChevronDown, ChevronRight, Zap, Lightbulb, Layers } from 'lucide-react'
  * />
  */
 const Card = ({ node, subNodeVisible, handleQuiz, handleToggle }) => {
-  const iconSize = 24
   const getLevelIcon = (level) => {
     switch(level) {
       case 'foundational':
-        return <Lightbulb size={iconSize} className="text-yellow-500" />
+        return <Lightbulb size={18} className="text-yellow-500" />
       case 'intermediate':
-        return <Layers size={iconSize} className="text-blue-500" />
+        return <Layers size={18} className="text-blue-500" />
       case 'advanced':
-        return <Zap size={iconSize} className="text-purple-500" />
+        return <Zap size={18} className="text-purple-500" />
       default:
         return null
     }
   }
 
   return (
-    <div className='card rounded-2xl px-3 py-4 my-1.5 flex items-center gap-3'>
+    <div className='card min-w-[280px] border-gray-400 rounded-2xl px-2 md:px-3 py-2 md:py-4 my-1.5 flex md:flex-nowrap items-center gap-1.5 md:gap-3'>
       <div>
         { node.prerequisites.length > 0 &&
-            <button onClick={handleToggle}>
-              { subNodeVisible ? <ChevronDown /> : <ChevronRight /> }
+            <button onClick={handleToggle} className='hover:border-white hover:border hover:rounded-md'>
+              {
+                subNodeVisible
+                  ? <ChevronDown />
+                  : <ChevronRight />
+              }
             </button>
         }
       </div>
-      <div className='flex flex-col grow'>
-        <div className='text-base font-bold'>
-          {node.name}
+      <div className='flex flex-wrap lg:flex-nowrap items-center grow gap-1 md:gap-3'>
+        <div className='flex flex-col grow shrink gap-1 lg:gap-2'>
+          <div className='text-sm md:text-base font-bold'>
+            {node.name}
+          </div>
+          <div className='text-xs md:text-sm text-gray-300'>
+            {node.description}
+          </div>
         </div>
-        <div>
-          {node.description}
+        <div className='flex items-center justify-between lg:justify-start grow lg:grow-0 md:min-w-52'>
+          <div className='flex lg:flex-col items-center justify-center gap-0.5 md:gap-0 min-w-20'>
+            {getLevelIcon(node.level)}
+            <span className='text-xs'>{node.level}</span>
+          </div>
+          <button className='btn btn-primary' onClick={handleQuiz}>Test knowledge</button>
         </div>
       </div>
-      <div className='flex flex-col items-center justify-center'>
-        {getLevelIcon(node.level)}
-        {node.level}
-      </div>
-      <button className='btn btn-primary' onClick={handleQuiz}>Test knowledge</button>
+
     </div>
   )
 }

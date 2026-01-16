@@ -7,6 +7,7 @@ const App = () => {
 
   return (
     <>
+      <div className="background fixed top-0 left-0 w-full h-screen z-[-2]"></div>
       <Canvas />
       <Navbar/>
       <header>

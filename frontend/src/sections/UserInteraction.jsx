@@ -7,7 +7,7 @@ const UserInteraction = () => {
   return (
     <Section>
       <div className="container">
-        <div className='ui-container'>
+        <div className='ui-container my-12 lg:my-0'>
           <UserInterface />
         </div>
       </div>

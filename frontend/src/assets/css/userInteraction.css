@@ -18,12 +18,10 @@
 
 .ui-container .form-content {
     mask-image:
-        url('../masks/concept_form_bottom_mask_320px_40px.svg'),
-        url('../masks/concept_form_bottom_mask_40px_40px.svg'),
-        /* url('../masks/concept_form_top_mask_500px_23px.svg'), */
+        url('../masks/concept_form_bottom_mask_150px_28px.svg'),
+        url('../masks/concept_form_bottom_mask_40px_36px.svg'),
         linear-gradient(#000000 0 0);
-    /* mask-position: bottom right, bottom left, top right; */
-    mask-position: bottom right, bottom left;
+    mask-position: bottom right, bottom left, center;
     mask-size: auto;
     mask-repeat: no-repeat;
     mask-composite: exclude;
@@ -44,6 +42,13 @@
 }
 
 @media screen and (min-width:768px) {
+    .ui-container .form-content {
+        mask-image:
+            url('../masks/concept_form_bottom_mask_320px_32px.svg'),
+            url('../masks/concept_form_bottom_mask_40px_36px.svg'),
+            linear-gradient(#000000 0 0);
+    }
+
     .ui-container .tree-view-content {
         mask-image:
             url('../masks/treeview_mid_mask_320px_32px.svg'),
@@ -53,6 +58,13 @@
 
 
 @media screen and (min-width:1024px) {
+    .ui-container .form-content {
+        mask-image:
+            url('../masks/concept_form_bottom_mask_320px_40px.svg'),
+            url('../masks/concept_form_bottom_mask_40px_40px.svg'),
+            linear-gradient(#000000 0 0);
+    }
+
     .ui-container .tree-view-content {
         mask-image:
             url('../masks/treeview_mid_mask_320px_40px.svg'),

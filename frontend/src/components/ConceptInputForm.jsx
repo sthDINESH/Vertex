@@ -27,29 +27,38 @@ const ConceptInputForm = ({ onGenerate }) => {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col w-full h-full relative'>
-      <div className="form-content px-3 sm:px-4 md:px-6 pt-8 md:pt-14 pb-18 relative">
+
+      <div className="form-content px-3 sm:px-4 md:px-6 pt-8 md:pt-14 pb-14 relative">
+        <div className="heading-content mb-5">
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
+          Build Your Learning Roadmap
+          </h2>
+          <p className="text-sm md:text-base text-gray-300">
+          Tell us what you want to learn, and we'll create a personalized path showing you exactly where to start.
+          </p>
+        </div>
         <FormGroup>
           <FormField>
-          What concept do you want to explore?
-            <input className='h-16'
+          What concept do you want to explore today?
+            <input className='h-12 mt-1'
               {...concept.props}
               placeholder='eg. Calculus, State Management in React'
               required
             />
-            <span className='self-end italic'>{`${concept.props.value.length}/${INPUT_MAX_LENGTH}`}</span>
+            <span className='self-end italic text-gray-400'>{`${concept.props.value.length}/${INPUT_MAX_LENGTH}`}</span>
           </FormField>
         </FormGroup>
         <FormGroup className='grid md:grid-cols-2 gap-2'>
           <FormField>
             Subject(optional)
-            <input
+            <input className='mt-1'
               {...subject.props}
               placeholder='eg. Mathematics, Software'
             />
           </FormField>
           <FormField>
           Your Level(optional)
-            <select name='level' {...level.props}>
+            <select name='level' {...level.props} className='mt-1'>
               <option value=''>Please choose a level</option>
               <option value='high school'>High School</option>
               <option value='undergraduate'>Undergraduate</option>
@@ -64,7 +73,7 @@ const ConceptInputForm = ({ onGenerate }) => {
         <button type='button' className='btn btn-secondary flex justify-center items-center w-10' onClick={() => clearAll()}>
           <RotateCcwSquare/>
         </button>
-        <button type='submit' className='btn btn-primary w-80'>Generate Dependency Map</button>
+        <button type='submit' className='btn btn-primary w-40 md:w-80'>Generate Concept Map</button>
       </div>
     </form>
   )

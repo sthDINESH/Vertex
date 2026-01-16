@@ -20,7 +20,7 @@
 
 @layer components {
     .btn {
-        @apply rounded-xl px-3 py-1.5 min-h-7 md:min-h-10;
+        @apply rounded-xl px-3 py-1.5 min-h-7 lg:min-h-10;
 
     }
 

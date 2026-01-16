@@ -33,12 +33,30 @@
 
 .ui-container .tree-view-content {
     mask-image:
-        url('../masks/treeview_top_mask_320px_40px.svg'),
+        url('../masks/treeview_mid_mask_120px_28px.svg'),
         linear-gradient(#000000 0 0);
-    mask-position: top right;
+    mask-position: right 125px, center;
     mask-size: auto;
     mask-repeat: no-repeat;
     mask-composite: exclude;
     mask-origin: border-box;
     mask-clip: border-box;
+}
+
+@media screen and (min-width:768px) {
+    .ui-container .tree-view-content {
+        mask-image:
+            url('../masks/treeview_mid_mask_320px_32px.svg'),
+            linear-gradient(#000000 0 0);
+    }
+}
+
+
+@media screen and (min-width:1024px) {
+    .ui-container .tree-view-content {
+        mask-image:
+            url('../masks/treeview_mid_mask_320px_40px.svg'),
+            linear-gradient(#000000 0 0);
+        mask-position: right 125px, center;
+    }
 }

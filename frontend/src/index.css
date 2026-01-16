@@ -72,7 +72,7 @@ h2 {
 }
 
 #root {
-    @apply min-h-screen relative;
+    @apply min-h-screen relative flex flex-col justify-between;
 }
 
 @media screen and (min-width:768px) {

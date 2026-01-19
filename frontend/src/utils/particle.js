@@ -17,7 +17,7 @@ class Particle {
     this.speedX = (Math.random() - 0.5) * 1.0
     // this.speedY = (Math.random() - 0.5) * 2.0
     this.speedY = (Math.random() - 1) * 1.0
-    const colors = ['#fa6701', '#8B3A3A', 'rgba(255,255,255,0.2)']
+    // const colors = ['#fa6701', '#8B3A3A', 'rgba(255,255,255,0.2)']
     //this.color = colors[Math.floor(Math.random() * colors.length)]
     this.color = '#FFFFFF'
     this.life = Math.random() * 150 + (this.context.canvas.height)

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import logger from '../utils/logger'
-import Card from './Card'
+import Card from './NodeCard'
 
 /**
  * Recursive tree node component that renders a concept and its prerequisites

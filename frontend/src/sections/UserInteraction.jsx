@@ -5,7 +5,7 @@ import '../assets/css/userInteraction.css'
 
 const UserInteraction = () => {
   return (
-    <Section>
+    <Section className="user-interaction">
       <div className="container">
         <div className='ui-container my-12 lg:my-0'>
           <UserInterface />

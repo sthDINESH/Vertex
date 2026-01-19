@@ -2,7 +2,9 @@ import Hero from './sections/Hero'
 import Navbar from './components/Navbar'
 import Canvas from './components/Canvas'
 import UserInteraction from './sections/UserInteraction'
+import Features from './sections/Features'
 import Footer from './sections/Footer'
+
 
 const App = () => {
 
@@ -16,6 +18,7 @@ const App = () => {
       </header>
       <main>
         <UserInteraction />
+        <Features />
       </main>
       <footer className='mt-12'>
         <Footer />

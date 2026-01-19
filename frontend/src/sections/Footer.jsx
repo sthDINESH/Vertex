@@ -1,10 +1,12 @@
 import { FaInstagram, FaTwitter, FaFacebook, FaYoutube } from 'react-icons/fa'
+import Section from '../components/Section'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <section className="footer flex justify-center bg-linear-to-b from-white/10 backdrop-blur">
+    <Section className="footer bg-linear-to-b from-white/10 backdrop-blur">
+      {/* <section className="footer flex justify-center "> */}
       <div className="container">
         <div className="footer-content pt-16 pb-4 flex justify-end gap-1">
           <div className='w-1/2 flex flex-col gap-6'>
@@ -35,7 +37,8 @@ const Footer = () => {
           <p>© {currentYear} Vertex | All rights reserved.</p>
         </div>
       </div>
-    </section>
+      {/* </section> */}
+    </Section>
   )
 }
 

@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "json-server --watch db.json --port 3001",
-    "prepare": "husky"
+    "server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -32,8 +31,5 @@
     "globals": "^16.5.0",
     "json-server": "^1.0.0-beta.3",
     "vite": "^7.2.4"
-  },
-  "lint-staged": {
-    "*": "npm run lint"
   }
 }

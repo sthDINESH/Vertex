@@ -30,7 +30,7 @@ const ConceptInputForm = ({ onGenerate }) => {
 
       <div className="form-content px-3 sm:px-4 md:px-6 pt-8 md:pt-14 pb-14 relative">
         <div className="heading-content mb-5">
-          <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
+          <h2 className="accent-text text-xl md:text-2xl font-bold text-white mb-2">
           Build Your Learning Roadmap
           </h2>
           <p className="text-sm md:text-base text-gray-300">

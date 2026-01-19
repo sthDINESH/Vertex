@@ -36,7 +36,7 @@
 @layer utilities {
     .accent-text {
         font-family: 'Zatura', cursive;
-        letter-spacing: 0.1rem;
+        letter-spacing: 0.2rem;
     }
 
     .accent-heading {

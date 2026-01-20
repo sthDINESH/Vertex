@@ -4,6 +4,12 @@
 
 Vertex helps students and self-learners identify exactly what prerequisite knowledge they're missing when struggling with a topic. By generating visual dependency trees and personalized quizzes, Vertex pinpoints knowledge gaps and creates a tailored learning path—solving the "I don't even know what I don't know" problem.
 
+## 🚀 Live Demo
+
+**Frontend:** https://vertex-eta-tawny.vercel.app/
+
+---
+
 ## Features
 
 - **Visual Knowledge Trees**: See the prerequisite concepts needed to master any topic
@@ -46,10 +52,10 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - **Development**: Google Gemini 1.5 Flash
   - Free tier: 1,500 requests/day (no expiration, no credit card)
   - Fast, reliable JSON output
-- **Production**: OpenAI GPT-4o-mini
+- **Future**: OpenAI GPT-4o-mini
   - Free tier: $5 credits (~33,000 calls for 3 months)
   - Industry standard, better for portfolio/resume
-- **Premium**: Anthropic Claude Sonnet (optional)
+- **Future**: Anthropic Claude Sonnet
   - Best quality, most expensive ($3/1M tokens)
 
 **Deployment:**
@@ -60,15 +66,38 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 **DevOps & Monitoring:**
 - Git + GitHub (version control)
 - Vercel Analytics (frontend monitoring)
-- UptimeRobot (backend health checks)
-- Sentry (optional - error tracking)
-- PostHog or Plausible (optional - privacy-focused analytics)
+
+## Deployment Notes
+
+### Frontend (Vercel)
+- Deployed automatically on every push to `main` branch
+- Environment variables configured in Vercel dashboard
+- Rollback available: Vercel dashboard → Deployments → Click previous deployment → Promote to Production
+
+### Backend (Render)
+- Deployed automatically on every push to `main` branch (connect GitHub repo)
+- Environment variables configured in Render dashboard:
+  - `MONGODB_URI` (MongoDB Atlas connection string)
+  - `JWT_SECRET` (random string for token signing)
+  - `GEMINI_API_KEY` (AI API key)
+  - `NODE_ENV=production`
+  - `CORS_ORIGIN` (Vercel frontend URL)
+- Rollback available: Render dashboard → Service → Deployment History → Click previous deployment → Deploy
+- **Note**: Free tier spins down after 15 min inactivity (first request takes 30-50s to wake up)
+
+### Monitoring
+- **Frontend**: View deployment logs and status on Vercel dashboard
+- **Backend**: View logs in Render dashboard → Service → Logs
+- Set up [UptimeRobot](https://uptimerobot.com) to ping backend every 5 minutes (prevents auto spin-down)
 
 *Split deployment approach: Vercel's global CDN optimizes frontend performance while Render handles API logic. This separation allows independent scaling, faster load times, and follows industry best practices for modern web applications.*
 
 ## UX Design
 
 ### Strategy Plane
+<details>
+   <summary>Strategy plane considerations(expand for details)</summary>
+
 
 #### Target Audience
 
@@ -128,8 +157,12 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - Resources that match user's current level (no overwhelming PhD papers for beginners)
 - Mobile-responsive design for studying on-the-go
 
+</details>
 
 ### Scope Plane
+
+<details>
+   <summary>Scope plane considerations(expand for details)</summary>
 
 #### User Stories
 
@@ -218,7 +251,12 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - **SHOULD HAVE**: Important features that significantly enhance value but aren't critical for launch
 - **COULD HAVE**: Nice-to-have features that can wait for future iterations based on user feedback
 
+</details>
+
 ### Structure Plane
+
+<details>
+   <summary>Structure plane considerations(expand for details)</summary>
 
 #### Information Architecture
 
@@ -685,8 +723,12 @@ app.use((error, req, res, next) => {
 ```
 
 ---
+</details>
 
 ### Skeleton plane
+
+<details>
+   <summary>Skeleton plane considerations(expand for details)</summary>
 
 #### Wireframes & Interface Design
 
@@ -1302,17 +1344,16 @@ app.use((error, req, res, next) => {
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌──────────────┐  ┌────────────────────────────────────────┐  │
-│  │              │  │                                        │  │
-│  │ Account      │  │  Account Settings                      │  │
-│  │              │  │                                        │  │
-│  │ [Profile]    │  │  ┌──────────────────────────────┐     │  │
-│  │              │  │  │ Email                        │     │  │
-│  │ Statistics   │  │  │ [alex@example.com]  [Change] │     │  │
-│  │              │  │  └──────────────────────────────┘     │  │
-│  │ Preferences  │  │                                        │  │
+│  │              │  │  Account Settings                      │  │
+│  │ Account      │  │                                        │  │
 │  │              │  │  ┌──────────────────────────────┐     │  │
-│  │ [Logout]     │  │  │ Password                     │     │  │
-│  │              │  │  │ [••••••••]  [Change Password]│     │  │
+│  │ [Profile]    │  │  │ Email                        │     │  │
+│  │              │  │  │ [alex@example.com]  [Change] │     │  │
+│  │ Statistics   │  │  └──────────────────────────────┘     │  │
+│  │              │  │                                        │  │
+│  │ Preferences  │  │  ┌──────────────────────────────┐     │  │
+│  │              │  │  │ Password                     │     │  │
+│  │ [Logout]     │  │  │ [••••••••]  [Change Password]│     │  │
 │  └──────────────┘  │  └──────────────────────────────┘     │  │
 │                    │                                        │  │
 │                    │  ┌──────────────────────────────┐     │  │
@@ -1424,13 +1465,17 @@ When opened:
 - Focus indicators: 2px solid outline, never removed
 
 ---
+</details>
 
 ## Agile methodology
 
-#### Sprint Planning (5 Sprints × 1 Week Each)
+#### Sprint Planning (5 Sprints)
 
-**Sprint 1: Core AI Foundation with Backend (Week 1)**
+**Sprint 1: Core AI Foundation with Backend**
 *Goal: Build full-stack AI-powered concept mapping with secure API integration*
+
+<details>
+   <summary>Expand for details</summary>
 
 **Frontend Features:**
 - [ ] Project setup (Vite + React + TailwindCSS)
@@ -1501,11 +1546,15 @@ Gemini API (Secure, Server-Side)
 - No console errors or unhandled API failures
 - Rate limiting prevents abuse from same IP
 - All data flows securely between frontend ↔ backend ↔ Gemini
+</details>
 
 ---
 
 **Sprint 2: Assessment System (Week 2)**
 *Goal: Build quiz generation and validation logic*
+
+<details>
+   <summary>Expand for details</summary>
 
 **Features:**
 - [ ] Quiz generation prompt engineering
@@ -1542,10 +1591,14 @@ Gemini API (Secure, Server-Side)
 - Personalized resources are generated for failed concepts
 - No regression in tree generation from Sprint 1
 
+</details>
+
 ---
 
 **Sprint 3: Backend & Authentication (Week 3)**
 *Goal: Build server infrastructure and user accounts*
+<details>
+   <summary>Expand for details</summary>
 
 **Features:**
 - [ ] Node.js + Express server setup
@@ -1581,6 +1634,7 @@ Gemini API (Secure, Server-Side)
 - [ ] Configure CORS for Vercel frontend domain
 - [ ] Update frontend API calls to use Render backend URL
 - [ ] Deploy updated frontend to Vercel
+
 - [ ] Test authentication flow in production (signup, login, logout)
 - [ ] Verify data persistence in MongoDB Atlas
 
@@ -1593,10 +1647,15 @@ Gemini API (Secure, Server-Side)
 - Learning paths are saved and retrievable after login
 - No authentication bypass vulnerabilities
 
+</details>
+
 ---
 
 **Sprint 4: Polish & UX Refinement (Week 4)**
 *Goal: Enhance usability, responsiveness, and user experience*
+
+<details>
+   <summary>Expand for details</summary>
 
 **Features:**
 - [ ] Mobile-responsive design (Tailwind breakpoints)
@@ -1639,10 +1698,15 @@ Gemini API (Secure, Server-Side)
 - User testing shows intuitive navigation (average 4/5 rating)
 - No console errors or warnings
 
+</details>
+
 ---
 
 **Sprint 5: Final Polish & Portfolio Prep (Week 5)**
 *Goal: Production hardening and portfolio presentation*
+
+<details>
+   <summary>Expand for details</summary>
 
 **Features:**
 - [ ] API rate limiting (prevent abuse)
@@ -1684,6 +1748,8 @@ Gemini API (Secure, Server-Side)
 - Portfolio-ready demo video and documentation
 - Passed security checklist (OWASP top 10)
 
+</details>
+
 ---
 
 #### Post-MVP Roadmap
@@ -1707,34 +1773,5 @@ Gemini API (Secure, Server-Side)
 - Premium AI model options (GPT-4o-mini, Claude)
 - Performance optimization for large concept trees
 
----
-
-#### Sprint Velocity & Timeline
-
-**Estimated Timeline:** 5 weeks for MVP (35-40 hours total at ~7-8 hours/week)
-
-**Velocity Assumptions:**
-- 1 Dev Effort Point ≈ 1.5-2 hours
-- Sprint capacity: ~12-14 Dev Effort Points/week (including testing & deployment)
-- Testing = ~20% of sprint time
-- Deployment = ~10% of sprint time
-- Buffer time included for unexpected challenges
-
-**Testing Strategy:**
-- **Sprint 1-2**: Manual testing (frontend only, no backend yet)
-- **Sprint 3**: Integration tests for auth + database
-- **Sprint 4**: User testing + accessibility audits
-- **Sprint 5**: End-to-end tests + security audit
-
-**Deployment Strategy:**
-- **Continuous Deployment**: Every sprint ends with a production deployment
-- **Staging Environment**: Sprint 5 introduces staging for safer releases
-- **Rollback Plan**: Git tags for each sprint release, quick revert capability
-
-**Risk Mitigation:**
-- AI API reliability: Test fallback error messages, monitor rate limits each sprint
-- Authentication complexity: Deploy incrementally (Sprint 3), test heavily before Sprint 4
-- Deployment issues: Deploy early and often to catch issues sooner
-- Scope creep: Strictly adhere to "MUST HAVE" features, defer "SHOULD HAVE" to Post-MVP
 
 

@@ -1,10 +1,11 @@
-import Hero from './sections/Hero'
+import { Routes, Route } from 'react-router-dom'
+
 import Navbar from './components/Navbar'
 import Canvas from './components/Canvas'
-import UserInteraction from './sections/UserInteraction'
-import Features from './sections/Features'
 import Footer from './sections/Footer'
 
+import Home from './views/Home'
+import UnderConstruction from './sections/UnderConstruction'
 
 const App = () => {
 
@@ -13,13 +14,11 @@ const App = () => {
       <div className="background fixed top-0 left-0 w-full h-screen z-[-2]"></div>
       <Canvas />
       <Navbar/>
-      <header>
-        <Hero/>
-      </header>
-      <main>
-        <UserInteraction />
-        <Features />
-      </main>
+      <Routes>
+        <Route path='/accounts/register' element={<UnderConstruction/>}/>
+        <Route path='/accounts/login' element={<UnderConstruction/>}/>
+        <Route path='/' element={<Home/>}/>
+      </Routes>
       <footer className='mt-12'>
         <Footer />
       </footer>

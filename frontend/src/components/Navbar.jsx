@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 z-10 flex justify-center w-full bg-linear-to-b to-white/10 backdrop-blur">
@@ -7,16 +9,20 @@ const Navbar = () => {
             <div className="accent-text text-white text-xl md:text-2xl lg:text-3xl">Vertex</div>
           </div>
           <div className="nav-link-container ml-auto">
-            <ul>
+            <ul className='flex gap-3'>
               <li>
-                Login
+                <Link to='/'>Home</Link>
+              </li>
+              <li>
+                <Link to='/accounts/login'>Login</Link>
+              </li>
+              <li>
+                <Link to='/accounts/register'>Register</Link>
               </li>
             </ul>
           </div>
         </div>
       </div>
-
-
     </nav>
   )
 }

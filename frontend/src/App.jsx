@@ -19,9 +19,7 @@ const App = () => {
         <Route path='/accounts/login' element={<UnderConstruction/>}/>
         <Route path='/' element={<Home/>}/>
       </Routes>
-      <footer className='mt-12'>
-        <Footer />
-      </footer>
+      <Footer />
     </>
   )
 }

@@ -2,3 +2,4 @@ utilities
 .env*
 node_modules
 dev-server
+.vscode

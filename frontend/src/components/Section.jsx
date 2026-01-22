@@ -1,6 +1,9 @@
 const Section = (props) => {
   return (
-    <section className={`w-full flex flex-col items-center ${props.className? props.className:''}`}>
+    <section
+      id={props.id ? props.id : ''}
+      className={`w-full flex flex-col items-center ${props.className? props.className:''}`}
+    >
       { props.children }
     </section>
   )

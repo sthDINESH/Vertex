@@ -6,11 +6,13 @@ import { useRef } from 'react'
 import Section from '../components/Section'
 import heroSvg from '../assets/hero_mascot.svg'
 import '../assets/css/hero.css'
+import { useNavigate } from 'react-router-dom'
 
 // gsap.registerPlugin(SplitText, ScrollTrigger)
 
 const Hero = () => {
   const container = useRef()
+  const navigate = useNavigate()
 
   // const tl = useRef()
 
@@ -112,14 +114,22 @@ const Hero = () => {
           </div>
           <div className="hero-body-text text-gray-200 text-center lg:text-left mt-2">
             <p>
-            Identify what you need to learn first.
-            Stop struggling with knowledge gaps, unlock your potential with AI-powered learning pathways
-            tailored to you.
+            Connect the dots—stop struggling with knowledge gaps and identify exactly what you need to learn first. Unlock your potential with AI-powered learning pathways tailored to you.
+              <br />
+              <br />
+            Ready to transform how you learn? Join Vertex and watch your understanding grow from the foundation up.
             </p>
           </div>
           <div className="hero-cta w-full gap-2 flex justify-center mt-6">
-            <button className='btn btn-primary w-32'>Get Started</button>
-            <button className='btn btn-secondary w-32'>Explore</button>
+            <button className='btn btn-primary w-32' onClick={() => navigate('/accounts/register')}>Register Now!</button>
+            <button
+              className='btn btn-secondary w-32'
+              onClick={() => {
+                document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+            >
+              Learn more
+            </button>
           </div>
         </div>
       </div>

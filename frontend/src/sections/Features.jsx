@@ -29,7 +29,7 @@ const Features = () => {
   ]
 
   return (
-    <Section className="features mt-20">
+    <Section id='features' className="features pt-20">
       <div className="container w-full">
         <div className="header-content flex flex-col items-center mb-12">
           <h2 className="text-center">What makes Vertex work</h2>

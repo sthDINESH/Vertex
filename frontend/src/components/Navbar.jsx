@@ -1,8 +1,22 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 const Navbar = () => {
+
+  const containerRef = useRef()
+  useGSAP(() => {
+    gsap.from('nav',{
+      yPercent: -100,
+      duration:1,
+      ease:'power2.out'
+    })
+
+  },{ dependencies:[] })
+
   return (
-    <nav className="fixed top-0 left-0 z-10 flex justify-center w-full bg-linear-to-b to-white/10 backdrop-blur">
+    <nav ref={containerRef} className="fixed top-0 left-0 z-10 flex justify-center w-full bg-linear-to-b to-white/10 backdrop-blur">
       <div className="container w-full">
         <div className="flex items-center py-2 border-b-2 border-white">
           <div className="nav-brand-container">

@@ -13,8 +13,8 @@
 }
 
 @theme {
-    --color-primary: #0891b2;
-    --color-secondary: #ea580c;
+    --color-secondary: #0891b2;
+    --color-primary: #ea580c;
     --accent-font: 'Zatura', cursive;
 }
 
@@ -25,11 +25,11 @@
     }
 
     .btn-secondary {
-        @apply bg-primary hover:bg-primary/80;
+        @apply bg-secondary hover:bg-secondary/80;
     }
 
     .btn-primary {
-        @apply bg-secondary hover:bg-secondary/80;
+        @apply bg-primary hover:bg-primary/80;
     }
 }
 

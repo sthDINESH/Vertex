@@ -103,10 +103,10 @@ const Hero = () => {
         </div>
         <div className="hero-content flex flex-col items-center lg:items-start">
           <div className='accent-text hero-title flex flex-col md:flex-row md:gap-1 text-center text-bold text-2xl md:text-3xl lg:text-3xl xl:text-3xl'>
-            <div className='hero-title-1 text-primary tracking-wider'>
+            <div className='hero-title-1 text-secondary tracking-wider'>
                 Find what you're missing
             </div>
-            <div className='hero-title-2 text-secondary tracking-wider'>
+            <div className='hero-title-2 text-primary tracking-wider'>
                 Master what matters
             </div>
           </div>

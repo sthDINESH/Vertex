@@ -9,6 +9,7 @@ import logger from '../utils/logger'
 const UserInterface = () => {
   const [map, setMap] = useState('')
   const [loading, setLoading] = useState({ state:false })
+  // const [loading, setLoading] = useState({ state:true, type:'map' })
 
   const toast = useToast()
 

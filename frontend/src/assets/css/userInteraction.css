@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 .ui-container .form-content,
+.ui-container .loading-view-content,
 .ui-container .tree-view-content {
     @apply backdrop-blur-[2px] rounded-2xl;
     background:

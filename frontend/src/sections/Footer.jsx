@@ -19,10 +19,18 @@ const Footer = () => {
                 </div>
               </div>
               <div className="socials flex justify-center md:justify-start md:items-end gap-8">
-                <FaInstagram size={22} className="text-cyan-500 hover:text-cyan-400" />
-                <FaTwitter size={22} className="text-cyan-500 hover:text-cyan-400" />
-                <FaFacebook size={22} className="text-cyan-500 hover:text-cyan-400" />
-                <FaYoutube size={22} className="text-cyan-500 hover:text-cyan-400" />
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
+                  <FaInstagram size={22} className="text-cyan-500 hover:text-cyan-400" />
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
+                  <FaTwitter size={22} className="text-cyan-500 hover:text-cyan-400" />
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
+                  <FaFacebook size={22} className="text-cyan-500 hover:text-cyan-400" />
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition">
+                  <FaYoutube size={22} className="text-cyan-500 hover:text-cyan-400" />
+                </a>
               </div>
             </div>
             <div className='links md:w-1/2 pt-8 pb-6 flex md:flex-col items-end justify-around md:justify-between'>

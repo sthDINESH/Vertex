@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import logger from '../utils/logger'
 import Card from './NodeCard'
+import { useToast } from '../hooks/Toast'
 
 /**
  * Recursive tree node component that renders a concept and its prerequisites
@@ -34,6 +35,8 @@ import Card from './NodeCard'
 const Node = ({ map, node }) => {
   const [subNodeVisible, setSubNodeVisible] = useState(true)
 
+  const toast = useToast()
+
   const toggleSubNodeVisibility = () => setSubNodeVisible(!subNodeVisible)
 
   return (
@@ -42,7 +45,10 @@ const Node = ({ map, node }) => {
         node={node}
         subNodeVisible={subNodeVisible}
         handleToggle={toggleSubNodeVisibility}
-        handleQuiz={() => logger.info('Quiz: Not yet implemented!')}
+        handleQuiz={() => {
+          logger.info('Quiz: Not yet implemented!')
+          toast.show('Quiz: Not yet implemented!')
+        }}
       />
       <div className='map-sub-nodes' style={{ display: subNodeVisible?'': 'none' }}>
         {node.prerequisites.map(nodeId => {

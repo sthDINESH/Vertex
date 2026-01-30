@@ -17,6 +17,12 @@ export default defineConfig([
         sourceType: 'module',
       },
     },
+    files: ['**/*.test.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.vitest // inform eslint that vitest keywords are globally available
+      }
+    },
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,

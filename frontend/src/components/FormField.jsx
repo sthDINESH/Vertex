@@ -1,5 +1,5 @@
-const FormField = ({ children, className }) => {
-  return <label className={`flex flex-col py-1 ${className || ''}`}>
+const FormField = ({ children, className, htmlFor }) => {
+  return <label className={`flex flex-col py-1 ${className || ''}`} htmlFor={htmlFor}>
     { children }
   </label>
 }

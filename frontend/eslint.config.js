@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'coverage']),
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
@@ -17,12 +17,7 @@ export default defineConfig([
         sourceType: 'module',
       },
     },
-    files: ['**/*.test.{js,jsx}'],
-    languageOptions: {
-      globals: {
-        ...globals.vitest // inform eslint that vitest keywords are globally available
-      }
-    },
+
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
@@ -54,5 +49,13 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'no-console': 'off',
     },
+  },
+  {
+    files: ['**/*.test.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.vitest // inform eslint that vitest keywords are globally available
+      }
+    }
   },
 ])

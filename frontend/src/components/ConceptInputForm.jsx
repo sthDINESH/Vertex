@@ -38,10 +38,11 @@ const ConceptInputForm = ({ onGenerate }) => {
           </p>
         </div>
         <FormGroup>
-          <FormField>
+          <FormField htmlFor='concept-input'>
           What concept do you want to explore today?
             <input className='h-12 mt-1'
               {...concept.props}
+              id='concept-input'
               placeholder='eg. Calculus, State Management in React'
               required
             />
@@ -49,16 +50,17 @@ const ConceptInputForm = ({ onGenerate }) => {
           </FormField>
         </FormGroup>
         <FormGroup className='grid md:grid-cols-2 gap-2'>
-          <FormField>
+          <FormField htmlFor='subject'>
             Subject(optional)
             <input className='mt-1'
               {...subject.props}
+              id='subject'
               placeholder='eg. Mathematics, Software'
             />
           </FormField>
-          <FormField>
+          <FormField htmlFor='level'>
           Your Level(optional)
-            <select name='level' {...level.props} className='mt-1'>
+            <select name='level' {...level.props} className='mt-1' id='level'>
               <option value=''>Please choose a level</option>
               <option value='high school'>High School</option>
               <option value='undergraduate'>Undergraduate</option>
@@ -70,7 +72,7 @@ const ConceptInputForm = ({ onGenerate }) => {
         </FormGroup>
       </div>
       <div className="form-controls absolute left-0 right-0 bottom-0 flex items-end justify-between">
-        <button type='button' className='btn btn-secondary flex justify-center items-center w-10' onClick={() => clearAll()}>
+        <button type='button' aria-label='Reset form' className='btn btn-secondary flex justify-center items-center w-10' onClick={() => clearAll()}>
           <RotateCcwSquare/>
         </button>
         <button type='submit' className='btn btn-primary w-40 md:w-80'>Generate Concept Map</button>

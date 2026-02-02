@@ -20,9 +20,13 @@ const Card = ({ title, description, image, className='' }) => {
     ScrollTrigger.create({
       trigger: containerRef.current,
       onEnter: () => {
-        timeline.play()
+        timeline.restart()
       },
-      start: 'top 85%',
+      onEnterBack: () => {
+        timeline.reverse()
+      },
+      start: 'top 80%',
+      end: 'top 80%',
       // markers: true,
       scrub: 1,
     })

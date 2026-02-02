@@ -19,7 +19,7 @@ const TreeView = ({ map, onRestart }) => {
 
   const rootNode = map.prerequisites.find(node => isRootNode(node))
 
-  return (
+  return ( map &&
     <div className='tree-view relative'>
       <div className="tree-view-content p-3 sm:p-4 md:p-6">
         <div className='header-content flex flex-col gap-4'>

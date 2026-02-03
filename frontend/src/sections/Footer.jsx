@@ -30,6 +30,7 @@ const Footer = () => {
         const velocity = self.getVelocity()
         const variation = velocity / 10000
 
+        // footer SVG morph+bounce animation
         gsap.fromTo('#bouncy-path', {
           morphSVG: down
         }, {
@@ -37,6 +38,13 @@ const Footer = () => {
           morphSVG: center,
           ease: `elastic.out(${1 + variation}, ${1 - variation})`,
           overwrite: 'true'
+        })
+
+        // footer content appear animation
+        gsap.from('.footer-content', {
+          opacity: 0,
+          yPercent: 50,
+          duration: 0.7,
         })
       }
     })
@@ -61,7 +69,7 @@ const Footer = () => {
           className="footer-svg"
           id="bouncy-path"
           fill="url(#grad-2)"
-          d="M0,0C0,0,30,0,50,0S100,0,100,0V100H0V0z"
+          d="M0,-0.3C0,-0.3,30,20,50,20S100,-0.3,100,-0.3V100H0V-0.3z"
         />
       </svg>
       <Section>

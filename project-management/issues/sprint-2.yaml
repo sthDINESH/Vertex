@@ -1,6 +1,6 @@
 ---
 sprint: 2
-milestone: "Sprint 2: Assessment System"
+milestone: "sprint-2"
 issues:
   - title: "[Sprint 2] User Story: Quiz Generation from Prerequisite Concepts"
     labels:

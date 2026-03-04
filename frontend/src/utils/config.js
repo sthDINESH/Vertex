@@ -6,7 +6,7 @@ const DEV_SERVER = (import.meta.env.VITE_DEV_SERVER === 'true') ? true : false
 
 // Backend URL
 const SERVER_URL = DEV_SERVER
-  ? 'http://localhost:3001/conceptTrees'
+  ? 'http://localhost:3001'
   : import.meta.env.VITE_BACKEND_BASE_URL
 
 export default {

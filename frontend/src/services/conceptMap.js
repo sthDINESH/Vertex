@@ -10,7 +10,7 @@ const baseUrl = config.SERVER_URL
  * @returns { success, map, error }
  */
 const getMap = async (conceptObject) => {
-  const endpoint = (config.DEV_SERVER) ? '1':'api/generate-map'
+  const endpoint = (config.DEV_SERVER) ? 'conceptTrees/1':'api/generate-map'
   const requestConfig = (config.DEV_SERVER)
     ? { method: 'GET' }
     : {

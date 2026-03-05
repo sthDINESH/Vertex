@@ -3,7 +3,7 @@ import Node from './Node'
 import '../assets/css/treeView.css'
 import { BookOpenCheck, Goal } from 'lucide-react'
 
-const TreeView = ({ map, onRestart }) => {
+const TreeView = ({ map, onRestart, onTestKnowledge }) => {
 
   /**
    * Checks if a node is the root node of the concept map
@@ -38,7 +38,7 @@ const TreeView = ({ map, onRestart }) => {
           </p>
         </div>
         <div className='overflow-x-scroll md:overflow-x-auto'>
-          <Node key={rootNode.id} map={map} node={rootNode} />
+          <Node key={rootNode.id} map={map} node={rootNode} onTestKnowledge={onTestKnowledge} />
         </div>
       </div>
       <div className='tree-view-controls absolute top-36.75 right-0'>

@@ -50,4 +50,45 @@ const getMap = async (conceptObject) => {
   }
 }
 
-export default { getMap }
+const generateQuiz = async (quizConfig) => {
+  const endpoint = (config.DEV_SERVER) ? 'quizzes/1':'api/generate-quiz'
+  const requestConfig = (config.DEV_SERVER)
+    ? { method: 'GET' }
+    : {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(quizConfig)
+    }
+
+  try {
+    const response = await fetch(`${baseUrl}/${endpoint}`, requestConfig )
+
+    if(!response.ok){
+      logger.error('SERVER ERROR:', response)
+      const status = response.status
+      let error = ''
+      switch(status){
+        case 429:
+          error = 'Too many requests...Please try again later!'
+          break
+        case 502:
+        case 503:
+          error = 'Oops! Could not generate quiz for the concept! Please try something different.'
+          break
+        default:
+          error = 'Oops! Something went wrong. Please try again.'
+      }
+      return { success: false, error }
+    }
+
+    const quiz = await response.json()
+    return { success: true, quiz }
+  } catch(error){
+    logger.info('FETCH ERROR:', error)
+    return { success: false, error: 'Oops! Connection failed due to network issue.' }
+  }
+}
+
+export default { getMap, generateQuiz }

@@ -1,17 +1,38 @@
-import { useRef } from 'react'
-// import { useToast } from '../hooks/Toast'
+import { useRef, useState } from 'react'
 import logger from '../utils/logger'
 import { Brain } from 'lucide-react'
 import { Stepper, Step } from './Stepper'
 
+/**
+ * Quiz - Interactive quiz/assessment component with step-by-step questions
+ * Manages quiz state, tracks correct/incorrect answers, and displays results in stepper indicators
+ * @param {Object} quiz - Quiz data object
+ * @param {Object} quiz.node - Node information with name and description
+ * @param {string} quiz.node.name - Title of the quiz
+ * @param {string} quiz.node.description - Description of the quiz
+ * @param {Array} quiz.questions - Array of question objects
+ * @param {string} quiz.questions[].question - Question text
+ * @param {Array} quiz.questions[].options - Array of answer options
+ * @param {number} quiz.questions[].correct - Index of the correct option
+ * @param {Function} onFinish - Callback fired when all questions are answered
+ * @returns {JSX.Element} Quiz UI with stepper and answer options
+ */
 const Quiz = ({ quiz, onFinish }) => {
+  // ref to access Stepper nextStep method
   const stepperRef = useRef()
+  // hold results for answered questions in state
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState({})
 
-  // const toast = useToast()
-
-  const checkAnswer = () => {
-    logger.info('Quiz: Checks not yet implemented!')
-    // toast.show(`Quiz: User answered ${answer} Checks not yet implemented!`)
+  /**
+   * checkAnswer - Validates user's answer and advances to next question
+   * @param {number} questionIndex - Index of the current question
+   * @param {number} optionIndex - Index of the selected option
+   */
+  const checkAnswer = (questionIndex, optionIndex) => {
+    const correctOption = quiz.questions[questionIndex].correct
+    const isCorrect = optionIndex === correctOption
+    logger.info(`${isCorrect?'Quiz: Correct answer!':`Quiz: Incorrect answer. Correct option: ${correctOption}`}`)
+    setIsCorrectAnswer({ ...isCorrectAnswer, [questionIndex]: isCorrect })
     stepperRef.current.nextStep()
   }
 
@@ -29,14 +50,14 @@ const Quiz = ({ quiz, onFinish }) => {
             </div>
           </div>
           <Stepper ref={stepperRef} onComplete={onFinish}>
-            {quiz.questions.map((question, index) => (
-              <Step key={index} className='quiz-content flex flex-col gap-6'>
+            {quiz.questions.map((question, questionIndex) => (
+              <Step key={questionIndex} className='quiz-content flex flex-col gap-6' isCorrect={isCorrectAnswer?.[questionIndex]}>
                 <div className="quiz-question flex items-center">
                   <p className='text-xl font-semibold'>{question.question}</p>
                 </div>
                 <div className="quiz-options flex flex-wrap justify-between gap-3">
-                  {question.options.map((option, idx) => (
-                    <button className='btn btn-options grow text-base font-medium' key={idx} onClick={() => checkAnswer(idx)}>{option}</button>
+                  {question.options.map((option, optionIndex) => (
+                    <button className='btn btn-options grow text-base font-medium' key={optionIndex} onClick={() => checkAnswer(questionIndex, optionIndex)}>{option}</button>
                   ))}
                 </div>
               </Step>

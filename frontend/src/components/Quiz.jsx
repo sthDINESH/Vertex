@@ -22,6 +22,9 @@ const Quiz = ({ quiz, onFinish }) => {
   const stepperRef = useRef()
   // hold results for answered questions in state
   const [isCorrectAnswer, setIsCorrectAnswer] = useState({})
+  const [disableNext, setDisableNext] = useState(true)
+  // disable quiz options when next is enabled
+  const disableOptions = !disableNext
 
   /**
    * checkAnswer - Validates user's answer and advances to next question
@@ -33,7 +36,7 @@ const Quiz = ({ quiz, onFinish }) => {
     const isCorrect = optionIndex === correctOption
     logger.info(`${isCorrect?'Quiz: Correct answer!':`Quiz: Incorrect answer. Correct option: ${correctOption}`}`)
     setIsCorrectAnswer({ ...isCorrectAnswer, [questionIndex]: isCorrect })
-    stepperRef.current.nextStep()
+    setDisableNext(false)
   }
 
   return (quiz &&
@@ -57,9 +60,25 @@ const Quiz = ({ quiz, onFinish }) => {
                 </div>
                 <div className="quiz-options flex flex-wrap justify-between gap-3">
                   {question.options.map((option, optionIndex) => (
-                    <button className='btn btn-options grow text-base font-medium' key={optionIndex} onClick={() => checkAnswer(questionIndex, optionIndex)}>{option}</button>
+                    <button className='btn btn-options grow text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed'
+                      key={optionIndex}
+                      onClick={() => checkAnswer(questionIndex, optionIndex)}
+                      disabled={disableOptions}
+                    >
+                      {option}
+                    </button>
                   ))}
                 </div>
+                <button
+                  className='btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400'
+                  disabled={disableNext}
+                  onClick={() => {
+                    setDisableNext(true)
+                    stepperRef.current.nextStep()
+                  }}
+                >
+                  Next
+                </button>
               </Step>
             ))}
           </Stepper>

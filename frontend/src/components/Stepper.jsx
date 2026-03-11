@@ -19,7 +19,7 @@ const StepConnector = ({ isCompleted }) => {
  * @returns {JSX.Element} A circular step indicator with checkmark, cross, dot, or number
  */
 const StepCircle = ({ step, currentStep, isCorrect }) => {
-  const isCompleted = step < currentStep
+  const isCompleted = isCorrect !== undefined || step < currentStep
   const isCurrent = step === currentStep
 
   return (

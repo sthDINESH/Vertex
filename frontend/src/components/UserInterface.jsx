@@ -51,6 +51,7 @@ const UserInterface = () => {
 
   const endQuiz = (passed) => {
     logger.info('Quiz passed:', passed)
+    toast.show(`Quiz ${passed ? 'passed!':'failed!'}`, passed ? 'success': 'error')
     setQuiz()
   }
 

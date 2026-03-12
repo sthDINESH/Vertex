@@ -4,6 +4,7 @@ import { Brain } from 'lucide-react'
 import { Stepper, Step } from './Stepper'
 
 /**
+ * ----------------------------------------------------------------------------
  * Quiz - Interactive quiz/assessment component with step-by-step questions
  * Manages quiz state, tracks correct/incorrect answers, and displays results in stepper indicators
  * @param {Object} quiz - Quiz data object
@@ -16,6 +17,7 @@ import { Stepper, Step } from './Stepper'
  * @param {number} quiz.questions[].correct - Index of the correct option
  * @param {Function} onFinish - Callback fired when all questions are answered
  * @returns {JSX.Element} Quiz UI with stepper and answer options
+ * ----------------------------------------------------------------------------
  */
 const Quiz = ({ quiz, onFinish }) => {
   // ref to access Stepper nextStep method
@@ -25,6 +27,8 @@ const Quiz = ({ quiz, onFinish }) => {
   const [disableNext, setDisableNext] = useState(true)
   // disable quiz options when next is enabled
   const disableOptions = !disableNext
+  // check quiz end condition
+  const quizEnd = Object.keys(isCorrectAnswer).length === quiz.questions.length
 
   /**
    * checkAnswer - Validates user's answer and advances to next question
@@ -39,6 +43,12 @@ const Quiz = ({ quiz, onFinish }) => {
     setDisableNext(false)
   }
 
+  /**
+   * handleQuizEnd - Determines if all answers are correct and calls the onFinish callback
+   * Passes true if all answers are correct, false if any are incorrect
+   */
+  const handleQuizEnd = () => onFinish(!Object.values(isCorrectAnswer).some(isCorrect => !isCorrect))
+
   return (quiz &&
     <div className='quiz-view'>
       <div className='quiz-view-content p-3 sm:p-4 md:pd-6'>
@@ -47,12 +57,12 @@ const Quiz = ({ quiz, onFinish }) => {
             <Brain size={60} className='text-primary'/>
             <div className='header-text flex flex-col gap-1'>
               <h2>Assessment: <span className='font-semibold text-secondary'>{quiz.node.name}</span></h2>
-              <p className='text-sm md:text-base text-gray-300'>
+              <p className='text-sm md:text-base tex:%s/t-gray-300'>
                 {quiz.node.description}
               </p>
             </div>
           </div>
-          <Stepper ref={stepperRef} onComplete={onFinish}>
+          <Stepper ref={stepperRef}>
             {quiz.questions.map((question, questionIndex) => (
               <Step key={questionIndex} className='quiz-content flex flex-col gap-6' isCorrect={isCorrectAnswer?.[questionIndex]}>
                 <div className="quiz-question flex items-center">
@@ -74,10 +84,10 @@ const Quiz = ({ quiz, onFinish }) => {
                   disabled={disableNext}
                   onClick={() => {
                     setDisableNext(true)
-                    stepperRef.current.nextStep()
+                    quizEnd ? handleQuizEnd() : stepperRef.current.nextStep()
                   }}
                 >
-                  Next
+                  {quizEnd ? 'Finish':'Next'}
                 </button>
               </Step>
             ))}

@@ -49,7 +49,8 @@ const UserInterface = () => {
     setLoading({ state:false })
   }
 
-  const endQuiz = () => {
+  const endQuiz = (passed) => {
+    logger.info('Quiz passed:', passed)
     setQuiz()
   }
 

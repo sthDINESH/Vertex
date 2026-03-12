@@ -48,22 +48,26 @@ const StepCircle = ({ step, currentStep, isCorrect }) => {
 }
 
 /**
+ * ----------------------------------------------------------------------------
  * Step - Wrapper component for step content
  * @param {React.ReactNode} children - The content to display for this step
  * @param {string} className - Additional CSS classes for styling
  * @param {boolean|undefined} isCorrect - Answer correctness (true/false/undefined)
  * @returns {JSX.Element} A div container for step content
+ * ----------------------------------------------------------------------------
  */
 const Step = ({ children, className }) => <div className={`step ${className}`}>{children}</div>
 
 
 /**
+ * ----------------------------------------------------------------------------
  * Stepper - Main stepper component that manages multi-step workflows
  * Renders step indicators with connectors and displays active step content
  * @param {React.ReactNode} children - Array of Step components to render
  * @param {React.Ref} ref - Forwarded ref to access nextStep method
  * @param {Function} onComplete - Callback fired when final step is completed
  * @returns {JSX.Element} Complete stepper UI with indicators and content area
+ * ----------------------------------------------------------------------------
  */
 const Stepper = ({ children, ref, onComplete = () => {} }) => {
   const [currentStep, setCurrentStep] = useState(0)

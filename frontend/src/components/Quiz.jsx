@@ -56,28 +56,33 @@ const Quiz = ({ quiz, onFinish }) => {
           <div className='pt-10 pb-4 flex items-start gap-3 min-h-43.75'>
             <Brain size={60} className='text-primary'/>
             <div className='header-text flex flex-col gap-1'>
-              <h2>Assessment: <span className='font-semibold text-secondary'>{quiz.node.name}</span></h2>
-              <p className='text-sm md:text-base tex:%s/t-gray-300'>
-                {quiz.node.description}
-              </p>
+              <h2>Assessment: <span className='text-primary'>{quiz.node.name}</span></h2>
             </div>
           </div>
+          <p className='text-sm md:text-base text-gray-300'>
+            Let's check your understanding on:<br/>
+            <span className='text-secondary'>{quiz.node.description}</span>
+          </p>
+        </div>
+        <div>
           <Stepper ref={stepperRef}>
             {quiz.questions.map((question, questionIndex) => (
-              <Step key={questionIndex} className='quiz-content flex flex-col gap-6' isCorrect={isCorrectAnswer?.[questionIndex]}>
-                <div className="quiz-question flex items-center">
-                  <p className='text-xl font-semibold'>{question.question}</p>
-                </div>
-                <div className="quiz-options flex flex-wrap justify-between gap-3">
-                  {question.options.map((option, optionIndex) => (
-                    <button className='btn btn-options grow text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed'
-                      key={optionIndex}
-                      onClick={() => checkAnswer(questionIndex, optionIndex)}
-                      disabled={disableOptions}
-                    >
-                      {option}
-                    </button>
-                  ))}
+              <Step key={questionIndex} className='quiz-content flex flex-col gap-8' isCorrect={isCorrectAnswer?.[questionIndex]}>
+                <div className='flex flex-col gap-6 p-6 border border-gray-300/20 bg-black/10 backdrop-blur rounded-2xl'>
+                  <div className="quiz-question flex items-center">
+                    <p className='text-base md:text-lg font-bold'>{question.question}</p>
+                  </div>
+                  <div className="quiz-options flex flex-wrap justify-between gap-3">
+                    {question.options.map((option, optionIndex) => (
+                      <button className='btn btn-options grow text-sm md:text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed'
+                        key={optionIndex}
+                        onClick={() => checkAnswer(questionIndex, optionIndex)}
+                        disabled={disableOptions}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 <button
                   className='btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400'

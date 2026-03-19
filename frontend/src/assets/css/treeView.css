@@ -13,6 +13,15 @@
     background: linear-gradient(to left bottom, rgba(5, 25, 55, 0.3), rgba(0, 55, 87, 0.3), rgba(0, 87, 116, 0.3));
 }
 
+
+.map-node>.card.passed {
+    background: linear-gradient(to left bottom, rgba(1, 84, 72, 0.3), rgba(4, 112, 97, 0.3), rgba(6, 168, 179, 0.3));
+}
+
+.map-node>.card.needs-review {
+    background: linear-gradient(to left bottom, rgba(125, 30, 6, 0.3), rgba(135, 33, 4, 0.3), rgba(177, 44, 3, 0.3));
+}
+
 /*
 Tree trunk lines
 */

@@ -44,7 +44,10 @@ const Card = ({ node, subNodeVisible, handleQuiz, handleToggle }) => {
   }
 
   return (
-    <div className='card min-w-[280px] border-gray-400 rounded-2xl px-2 md:px-3 py-2 md:py-4 my-1.5 flex md:flex-nowrap items-center gap-1.5 md:gap-3'>
+    <div className={`card
+      ${node.test_finished?((node.passed)?'passed':'needs-review'):''}
+      min-w-70 border-gray-400 rounded-2xl px-2 md:px-3 py-2 md:py-4 my-1.5 flex md:flex-nowrap items-center gap-1.5 md:gap-3`}
+    >
       <div>
         { node.prerequisites.length > 0 &&
             <button onClick={handleToggle} className='hover:border-white hover:border hover:rounded-md'>
@@ -70,7 +73,9 @@ const Card = ({ node, subNodeVisible, handleQuiz, handleToggle }) => {
             {getLevelIcon(node.level)}
             <span className='text-xs'>{node.level}</span>
           </div>
-          <button className='btn btn-primary' onClick={handleQuiz}>Test knowledge</button>
+          <button className='btn btn-primary min-w-30' onClick={handleQuiz}>
+            {node.test_finished ? 'Retry quiz': 'Test knowledge'}
+          </button>
         </div>
       </div>
 

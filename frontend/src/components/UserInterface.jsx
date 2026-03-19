@@ -49,10 +49,13 @@ const UserInterface = () => {
     setLoading({ state:false })
   }
 
-  const endQuiz = (passed) => {
+  const endQuiz = (node, passed) => {
     logger.info('Quiz passed:', passed)
     toast.show(`Quiz ${passed ? 'passed!':'failed!'}`, passed ? 'success': 'error')
     setQuiz()
+    // Add quiz results to map
+    const prerequisitesWithResult = map.prerequisites.map(req => req.id===node.id ? { ...req, test_finished:true, passed: passed }: req)
+    setMap({ ...map, prerequisites: prerequisitesWithResult })
   }
 
   return (

@@ -47,7 +47,7 @@ const Quiz = ({ quiz, onFinish }) => {
    * handleQuizEnd - Determines if all answers are correct and calls the onFinish callback
    * Passes true if all answers are correct, false if any are incorrect
    */
-  const handleQuizEnd = () => onFinish(!Object.values(isCorrectAnswer).some(isCorrect => !isCorrect))
+  const handleQuizEnd = () => onFinish(quiz.node, !Object.values(isCorrectAnswer).some(isCorrect => !isCorrect))
 
   return (quiz &&
     <div className='quiz-view'>

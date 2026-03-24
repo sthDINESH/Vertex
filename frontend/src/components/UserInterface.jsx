@@ -58,11 +58,16 @@ const UserInterface = () => {
     setMap({ ...map, prerequisites: prerequisitesWithResult })
   }
 
+  const generateLearningResources = () => {
+    logger.info('Generate Resources - not yet implemented!')
+    toast.show('Generate resources - Not yet implemented!', 'info')
+  }
+
   return (
     <>
       <LoadingSpinner loading={loading} />
       {!(loading.state || map || quiz) && <ConceptInputForm onGenerate={generateMap}/>}
-      {!(loading.state || quiz) && map && <TreeView map={map} onRestart={handleNewConcept} onTestKnowledge={generateQuiz} />}
+      {!(loading.state || quiz) && map && <TreeView map={map} onRestart={handleNewConcept} onTestKnowledge={generateQuiz} onLearningPath={generateLearningResources}/>}
       {!loading.state && quiz && <Quiz quiz={quiz} onFinish={endQuiz}/>}
     </>
   )

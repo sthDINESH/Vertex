@@ -33,9 +33,10 @@
 
 .ui-container .tree-view-content {
     mask-image:
-        url('../masks/treeview_mid_mask_120px_28px.svg'),
+        url('../masks/treeview_mid_mask_160px_28px.svg'),
+        url('../masks/treeview_mid_mask_40px_36px.svg'),
         linear-gradient(#000000 0 0);
-    mask-position: right 125px, center;
+    mask-position: right 125px, left 125px, center;
     mask-size: auto;
     mask-repeat: no-repeat;
     mask-composite: exclude;
@@ -54,6 +55,7 @@
     .ui-container .tree-view-content {
         mask-image:
             url('../masks/treeview_mid_mask_320px_32px.svg'),
+            url('../masks/treeview_mid_mask_40px_36px.svg'),
             linear-gradient(#000000 0 0);
     }
 }
@@ -70,7 +72,7 @@
     .ui-container .tree-view-content {
         mask-image:
             url('../masks/treeview_mid_mask_320px_40px.svg'),
+            url('../masks/treeview_mid_mask_40px_40px.svg'),
             linear-gradient(#000000 0 0);
-        mask-position: right 125px, center;
     }
 }

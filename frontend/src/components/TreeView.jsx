@@ -1,9 +1,9 @@
 import Node from './Node'
 
 import '../assets/css/treeView.css'
-import { BookOpenCheck, Goal } from 'lucide-react'
+import { BookOpenCheck, Goal, RotateCcwSquare } from 'lucide-react'
 
-const TreeView = ({ map, onRestart, onTestKnowledge }) => {
+const TreeView = ({ map, onRestart, onTestKnowledge, onLearningPath }) => {
 
   /**
    * Checks if a node is the root node of the concept map
@@ -24,7 +24,7 @@ const TreeView = ({ map, onRestart, onTestKnowledge }) => {
       <div className="tree-view-content p-3 sm:p-4 md:p-6">
         <div className='header-content flex flex-col gap-4'>
           <div className='pt-10 pb-4 flex items-start gap-3 min-h-43.75'>
-            <Goal size={60} className='text-secondary'/>
+            <Goal size={60} className='text-primary'/>
             <div className='header-text flex flex-col gap-1'>
               <h2>Your Learning Map</h2>
               <p className='text-sm md:text-base text-gray-300'>
@@ -42,7 +42,18 @@ const TreeView = ({ map, onRestart, onTestKnowledge }) => {
         </div>
       </div>
       <div className='tree-view-controls absolute top-36.75 right-0'>
-        <button className='btn btn-secondary w-30 md:w-80' onClick={() => {onRestart()}}>Start Over</button>
+        <button
+          className='btn btn-primary w-40 md:w-80'
+          onClick={onLearningPath}
+          disabled={!map.prerequisites.some(req => req.test_finished)} // enable only if a test has been taken
+        >
+          View Learning Path
+        </button>
+      </div>
+      <div className='tree-view-controls absolute top-36.75 left-0'>
+        <button type='button' aria-label='Start Over' className='btn btn-secondary flex justify-center items-center w-10' onClick={onRestart}>
+          <RotateCcwSquare/>
+        </button>
       </div>
     </div>
   )

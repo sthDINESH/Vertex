@@ -29,7 +29,7 @@
     }
 
     .btn-primary {
-        @apply bg-primary hover:bg-primary/80;
+        @apply bg-primary hover:bg-primary/80 disabled:bg-primary/40 disabled:text-gray-400;
     }
 
     .btn-options {

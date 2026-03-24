@@ -36,6 +36,20 @@ const TreeView = ({ map, onRestart, onTestKnowledge, onLearningPath }) => {
           Click <span className='font-semibold text-white'>"Test Knowledge"</span> on each concept to assess your understanding.
           This will help us understand where you're starting from! <BookOpenCheck className='inline'/>
           </p>
+          <div className='legend w-full flex justify-between text-gray-400 text-xs md:text-sm pb-6'>
+            <div className='flex gap-1 grow justify-center'>
+              <div className='aspect-square border bg-green-700/60'></div>
+              <div>Understood</div>
+            </div>
+            <div className='flex gap-1 grow justify-center'>
+              <div className='aspect-square border bg-red-900/60'></div>
+              <div>Needs review</div>
+            </div>
+            <div className='flex gap-1 grow justify-center'>
+              <div className='aspect-square border'></div>
+              <div>Untested</div>
+            </div>
+          </div>
         </div>
         <div className='overflow-x-scroll md:overflow-x-auto'>
           <Node key={rootNode.id} map={map} node={rootNode} onTestKnowledge={onTestKnowledge} />

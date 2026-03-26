@@ -36,7 +36,7 @@ import toast from '../services/toast'
  * @fires clearCurrentNode - Dispatched on quiz completion to clear node selection
  */
 const Quiz = () => {
-  const quiz = useSelector(state => state.currentQuiz)
+  const quiz = useSelector(state => state.currentQuiz.data)
   const node = useSelector(state => state.currentNode)
   const dispatch = useDispatch()
 

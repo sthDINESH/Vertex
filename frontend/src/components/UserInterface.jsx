@@ -6,13 +6,17 @@ import Quiz from '../components/Quiz'
 
 const UserInterface = () => {
   const mapAvailable = useSelector(state => state.map.status === 'success')
-  const quizAvailable = useSelector(state => state.currentQuiz)
+  const quizAvailable = useSelector(state => state.currentQuiz.status === 'success')
 
+  // Check if loading spinner should be rendered
   const mapLoading = useSelector(state => state.map.status === 'loading' )
+  const quizLoading = useSelector(state => state.currentQuiz.status === 'loading')
   const showLoading = {
-    state:mapLoading,
-    type: mapLoading ? 'map' : '',
+    state: mapLoading || quizLoading,
+    type: '',
   }
+  if(mapLoading) showLoading.type = 'map'
+  if(quizLoading) showLoading.type = 'quiz'
 
   return (
     <>

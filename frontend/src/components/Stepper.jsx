@@ -26,8 +26,8 @@ const StepCircle = ({ step, currentStep, isCorrect }) => {
     <div className={`shrink-0 w-8 h-8 rounded-full grid place-items-center font-semibold text-sm ${
       isCompleted
         ? isCorrect === false
-          ? 'bg-red-500 text-white'
-          : 'bg-secondary text-white'
+          ? 'bg-red-600 text-white'
+          : 'bg-green-600 text-white'
         : isCurrent
           ? 'bg-secondary text-white border-2 border-gray-300'
           : 'bg-white border-2 border-gray-300 text-gray-600'

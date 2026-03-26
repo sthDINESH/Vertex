@@ -2,28 +2,37 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, vi } from 'vitest'
 
+vi.mock('../services/server', () => ({
+  default: {
+    getMap: vi.fn(),
+  }
+}))
+
+import { Provider } from 'react-redux'
+import store from '../store'
 import ConceptInputForm from '../components/ConceptInputForm'
+import serverService from '../services/server'
 
 describe('< ConceptInputForm />', () => {
-  let mockOnGenerate
   let user
   let conceptInput
   let generateConceptMapButton
 
   beforeEach(() => {
-    mockOnGenerate = vi.fn()
+    vi.clearAllMocks()
+    serverService.getMap.mockResolvedValue({ success: true, data: {} })
     user = userEvent.setup()
 
-    render(<ConceptInputForm onGenerate={mockOnGenerate}/>)
+    render(<Provider store={store}><ConceptInputForm /></Provider>)
     conceptInput = screen.getByLabelText(/What concept do you want to explore today?/)
     generateConceptMapButton = screen.getByText('Generate Concept Map')
   })
 
   test('submit fails without concept input', async () => {
     // try to submit form without concept input
-    user.click(generateConceptMapButton)
+    await user.click(generateConceptMapButton)
 
-    expect(mockOnGenerate).not.toHaveBeenCalled()
+    expect(serverService.getMap).not.toHaveBeenCalled()
   })
 
   test('submits with provided concept input', async () => {
@@ -33,8 +42,12 @@ describe('< ConceptInputForm />', () => {
     // submit the form
     await user.click(generateConceptMapButton)
 
-    expect(mockOnGenerate).toHaveBeenCalledTimes(1)
-    expect(mockOnGenerate.mock.calls[0][0].concept).toBe('test concept')
+    expect(serverService.getMap).toHaveBeenCalledTimes(1)
+    expect(serverService.getMap).toHaveBeenCalledWith({
+      concept: 'test concept',
+      subject: '',
+      level: ''
+    })
   })
 
   test('truncates concept input to 100 chars', async () => {
@@ -56,8 +69,12 @@ describe('< ConceptInputForm />', () => {
     expect(subject).toHaveValue('')
     await user.click(generateConceptMapButton)
 
-    expect(mockOnGenerate).toHaveBeenCalledTimes(1)
-    expect(mockOnGenerate.mock.calls[0][0].subject).toBe('')
+    expect(serverService.getMap).toHaveBeenCalledTimes(1)
+    expect(serverService.getMap).toHaveBeenCalledWith({
+      concept: 'test concept',
+      subject: '',
+      level: ''
+    })
   })
 
   test('submits with subject when provided', async () => {
@@ -70,13 +87,16 @@ describe('< ConceptInputForm />', () => {
     await user.type(subject,'test subject')
     await user.click(generateConceptMapButton)
 
-    expect(mockOnGenerate).toHaveBeenCalledTimes(1)
-    expect(mockOnGenerate.mock.calls[0][0].subject).toBe('test subject')
+    expect(serverService.getMap).toHaveBeenCalledTimes(1)
+    expect(serverService.getMap).toHaveBeenCalledWith({
+      concept: 'test concept',
+      subject: 'test subject',
+      level: ''
+    })
   })
 
   test('level is optional and submits with default value if not provided', async () => {
     const level = screen.getByLabelText(/Your Level/)
-    const generateConceptMapButton = screen.getByText('Generate Concept Map')
 
     // input required concept field
     await user.type(conceptInput,'test concept')
@@ -85,8 +105,12 @@ describe('< ConceptInputForm />', () => {
     expect(level).toHaveValue('')
     await user.click(generateConceptMapButton)
 
-    expect(mockOnGenerate).toHaveBeenCalledTimes(1)
-    expect(mockOnGenerate.mock.calls[0][0].level).toBe('')
+    expect(serverService.getMap).toHaveBeenCalledTimes(1)
+    expect(serverService.getMap).toHaveBeenCalledWith({
+      concept: 'test concept',
+      subject: '',
+      level: ''
+    })
   })
 
   test('submits with level when provided', async () => {
@@ -99,8 +123,12 @@ describe('< ConceptInputForm />', () => {
     await user.selectOptions(level, 'undergraduate')
     await user.click(generateConceptMapButton)
 
-    expect(mockOnGenerate).toHaveBeenCalledTimes(1)
-    expect(mockOnGenerate.mock.calls[0][0].level).toBe('undergraduate')
+    expect(serverService.getMap).toHaveBeenCalledTimes(1)
+    expect(serverService.getMap).toHaveBeenCalledWith({
+      concept: 'test concept',
+      subject: '',
+      level: 'undergraduate'
+    })
   })
 
   test('clears input fields on reset', async () => {

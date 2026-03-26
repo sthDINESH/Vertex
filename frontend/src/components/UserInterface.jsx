@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import LoadingSpinner from '../components/LoadingSpinner'
 import ConceptInputForm from '../components/ConceptInputForm'
@@ -6,18 +5,21 @@ import TreeView from '../components/TreeView'
 import Quiz from '../components/Quiz'
 
 const UserInterface = () => {
-  // const [map, setMap] = useState('')
-  const map = useSelector(state => state.map)
-  const quiz = useSelector(state => state.currentQuiz)
-  // const [loading, setLoading] = useState({ state:false })
-  const loading = { state:false }
+  const mapAvailable = useSelector(state => state.map.status === 'success')
+  const quizAvailable = useSelector(state => state.currentQuiz)
+
+  const mapLoading = useSelector(state => state.map.status === 'loading' )
+  const showLoading = {
+    state:mapLoading,
+    type: mapLoading ? 'map' : '',
+  }
 
   return (
     <>
-      <LoadingSpinner loading={loading} />
-      {!(loading.state || map || quiz) && <ConceptInputForm />}
-      {!(loading.state || quiz) && map && <TreeView />}
-      {!loading.state && quiz && <Quiz />}
+      <LoadingSpinner loading={showLoading} />
+      {!(showLoading.state || mapAvailable || quizAvailable) && <ConceptInputForm />}
+      {!(showLoading.state || quizAvailable) && mapAvailable && <TreeView />}
+      {!showLoading.state && quizAvailable && <Quiz />}
     </>
   )
 }

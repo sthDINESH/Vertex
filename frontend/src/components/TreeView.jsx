@@ -8,7 +8,7 @@ import logger from '../utils/logger'
 import toast from '../services/toast'
 
 const TreeView = () => {
-  const map = useSelector(state => state.map)
+  const map = useSelector(state => state.map.data)
   const dispatch = useDispatch()
 
   /**

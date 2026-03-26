@@ -35,7 +35,7 @@ import { setCurrentNode } from '../reducers/currentNode'
  * <Node node={conceptNode} onTestKnowledge={handleTest} />
  */
 const Node = ({ node }) => {
-  const map = useSelector(state => state.map)
+  const map = useSelector(state => state.map.data)
   const dispatch = useDispatch()
 
   const [subNodeVisible, setSubNodeVisible] = useState(true)

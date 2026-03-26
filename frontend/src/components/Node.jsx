@@ -1,5 +1,8 @@
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Card from './NodeCard'
+import { generateQuiz } from '../reducers/currentQuizReducer'
+import { setCurrentNode } from '../reducers/currentNode'
 
 /**
  * Recursive tree node component that renders a concept and its prerequisites
@@ -12,25 +15,29 @@ import Card from './NodeCard'
  *
  * @component
  * @param {Object} props - Component props
- * @param {Object} props.map - The complete tree data structure containing all nodes
- * @param {Array} props.map.prerequisites - Array of all concept nodes in the tree
  * @param {Object} props.node - The current node to display
  * @param {number} props.node.id - Unique identifier for the node
  * @param {string} props.node.name - Name of the concept
  * @param {string} props.node.description - Brief description of the concept
  * @param {string} props.node.level - Difficulty level (foundational|intermediate|advanced)
  * @param {Array} props.node.prerequisites - Array of prerequisite node IDs that reference other nodes in the tree
+ * @param {Function} props.onTestKnowledge - Callback function invoked when user tests knowledge on a concept
  *
  * @returns {JSX.Element|null} Returns a tree node with a Card component and collapsible prerequisites section,
  *                             or null if node is falsy
  *
- * @example
- * // Renders a node with its prerequisite tree
- * <Node map={treeData} node={conceptNode} />
+ * @redux {Object} map - The complete tree data structure containing all nodes (retrieved via useSelector)
  *
  * @state {boolean} subNodeVisible - Controls visibility of prerequisite nodes (expanded/collapsed)
+ *
+ * @example
+ * // Renders a node with its prerequisite tree
+ * <Node node={conceptNode} onTestKnowledge={handleTest} />
  */
-const Node = ({ map, node, onTestKnowledge }) => {
+const Node = ({ node }) => {
+  const map = useSelector(state => state.map)
+  const dispatch = useDispatch()
+
   const [subNodeVisible, setSubNodeVisible] = useState(true)
 
   const toggleSubNodeVisibility = () => setSubNodeVisible(!subNodeVisible)
@@ -42,13 +49,14 @@ const Node = ({ map, node, onTestKnowledge }) => {
         subNodeVisible={subNodeVisible}
         handleToggle={toggleSubNodeVisibility}
         handleQuiz={() => {
-          onTestKnowledge(node)
+          dispatch(setCurrentNode(node))
+          dispatch(generateQuiz())
         }}
       />
       <div className='map-sub-nodes' style={{ display: subNodeVisible?'': 'none' }}>
         {node.prerequisites.map(nodeId => {
           const subNode = map.prerequisites.find(node => node.id === nodeId)
-          return <Node key={subNode.id} map={map} node={subNode} onTestKnowledge={onTestKnowledge} />
+          return <Node key={subNode.id} node={subNode} />
         })}
       </div>
     </div>

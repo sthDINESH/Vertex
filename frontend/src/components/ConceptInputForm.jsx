@@ -1,22 +1,31 @@
+import { useDispatch } from 'react-redux'
 import { RotateCcwSquare } from 'lucide-react'
 import { useControlledInput } from '../hooks/Form'
 import FormField from './FormField'
 import FormGroup from './FormGroup'
+import { generateMap } from '../reducers/mapReducer'
 
-const ConceptInputForm = ({ onGenerate }) => {
+const ConceptInputForm = () => {
   const INPUT_MAX_LENGTH = 100
 
   const concept = useControlledInput('text', INPUT_MAX_LENGTH)
   const subject = useControlledInput('text')
   const level = useControlledInput('text')
 
+  const dispatch = useDispatch()
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    onGenerate({
+    // onGenerate({
+    //   concept: concept.props.value,
+    //   subject: subject.props.value,
+    //   level: level.props.value,
+    // })
+    dispatch(generateMap({
       concept: concept.props.value,
       subject: subject.props.value,
       level: level.props.value,
-    })
+    }))
   }
 
   const clearAll = () => {

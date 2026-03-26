@@ -1,30 +1,50 @@
 import { useRef, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { addQuizResults } from '../reducers/mapReducer'
+import { clearCurrentQuiz } from '../reducers/currentQuizReducer'
+import { clearCurrentNode } from '../reducers/currentNode'
 import logger from '../utils/logger'
 import { Brain } from 'lucide-react'
 import { Stepper, Step } from './Stepper'
+import toast from '../services/toast'
 
 /**
- * ----------------------------------------------------------------------------
- * Quiz - Interactive quiz/assessment component with step-by-step questions
- * Manages quiz state, tracks correct/incorrect answers, and displays results in stepper indicators
- * @param {Object} quiz - Quiz data object
- * @param {Object} quiz.node - Node information with name and description
- * @param {string} quiz.node.name - Title of the quiz
- * @param {string} quiz.node.description - Description of the quiz
- * @param {Array} quiz.questions - Array of question objects
- * @param {string} quiz.questions[].question - Question text
- * @param {Array} quiz.questions[].options - Array of answer options
- * @param {number} quiz.questions[].correct - Index of the correct option
- * @param {Function} onFinish - Callback fired when all questions are answered
- * @returns {JSX.Element} Quiz UI with stepper and answer options
- * ----------------------------------------------------------------------------
+ * Interactive quiz/assessment component with step-by-step questions
+ *
+ * Manages quiz state, tracks correct/incorrect answers, displays results in stepper indicators,
+ * and updates Redux state with quiz results upon completion.
+ *
+ * @component
+ * @redux {Object} quiz - Quiz data from currentQuiz slice containing questions
+ * @redux {Array} quiz.questions - Array of question objects
+ * @redux {string} quiz.questions[].question - Question text
+ * @redux {Array} quiz.questions[].options - Array of answer options
+ * @redux {number} quiz.questions[].correct - Index of the correct option
+ * @redux {Object} node - Current node data from currentNode slice
+ * @redux {string} node.name - Name of the concept being tested
+ * @redux {string} node.description - Description of the concept being tested
+ *
+ * @returns {JSX.Element|null} Quiz UI with stepper, question options, and navigation buttons,
+ *                             or null if quiz data is unavailable
+ *
+ * @state {Object} isCorrectAnswer - Tracks correctness of each answered question by index
+ * @state {boolean} disableNext - Controls whether the Next button is enabled
+ * @ref {Stepper} stepperRef - Reference to Stepper component for step navigation
+ *
+ * @fires addQuizResults - Dispatched on quiz completion with pass/fail status
+ * @fires clearCurrentQuiz - Dispatched on quiz completion to clear quiz state
+ * @fires clearCurrentNode - Dispatched on quiz completion to clear node selection
  */
-const Quiz = ({ quiz, onFinish }) => {
-  // ref to access Stepper nextStep method
+const Quiz = () => {
+  const quiz = useSelector(state => state.currentQuiz)
+  const node = useSelector(state => state.currentNode)
+  const dispatch = useDispatch()
+
   const stepperRef = useRef()
-  // hold results for answered questions in state
+
   const [isCorrectAnswer, setIsCorrectAnswer] = useState({})
   const [disableNext, setDisableNext] = useState(true)
+
   // disable quiz options when next is enabled
   const disableOptions = !disableNext
   // check quiz end condition
@@ -47,7 +67,15 @@ const Quiz = ({ quiz, onFinish }) => {
    * handleQuizEnd - Determines if all answers are correct and calls the onFinish callback
    * Passes true if all answers are correct, false if any are incorrect
    */
-  const handleQuizEnd = () => onFinish(quiz.node, !Object.values(isCorrectAnswer).some(isCorrect => !isCorrect))
+  const handleQuizEnd = () => {
+    const passed = !Object.values(isCorrectAnswer).some(isCorrect => !isCorrect)
+
+    logger.info('Quiz passed:', passed)
+    toast.show(`Quiz ${passed ? 'passed!':'failed!'}`, passed ? 'success': 'error')
+    dispatch(addQuizResults(passed))
+    dispatch(clearCurrentQuiz())
+    dispatch(clearCurrentNode())
+  }
 
   return (quiz &&
     <div className='quiz-view'>
@@ -56,12 +84,12 @@ const Quiz = ({ quiz, onFinish }) => {
           <div className='pt-10 pb-4 flex items-start gap-3 min-h-43.75'>
             <Brain size={60} className='text-primary'/>
             <div className='header-text flex flex-col gap-1'>
-              <h2>Assessment: <span className='text-primary'>{quiz.node.name}</span></h2>
+              <h2>Assessment: <span className='text-primary'>{node.name}</span></h2>
             </div>
           </div>
           <p className='text-sm md:text-base text-gray-300'>
             Let's check your understanding on:<br/>
-            <span className='text-secondary'>{quiz.node.description}</span>
+            <span className='text-secondary'>{node.description}</span>
           </p>
         </div>
         <div>

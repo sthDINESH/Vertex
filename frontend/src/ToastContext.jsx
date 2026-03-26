@@ -1,5 +1,6 @@
-import { createContext, useState, useRef } from 'react'
+import { createContext, useState, useRef, useEffect, useCallback } from 'react'
 import { XIcon, CheckCircleIcon, AlertCircleIcon, InfoIcon, XCircleIcon, XSquareIcon } from 'lucide-react'
+import { initializeToastService } from './services/toast'
 
 import './toast.css'
 
@@ -39,15 +40,20 @@ export const ToastContextProvider = (props) => {
   const [ toasts, setToasts ] = useState([])
   const idCounterRef = useRef(0)
 
-  const show = (message, type = 'info', duration = 3000) => {
+  const dismiss = useCallback((id) => {
+    setToasts(toasts.filter(toast => toast.id !== id))
+  }, [toasts])
+
+  const show = useCallback((message, type = 'info', duration = 3000) => {
     const id = ++idCounterRef.current
     setToasts([{ id, message, type }, ...toasts])
     setTimeout(() => dismiss(id), duration)
-  }
+  }, [toasts, dismiss])
 
-  const dismiss = (id) => {
-    setToasts(toasts.filter(toast => toast.id !== id))
-  }
+  // Initialize toast service on mount
+  useEffect(() => {
+    initializeToastService(show, dismiss)
+  }, [show, dismiss])
 
   return (
     <ToastContext.Provider value={{ show, dismiss }}>

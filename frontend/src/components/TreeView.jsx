@@ -1,9 +1,15 @@
+import { useSelector, useDispatch } from 'react-redux'
+import { clearMap } from '../reducers/mapReducer'
 import Node from './Node'
 
 import '../assets/css/treeView.css'
 import { BookOpenCheck, Goal, RotateCcwSquare } from 'lucide-react'
+import logger from '../utils/logger'
+import toast from '../services/toast'
 
-const TreeView = ({ map, onRestart, onTestKnowledge, onLearningPath }) => {
+const TreeView = () => {
+  const map = useSelector(state => state.map)
+  const dispatch = useDispatch()
 
   /**
    * Checks if a node is the root node of the concept map
@@ -17,7 +23,12 @@ const TreeView = ({ map, onRestart, onTestKnowledge, onLearningPath }) => {
         !map.prerequisites.some(n => n.prerequisites.includes(node.id))
   )
 
-  const rootNode = map.prerequisites.find(node => isRootNode(node))
+  const handleLearningPath = () => {
+    logger.info('Generate Resources - not yet implemented!')
+    toast.show('Generate resources - Not yet implemented!', 'info')
+  }
+
+  const rootNode = map.prerequisites?.find(node => isRootNode(node))
 
   return ( map &&
     <div className='tree-view relative'>
@@ -52,20 +63,27 @@ const TreeView = ({ map, onRestart, onTestKnowledge, onLearningPath }) => {
           </div>
         </div>
         <div className='overflow-x-scroll md:overflow-x-auto'>
-          <Node key={rootNode.id} map={map} node={rootNode} onTestKnowledge={onTestKnowledge} />
+          <Node key={rootNode.id} node={rootNode} />
         </div>
       </div>
       <div className='tree-view-controls absolute top-36.75 right-0'>
         <button
           className='btn btn-primary w-40 md:w-80'
-          onClick={onLearningPath}
-          disabled={!map.prerequisites.some(req => req.test_finished)} // enable only if a test has been taken
+          onClick={handleLearningPath}
+          disabled={!map.prerequisites.some(node => node.test_finished)} // enable only if a test has been taken
         >
           View Learning Path
         </button>
       </div>
       <div className='tree-view-controls absolute top-36.75 left-0'>
-        <button type='button' aria-label='Start Over' className='btn btn-secondary flex justify-center items-center w-10' onClick={onRestart}>
+        <button
+          type='button'
+          aria-label='Start Over'
+          className='btn btn-secondary flex justify-center items-center w-10'
+          onClick={() => {
+            dispatch(clearMap())
+          }}
+        >
           <RotateCcwSquare/>
         </button>
       </div>

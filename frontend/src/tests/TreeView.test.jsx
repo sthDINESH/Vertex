@@ -1,34 +1,43 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { beforeEach, describe, vi } from 'vitest'
+import { beforeEach, describe } from 'vitest'
+
+import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
+import mapReducer from '../reducers/mapReducer'
 
 import TreeView from '../components/TreeView'
-import { ToastContextProvider } from '../ToastContext'
 
 describe('<Treeview />', () => {
-  let user
+  let user, testStore
 
   beforeEach(() => {
     user = userEvent.setup()
+    testStore = configureStore({
+      preloadedState: {
+        map: {
+          status: 'success',
+          data: generateValidMockMap('test concept')
+        }
+      },
+      reducer: {
+        map: mapReducer,
+      }
+    })
   })
 
-  test('Start Over button calls onRestart', async () => {
-    const mockStartOver = vi.fn()
-    const map = generateValidMockMap()
+  test('Start Over button clears map', async () => {
+    render(<Provider store={testStore}><TreeView /></Provider>)
 
-    renderWithToastProvider(<TreeView map={map} onRestart={mockStartOver} />)
-
-    const startOverButton = screen.getByText('Start Over')
+    const startOverButton = screen.getByRole('button',{ name:/start over/i })
     await user.click(startOverButton)
 
-    expect(mockStartOver).toHaveBeenCalledTimes(1)
+    expect(testStore.getState().map.data).toBe('')
+    expect(testStore.getState().map.status).toBe('')
   })
 
   test('renders with custom concept name', async () => {
-    const mockStartOver = vi.fn()
-    const map = generateValidMockMap('test concept')
-
-    renderWithToastProvider(<TreeView map={map} onRestart={mockStartOver} />)
+    render(<Provider store={testStore} ><TreeView /></Provider>)
 
     const headingContainer = await screen.findByText(/Let's validate what you know about/)
 
@@ -39,14 +48,6 @@ describe('<Treeview />', () => {
 /*
 Helper functions
 */
-const renderWithToastProvider = (component) => {
-  return render(
-    <ToastContextProvider>
-      {component}
-    </ToastContextProvider>
-  )
-}
-
 const generateValidMockMap = (targetConcept = 'Test Concept') => ({
   id: 1,
   target: targetConcept,

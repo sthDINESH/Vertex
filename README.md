@@ -598,7 +598,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 **State Management Strategy:**
 
 ```javascript
-// Global State (React Context)
+// Global State (Redux)
 AuthContext {
   user: { id, email } | null,
   login: (credentials) => Promise,
@@ -738,14 +738,14 @@ app.use((error, req, res, next) => {
 **Desktop View (1200px+)**
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  [Logo] Vertex                    [Features] [How It Works] [Login] [Sign Up]  │
+│  [Logo] Vertex                               [Login] [Sign Up]  │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│              [Brain Icon]                                       │
+│              [Hero Image]                                       │
 │         Map Your Learning Journey                               │
 │    Discover exactly what you need to learn first               │
 │                                                                 │
-│         [Start Mapping Free] [Watch Demo →]                     │
+│         [Start Mapping Free]                                    │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
 │                    How It Works                                 │

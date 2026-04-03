@@ -36,25 +36,21 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 
 **Testing:**
 - **Frontend Testing**:
-  - Vitest (unit tests, faster than Jest for Vite projects)
+  - Vitest (unit tests)
   - React Testing Library (component tests)
-  - Playwright or Cypress (E2E tests - Sprint 5)
+  - Playwright (E2E tests - Sprint 5)
 - **Backend Testing**:
-  - Jest or Vitest (unit tests)
+  - node:test (unit tests)
   - Supertest (API endpoint testing)
   - MongoDB Memory Server (database mocking)
 - **Quality Assurance**:
-  - Lighthouse (performance & accessibility audits)
-  - WAVE (accessibility testing)
-  - k6 or Artillery (load testing - Sprint 5)
+  - Lighthouse (performance & accessibility)
 
 **AI:**
 - **Development**: Google Gemini 1.5 Flash
   - Free tier: 1,500 requests/day (no expiration, no credit card)
-  - Fast, reliable JSON output
 - **Future**: OpenAI GPT-4o-mini
   - Free tier: $5 credits (~33,000 calls for 3 months)
-  - Industry standard, better for portfolio/resume
 - **Future**: Anthropic Claude Sonnet
   - Best quality, most expensive ($3/1M tokens)
 
@@ -81,14 +77,12 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
   - `JWT_SECRET` (random string for token signing)
   - `GEMINI_API_KEY` (AI API key)
   - `NODE_ENV=production`
-  - `CORS_ORIGIN` (Vercel frontend URL)
 - Rollback available: Render dashboard → Service → Deployment History → Click previous deployment → Deploy
 - **Note**: Free tier spins down after 15 min inactivity (first request takes 30-50s to wake up)
 
 ### Monitoring
 - **Frontend**: View deployment logs and status on Vercel dashboard
 - **Backend**: View logs in Render dashboard → Service → Logs
-- Set up [UptimeRobot](https://uptimerobot.com) to ping backend every 5 minutes (prevents auto spin-down)
 
 *Split deployment approach: Vercel's global CDN optimizes frontend performance while Render handles API logic. This separation allows independent scaling, faster load times, and follows industry best practices for modern web applications.*
 
@@ -122,12 +116,10 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 
 **Core Objectives:**
 1. **Solve a validated pain point**: Address the widespread "missing prerequisites" problem that causes 40%+ of MOOC dropouts
-2. **Build a defensible AI product**: Demonstrate practical AI application beyond chatbots—creates value through intelligent structuring and personalization
-3. **Portfolio differentiation**: Showcase full-stack skills with modern architecture (React, Node.js, MongoDB) and AI integration
+2. **Portfolio differentiation**: Showcase full-stack skills with modern architecture (React, Node.js, MongoDB) and AI integration
 
 **Success Metrics:**
 - Demonstrate functional AI integration with accurate prerequisite mapping
-- Achieve smooth user experience with <5 second tree generation
 - Positive feedback from test users on clarity and usefulness of learning paths
 - Successfully showcase full-stack architecture and modern development practices in portfolio
 
@@ -152,7 +144,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 - Trust in having a reliable diagnostic tool for future learning challenges
 
 **Functional Requirements:**
-- Generate dependency trees in <5 seconds (maintain flow state)
+- Generate dependency trees (maintain flow state)
 - Quizzes that test understanding, not trivia memorization
 - Resources that match user's current level (no overwhelming PhD papers for beginners)
 - Mobile-responsive design for studying on-the-go
@@ -216,7 +208,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 | 2 | **Visual Dependency Tree Display** | 5 | 3 | **MUST HAVE** | Sprint 1 | ✅ Prototype |
 | 3 | **AI-Powered Quiz Generation** | 5 | 4 | **MUST HAVE** | Sprint 2 | ✅ Prototype |
 | 4 | **Quiz Taking & Answer Validation** | 5 | 3 | **MUST HAVE** | Sprint 2 | ✅ Prototype |
-| 5 | **Resource Recommendation Engine** | 5 | 3 | **MUST HAVE** | Sprint 2 | ✅ Prototype |
+| 5 | **Resource Recommendation Engine** | 5 | 3 | **MUST HAVE** | Sprint 2 | 🚧 In Progress |
 | 6 | **Education Level Selection** | 4 | 2 | **MUST HAVE** | Sprint 1 | ✅ Prototype |
 | 7 | **User Authentication (Sign up/Login)** | 4 | 3 | **MUST HAVE** | Sprint 3 | Planned |
 | 8 | **Basic Progress Persistence** | 4 | 3 | **MUST HAVE** | Sprint 3 | Planned |
@@ -224,7 +216,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 | 10 | **Error Handling & Loading States** | 4 | 2 | **MUST HAVE** | Sprint 4 | Planned |
 | 11 | **Backend API Setup** | 5 | 3 | **MUST HAVE** | Sprint 3 | Planned |
 | 12 | **Database Schema & Models** | 5 | 3 | **MUST HAVE** | Sprint 3 | Planned |
-| 13 | **AI Service Integration (Gemini)** | 5 | 3 | **MUST HAVE** | Sprint 1 | Planned |
+| 13 | **AI Service Integration (Gemini)** | 5 | 3 | **MUST HAVE** | Sprint 1 | ✅ Prototype |
 | 14 | **Session Management** | 4 | 2 | **MUST HAVE** | Sprint 3 | Planned |
 | 15 | **Multi-Topic Dashboard** | 4 | 3 | **SHOULD HAVE** | Sprint 5 | Post-MVP |
 | 16 | **Concept Status Indicators** | 4 | 2 | **SHOULD HAVE** | Sprint 4 | Planned |
@@ -264,12 +256,12 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                         Landing Page                          │
-│                    (Unauthenticated View)                     │
-│  - Hero section with value proposition                        │
-│  - How it works (3-step visual guide)                        │
-│  - Sample concept tree preview                               │
-│  - CTA: "Start Mapping" (redirects to signup/concept input) │
+│                         Landing Page                        │
+│                    (Unauthenticated View)                   │
+│  - Hero section with value proposition                      │
+│  - Concept Mapper (default in Guest mode)                   │
+│  - How it works (3-step visual guide)                       │
+│  - CTA: "Register" (redirects to signup)                    │
 └───────────────────────┬─────────────────────────────────────┘
                         │
         ┌───────────────┴───────────────┐
@@ -284,10 +276,10 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
         │
         │
 ┌───────▼──────────────────────────────────────────────────────┐
-│                      Main Dashboard                           │
-│                   (Authenticated View)                        │
-│  - Header: Logo, User menu (Profile, Logout)                │
-│  - "New Concept Map" button (prominent)                      │
+│                      Main Dashboard                          │
+│                   (Authenticated View)                       │
+│  - Header: Logo, User menu (Profile, Logout)                 │
+│  - Concept Mapper                                            │
 │  - Learning Paths grid (cards with status indicators)        │
 │  - Quick stats: Concepts mapped, Quizzes passed              │
 └───────┬──────────────────────────────────────────────────────┘
@@ -308,7 +300,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 │    - "Test Knowledge" buttons on each node                   │
 │    - Progress indicator (X/Y concepts tested)                │
 │                                                               │
-│  Step 3: Quiz Interface (Modal/Overlay)                      │
+│  Step 3: Quiz Interface                     │
 │    - Question counter (1/3, 2/3, 3/3)                       │
 │    - Multiple choice options                                 │
 │    - Progress bar                                            │
@@ -359,7 +351,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 ```
 1. Land on homepage
    ↓
-2. Click "Start Mapping" (Guest mode) or "Sign Up"
+2. Start Mapping (Guest mode) or "Sign Up"
    ↓
 3. Enter concept details (name, level)
    ↓
@@ -367,7 +359,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
    ↓
 5. Click "Test Knowledge" on first prerequisite node
    ↓
-6. Answer 3 quiz questions
+6. Answer quiz questions
    ↓
 7. See result (passed/failed) reflected on tree
    ↓
@@ -450,14 +442,14 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 │  │  ┌────────────┐  ┌──────────────┐  ┌─────────────────┐  │  │
 │  │  │   Pages    │  │  Components  │  │   State Mgmt    │  │  │
 │  │  │            │  │              │  │                 │  │  │
-│  │  │ - Landing  │  │ - TreeView   │  │ - React Context │  │  │
-│  │  │ - Dashboard│  │ - QuizModal  │  │   (Auth)        │  │  │
+│  │  │ - Landing  │  │ - TreeView   │  │ - Redux         │  │  │
+│  │  │ - Dashboard│  │ - Quiz       │  │                 │  │  │
 │  │  │ - Mapper   │  │ - NodeCard   │  │ - Local State   │  │  │
-│  │  │ - Profile  │  │ - ResourceCard│  │   (Quiz data)   │  │  │
+│  │  │ - Profile  │  │ - ResourceCard│  │                │  │  │
 │  │  └────────────┘  └──────────────┘  └─────────────────┘  │  │
 │  │                                                           │  │
 │  │  ┌──────────────────────────────────────────────────┐   │  │
-│  │  │           API Client (Fetch/Axios)                │   │  │
+│  │  │           API Client (Fetch)                      │   │  │
 │  │  │  - Authentication requests                        │   │  │
 │  │  │  - AI API calls (concept mapping, quizzes, etc.)  │   │  │
 │  │  │  - User data CRUD operations                      │   │  │
@@ -473,7 +465,7 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 │  ┌──────────────────────────────────────────────────────────┐  │
 │  │                    API Routes                             │  │
 │  │  ┌──────────┐  ┌───────────┐  ┌──────────────────────┐  │  │
-│  │  │  /auth   │  │  /trees   │  │  /ai (proxy routes)  │  │  │
+│  │  │  /auth   │  │  /trees   │  │  /ai                 │  │  │
 │  │  │          │  │           │  │                      │  │  │
 │  │  │ - POST   │  │ - GET     │  │ - POST /generate-tree│  │  │
 │  │  │   /signup│  │   /:id    │  │ - POST /generate-quiz│  │  │
@@ -541,8 +533,8 @@ Vertex helps students and self-learners identify exactly what prerequisite knowl
 │  ┌──────────────────────────────────────────────────────────┐  │
 │  │  AI Model APIs                                            │  │
 │  │  - Google Gemini 1.5 Flash (development)                 │  │
-│  │  - OpenAI GPT-4o-mini (production)                       │  │
-│  │  - Anthropic Claude Sonnet (premium, optional)           │  │
+│  │  - OpenAI GPT-4o-mini (optional)                       │  │
+│  │  - Anthropic Claude Sonnet (optional)           │  │
 │  └──────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
 ```
